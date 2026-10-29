@@ -1,0 +1,8 @@
+{
+ "type": "rtmp_common",
+ "settings": {
+  "service": "YouTube - RTMPS",
+  "server": "Primary YouTube ingest server",
+  "key": ""
+ }
+}
