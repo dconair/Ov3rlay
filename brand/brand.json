@@ -1,0 +1,25 @@
+{
+  "name": "dc_onair",
+  "handle": "@dc_onair",
+  "collection": "dc_onair",
+  "colors": {
+    "primary": "#FF6200",
+    "secondary": "#0062FF",
+    "dark": "#0A0A10",
+    "light": "#FFFFFF"
+  },
+  "font": {
+    "family": "",
+    "note": "Leer = Systemschrift (macOS: Helvetica Neue, Windows: Segoe UI). Eigene Schrift: .ttf/.otf nach payload/assets/fonts/ legen und hier den Familiennamen eintragen."
+  },
+  "texts": {
+    "starting": ["GLEICH GEHT'S LOS", "Mach es dir bequem, wir starten in Kürze"],
+    "brb": ["BIN GLEICH ZURÜCK", "Kurze Pause, bleib dran"],
+    "ending": ["DANKE FÜRS ZUSCHAUEN", "Bis zum nächsten Stream"],
+    "lower_third": ["dc_onair", "Live-Stream"]
+  },
+  "cameras": [
+    {"id": "iphone", "label": "iPhone"},
+    {"id": "sony", "label": "Sony A7 II"}
+  ]
+}
