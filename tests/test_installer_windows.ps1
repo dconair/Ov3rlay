@@ -8,7 +8,7 @@ function Check($name, $cond) { if ($cond) { Write-Host "ok     $name" } else { W
 
 $env:DC_SKIP_OBS_CHECK = '1'
 $env:DC_OBS_CONFIG = Join-Path $T 'obs studio'
-$env:DC_APP_DIR = Join-Path $T 'dc "onair"'
+$env:DC_APP_DIR = Join-Path $T "dc 'onair'"
 $env:DC_FONT_DIR = Join-Path $T 'Fonts'
 $env:DC_REC_DIR = Join-Path $T 'Videos'
 foreach ($v in 'APPDATA', 'LOCALAPPDATA', 'ProgramFiles', 'ProgramData') { Set-Item "env:$v" (Join-Path $T $v) }
