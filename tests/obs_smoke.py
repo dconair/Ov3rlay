@@ -89,6 +89,7 @@ def main():
          "--collection", "dc_onair", "--profile", "dc_onair"],
         env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, start_new_session=True)
     failures = []
+    completed = False
 
     def check(cond, msg):
         print(("ok    " if cond else "FEHLER"), msg)
@@ -153,6 +154,7 @@ def main():
                 data = shot["imageData"].split(",", 1)[1]
                 (args.shots / f"{scene.replace(' ', '_').replace('+', 'plus')}.png").write_bytes(base64.b64decode(data))
             print("Screenshots in", args.shots)
+        completed = True
     finally:
         os.killpg(obs.pid, signal.SIGTERM)  # xvfb-run + OBS beenden
         try:
@@ -160,7 +162,7 @@ def main():
         except subprocess.TimeoutExpired:
             os.killpg(obs.pid, signal.SIGKILL)
             log = obs.communicate()[0]
-        if sys.exc_info()[0] is not None:  # Abbruch: OBS-Log zur Diagnose ausgeben
+        if not completed:  # Abbruch: OBS-Log zur Diagnose ausgeben
             print("--- OBS-Log (Ende) ---\n" + "\n".join(log.splitlines()[-60:]))
 
     bad = [line for line in log.splitlines()
