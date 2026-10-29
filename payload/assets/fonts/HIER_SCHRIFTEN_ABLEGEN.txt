@@ -1,0 +1,2 @@
+Hier die Markenschrift (.ttf oder .otf) ablegen und in payload/brand.env bei FONT_FAMILY den Familiennamen eintragen.
+Der Installer richtet die Schrift automatisch ein.
