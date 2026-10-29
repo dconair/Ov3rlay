@@ -49,6 +49,9 @@ class Ws:
             msg = json.loads(self.ws.recv())
             if msg["op"] == 7 and msg["d"]["requestId"] == str(self.n):
                 status = msg["d"]["requestStatus"]
+                if not status["result"] and status.get("code") == 207:  # OBS startet noch
+                    time.sleep(1)
+                    return self.call(request, data)
                 if not status["result"]:
                     raise RuntimeError(f"{request}: {status.get('comment')}")
                 return msg["d"].get("responseData", {})
