@@ -83,7 +83,10 @@ def main():
     tmp = Path(tempfile.mkdtemp(prefix="obs-smoke-"))
     config = tmp / ".config" / "obs-studio"
     scene_file = prepare_home(tmp, config)
-    env = {**os.environ, "HOME": str(tmp), "LIBGL_ALWAYS_SOFTWARE": "1", "QT_QPA_PLATFORM": "xcb"}
+    env = {**os.environ, "HOME": str(tmp), "LIBGL_ALWAYS_SOFTWARE": "1", "QT_QPA_PLATFORM": "xcb",
+           # CI-Runner setzen XDG_*, dann würde OBS seine Konfiguration nicht unter HOME suchen
+           "XDG_CONFIG_HOME": str(tmp / ".config"), "XDG_DATA_HOME": str(tmp / ".local" / "share"),
+           "XDG_CACHE_HOME": str(tmp / ".cache")}
     obs = subprocess.Popen(
         ["xvfb-run", "-a", "-s", "-screen 0 1920x1080x24", "obs", "--disable-shutdown-check", "--disable-updater",
          "--collection", "dc_onair", "--profile", "dc_onair"],
