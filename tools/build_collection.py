@@ -83,11 +83,11 @@ class Collection:
             "monitoring_type": 0, "private_settings": private or {},
         }
         if filters:
-            src["filters"] = [self.make_filter(*f) for f in filters]
+            src["filters"] = [self.make_filter(name, *f) for f in filters]
         return src
 
-    def make_filter(self, fid, name, settings):
-        return {"prev_ver": PREV_VER, "name": name, "uuid": self.uid("filter/" + name), "id": fid,
+    def make_filter(self, parent, fid, name, settings):
+        return {"prev_ver": PREV_VER, "name": name, "uuid": self.uid(f"filter/{parent}/{name}"), "id": fid,
                 "versioned_id": fid, "settings": settings, "mixers": 0, "sync": 0, "flags": 0,
                 "volume": 1.0, "balance": 0.5, "enabled": True, "muted": False, "hotkeys": {},
                 "private_settings": {}}

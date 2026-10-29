@@ -50,6 +50,8 @@ class CollectionTests(unittest.TestCase):
             for key in ("name", "uuid"):
                 values = [s[key] for s in sources]
                 self.assertEqual(len(values), len(set(values)), f"{platform}: doppelte {key}")
+            uuids = [s["uuid"] for s in sources] + [f["uuid"] for s in sources for f in s.get("filters", [])]
+            self.assertEqual(len(uuids), len(set(uuids)), f"{platform}: doppelte UUID bei Filtern")
 
     def test_only_known_tokens(self):
         for platform, move, doc in self.docs():
