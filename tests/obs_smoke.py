@@ -30,7 +30,7 @@ EXPECTED_SCENES = ["01 Starting Soon", "02 Kamera iPhone", "03 Kamera Sony", "04
                    "05 Screen + Cam", "06 Screen Only", "07 BRB", "08 Ending"]
 EXPECTED_TRANSITIONS = ["dc Stinger", "dc Slide", "dc Swipe", "dc Fade Black"]
 # Linux hat kein Pulse/V4L2-Gerät im Container; diese Warnungen sind erwartet.
-IGNORED_LOG = ("pulse", "v4l2", "dbus", "window manager", "Failed to glob", "libEGL", "MESA")
+IGNORED_LOG = ("pulse", "v4l2", "dbus", "window manager", "Failed to glob", "libEGL", "MESA", "setTabOrder")
 
 
 class Ws:

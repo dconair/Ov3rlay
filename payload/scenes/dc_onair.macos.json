@@ -180,7 +180,7 @@
     {
      "prev_ver": 503316482,
      "name": "Scroll",
-     "uuid": "4930cc2f-23f5-5dbb-b0bc-c56c299555dd",
+     "uuid": "7e30f57a-f5e6-5e2c-9eaf-568008d15bf0",
      "id": "scroll_filter",
      "versioned_id": "scroll_filter",
      "settings": {
@@ -259,7 +259,7 @@
     {
      "prev_ver": 503316482,
      "name": "Farbkorrektur",
-     "uuid": "974f9b30-291b-5a3c-b0a7-99d1a56dd737",
+     "uuid": "2101fa5d-6400-58e6-bbb3-5005f28ca1f4",
      "id": "color_filter_v2",
      "versioned_id": "color_filter_v2",
      "settings": {
@@ -280,7 +280,7 @@
     {
      "prev_ver": 503316482,
      "name": "Schärfe",
-     "uuid": "a90bb1d2-548d-5b40-bc0a-8645d582d372",
+     "uuid": "9189108c-a3f7-53ae-9ace-4e6859838970",
      "id": "sharpness_filter_v2",
      "versioned_id": "sharpness_filter_v2",
      "settings": {
@@ -355,7 +355,7 @@
     {
      "prev_ver": 503316482,
      "name": "Farbkorrektur",
-     "uuid": "974f9b30-291b-5a3c-b0a7-99d1a56dd737",
+     "uuid": "4d72bf0e-d068-561a-be5f-5a1a89932eda",
      "id": "color_filter_v2",
      "versioned_id": "color_filter_v2",
      "settings": {
@@ -376,7 +376,7 @@
     {
      "prev_ver": 503316482,
      "name": "Schärfe",
-     "uuid": "a90bb1d2-548d-5b40-bc0a-8645d582d372",
+     "uuid": "5d9750f2-9d8c-5010-9e16-ee0e5a8eb2c3",
      "id": "sharpness_filter_v2",
      "versioned_id": "sharpness_filter_v2",
      "settings": {
@@ -2913,7 +2913,7 @@
    {
     "prev_ver": 503316482,
     "name": "Rauschunterdrückung",
-    "uuid": "bfa8113f-e3bc-5664-85f7-ac3847a123e7",
+    "uuid": "0379959c-c6bf-53a5-b50f-003bf9bc4a1d",
     "id": "noise_suppress_filter_v2",
     "versioned_id": "noise_suppress_filter_v2",
     "settings": {
@@ -2932,7 +2932,7 @@
    {
     "prev_ver": 503316482,
     "name": "Verstärkung",
-    "uuid": "6618c782-7d07-5d60-b76d-671159c65398",
+    "uuid": "72ebb0fc-63a6-5efc-8c5c-f36f13dc0182",
     "id": "gain_filter",
     "versioned_id": "gain_filter",
     "settings": {
@@ -2951,7 +2951,7 @@
    {
     "prev_ver": 503316482,
     "name": "Kompressor",
-    "uuid": "9cbb1cd5-5256-5ed6-9292-25222e0af534",
+    "uuid": "60d7a4cc-ab97-5899-be33-8a29c3b6cd49",
     "id": "compressor_filter",
     "versioned_id": "compressor_filter",
     "settings": {
@@ -2974,7 +2974,7 @@
    {
     "prev_ver": 503316482,
     "name": "Limiter",
-    "uuid": "ba5e00db-fe4a-52d3-870f-844b01ecfd93",
+    "uuid": "ede69b88-7b48-59b8-91c0-3713b532c267",
     "id": "limiter_filter",
     "versioned_id": "limiter_filter",
     "settings": {
