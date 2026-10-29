@@ -160,6 +160,8 @@ def main():
         except subprocess.TimeoutExpired:
             os.killpg(obs.pid, signal.SIGKILL)
             log = obs.communicate()[0]
+        if sys.exc_info()[0] is not None:  # Abbruch: OBS-Log zur Diagnose ausgeben
+            print("--- OBS-Log (Ende) ---\n" + "\n".join(log.splitlines()[-60:]))
 
     bad = [line for line in log.splitlines()
            if line.startswith(("warning", "error")) and not any(k in line for k in IGNORED_LOG)]
