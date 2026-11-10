@@ -86,7 +86,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - run: npm ci
-      - run: npm run dist:mac
+      - name: dmg bauen (ad-hoc-Signatur; ohne Zertifikate, daher auch in Pull Requests)
+        run: npm run dist:mac
+        env:
+          CSC_FOR_PULL_REQUEST: "true"
       - name: dmg-Smoke-Test (Signatur, Architekturen, gepackte CLI)
         run: bash tests/smoke-packaged.sh
       - uses: actions/upload-artifact@v4
