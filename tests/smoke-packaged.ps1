@@ -18,13 +18,13 @@ $env:DC_FONT_DIR = Join-Path $t 'Fonts'; $env:DC_REC_DIR = Join-Path $t 'Videos'
 $env:ELECTRON_RUN_AS_NODE = '1'
 $cli = Join-Path $res 'app.asar\cli\dc-onair.js'
 $payload = Join-Path $res 'payload'
-function Cli { & $exe $cli @args --payload $payload; if ($LASTEXITCODE -ne 0) { throw "CLI-Fehler ($args)" } }
+function Dc { & $exe $cli @args --payload $payload; if ($LASTEXITCODE -ne 0) { throw "CLI-Fehler ($args)" } }
 
-Cli status
-Cli encoder
-Cli cameras
-Cli matrix | Out-Null
-Cli install --service twitch --quality 1080p30
+Dc status
+Dc encoder
+Dc cameras
+Dc matrix | Out-Null
+Dc install --service twitch --quality 1080p30
 $scene = Join-Path $env:DC_OBS_CONFIG 'basic\scenes\dc_onair.json'
 $text = Get-Content $scene -Raw
 if ($text.Contains('{{')) { throw 'offene Platzhalter in der Szenen-Datei' }
@@ -32,6 +32,6 @@ $doc = $text | ConvertFrom-Json
 $stinger = ($doc.transitions | Where-Object { $_.id -eq 'obs_stinger_transition' }).settings.path
 if (-not (Test-Path $stinger)) { throw "Stinger-Datei fehlt: $stinger" }
 if (-not (Select-String -Path (Join-Path $env:DC_OBS_CONFIG 'basic\profiles\dc_onair\basic.ini') -Pattern '^StreamEncoder=')) { throw 'Encoder fehlt im Profil' }
-Cli uninstall
+Dc uninstall
 if (Test-Path $scene) { throw 'Szene nach Deinstallation noch vorhanden' }
 Write-Host 'Smoke-Test bestanden'
