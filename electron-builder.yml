@@ -1,0 +1,49 @@
+# Windows-Installer (NSIS) und macOS-dmg aus derselben Konfiguration. Gebaut wird in GitHub Actions (build-app.yml).
+appId: de.dconair.onair-setup
+productName: dc_onair Setup
+copyright: dc_onair
+directories:
+  output: dist
+  buildResources: build
+files:
+  - electron/**
+  - core/**
+  - cli/**
+  - package.json
+extraResources:
+  - from: payload
+    to: payload
+    filter: ["**/*", "!**/.DS_Store"]
+asar: true
+compression: normal
+
+win:
+  icon: build/icon.png
+  target:
+    - target: nsis
+      arch: [x64]
+  artifactName: dc_onair-Setup-${version}-windows.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false            # ohne Administratorrechte, nur für den aktuellen Benutzer
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: dc_onair Setup
+  deleteAppDataOnUninstall: false   # OBS-Konfiguration und Sicherungen bleiben beim Deinstallieren erhalten
+  language: "1031"                  # Deutsch
+
+mac:
+  icon: build/icon.png
+  category: public.app-category.utilities
+  target:
+    - target: dmg
+      arch: [universal]
+  artifactName: dc_onair-Setup-${version}-macos.${ext}
+  identity: "-"                # Ad-hoc-Signatur: ohne Apple-Zertifikat startet die App auch auf Apple-Silicon (mit Gatekeeper-Hinweis)
+  hardenedRuntime: false
+  gatekeeperAssess: false
+
+dmg:
+  title: dc_onair Setup

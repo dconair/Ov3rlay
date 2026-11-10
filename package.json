@@ -1,0 +1,23 @@
+{
+  "name": "dc-onair-setup",
+  "productName": "dc_onair Setup",
+  "version": "1.0.0",
+  "description": "Installer und Selbsttest für das dc_onair OBS-Setup (Windows und macOS)",
+  "author": "dc_onair",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "electron/main.js",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "electron .",
+    "cli": "node cli/dc-onair.js",
+    "test": "node --test \"tests/node/*.test.js\"",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:mac": "electron-builder --mac dmg --universal",
+    "pack": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0"
+  }
+}
