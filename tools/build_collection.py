@@ -142,7 +142,6 @@ class Collection:
             {"name": "dc Stinger", "id": "obs_stinger_transition", "settings": {
                 "path": self.asset("video/stinger.webm"), "tp_type": 0, "transition_point": 520,
                 "audio_fade_style": 0, "enable_monitoring": False, "hw_decode": False, "preload": True}},
-            {"name": "dc Fade", "id": "fade_transition", "settings": {}},
             {"name": "dc Slide", "id": "slide_transition", "settings": {"direction": "left"}},
             {"name": "dc Swipe", "id": "swipe_transition", "settings": {"direction": "left"}},
             {"name": "dc Fade Black", "id": "fade_to_color_transition", "settings": {"color": 0xFF000000}},
@@ -152,7 +151,7 @@ class Collection:
         return t
 
     def quick_transitions(self):
-        names = ["Cut", "dc Fade", "dc Stinger", "dc Slide", "dc Fade Black"]
+        names = ["Cut", "Fade", "dc Stinger", "dc Slide", "dc Fade Black"]
         return [{"name": n, "duration": 300, "hotkeys": [], "id": i + 1, "fade_to_black": False}
                 for i, n in enumerate(names)]
 
@@ -256,8 +255,8 @@ class Collection:
 
         title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB")
         title_card(self.scene("08 Ending", "OBS_KEY_8"), "Ending")
-        # Notfall-Szene für IRL/Verbindungsabbruch: kurze Überblendung statt Stinger, damit sie sofort greift
-        title_card(self.scene("09 Connection Lost", "OBS_KEY_9", ("dc Fade", 300)), "Lost")
+        # Notfall-Szene für IRL/Verbindungsabbruch: eingebauter Fade (OBS speichert nur konfigurierbare Übergänge, daher kein eigener) statt Stinger, damit sie sofort greift
+        title_card(self.scene("09 Connection Lost", "OBS_KEY_9", ("Fade", 300)), "Lost")
 
 
 class Scene:

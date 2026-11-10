@@ -28,7 +28,7 @@ import build_collection as bc  # noqa: E402
 PORT = 4459
 EXPECTED_SCENES = ["01 Starting Soon", "02 Kamera iPhone", "03 Kamera Sony", "04 Dual Cam",
                    "05 Screen + Cam", "06 Screen Only", "07 BRB", "08 Ending", "09 Connection Lost"]
-EXPECTED_TRANSITIONS = ["dc Stinger", "dc Slide", "dc Swipe", "dc Fade Black", "dc Fade"]
+EXPECTED_TRANSITIONS = ["dc Stinger", "dc Slide", "dc Swipe", "dc Fade Black", "Fade"]
 # Linux hat kein Pulse/V4L2-Gerät im Container; diese Warnungen sind erwartet.
 IGNORED_LOG = ("pulse", "v4l2", "dbus", "window manager", "Failed to glob", "libEGL", "MESA", "setTabOrder")
 
@@ -132,7 +132,7 @@ def main():
         override = ws.call("GetSceneSceneTransitionOverride", {"sceneName": "02 Kamera iPhone"})
         check(override["transitionName"] == "dc Slide", f"Szenen-Override 02: {override}")
         lost = ws.call("GetSceneSceneTransitionOverride", {"sceneName": "09 Connection Lost"})
-        check(lost["transitionName"] == "dc Fade", f"Szenen-Override 09: {lost}")
+        check(lost["transitionName"] == "Fade", f"Szenen-Override 09: {lost}")
         stinger = ws.call("GetCurrentSceneTransition")
         check(stinger["transitionKind"] == "obs_stinger_transition", "Stinger ist vom Typ obs_stinger_transition")
 
@@ -146,6 +146,10 @@ def main():
         item = lower["settings"]["items"][0]
         check(item.get("show_transition", {}).get("id") == "slide_transition", "Item-Show-Transition bleibt erhalten")
         check(item.get("hide_transition", {}).get("id") == "slide_transition", "Item-Hide-Transition bleibt erhalten")
+        lost_saved = by_name["09 Connection Lost"]["private_settings"]
+        saved_names = {t["name"] for t in saved["transitions"]}
+        check(lost_saved.get("transition") == "Fade" and "dc Fade" not in saved_names,
+              f"Override 09 nach OBS-Speichern erhalten: {lost_saved.get('transition')}")
         check(bool(lower["hotkeys"].get("libobs.show_scene_item.1")), "Lower-Third-Hotkey bleibt erhalten")
         check(bool(by_name["03 Kamera Sony"]["hotkeys"]["OBSBasic.SelectScene"]), "Szenen-Hotkey bleibt erhalten")
         check("DesktopAudioDevice1" in saved and "AuxAudioDevice1" in saved, "Globale Audio-Geräte bleiben erhalten")
