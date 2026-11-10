@@ -135,8 +135,8 @@ def bg_frame(w, h, phase):
     return np.clip(img, 0, 255).astype(np.uint8)
 
 
-def encode(frames, args, out):
-    cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-s", f"{W}x{H}", "-r", "30", *args["in"],
+def encode(frames, args, out, fps=30):
+    cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-s", f"{W}x{H}", "-r", str(fps), *args["in"],
            "-i", "-", *args["out"], str(out)]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for frame in frames:
@@ -158,26 +158,27 @@ def bg_loop(path, seconds=8):
 # --- Stinger-Übergang (VP9 mit Alpha) ------------------------------------------
 
 STINGER_SECONDS = 1.1
-STINGER_COVER_MS = 520  # Zeitpunkt, an dem der Bildschirm vollständig verdeckt ist
+STINGER_FPS = 60  # entspricht dem Standard-Profil (1080p60); Stinger-Guides empfehlen die Ausgabe-FPS
+STINGER_COVER_MS = 520  # Mitte der Phase 0,44 bis 0,60 s, in der der Bildschirm vollständig verdeckt ist (ca. 10 Bilder)
 
 
 def stinger_frames(logo):
     y, x = np.mgrid[0:H, 0:W].astype(np.float32)
     u = x + y * TAN
     umax = W + H * TAN + 4
-    layers = [(ORANGE, 0.00, 0.65), (BLUE, 0.05, 0.60), (DARK, 0.10, 0.55)]  # (Farbe, Start vorn, Start hinten)
+    layers = [(ORANGE, 0.00, 0.68), (BLUE, 0.04, 0.64), (DARK, 0.08, 0.60)]  # (Farbe, Start vorn, Start hinten)
     logo_img = Image.open(logo).convert("RGBA").resize((420, 420), Image.LANCZOS)
-    for i in range(int(STINGER_SECONDS * 30)):
-        t = i / 30
+    for i in range(round(STINGER_SECONDS * STINGER_FPS)):
+        t = i / STINGER_FPS
         rgba = np.zeros((H, W, 4), np.float32)
         for color, front_start, back_start in layers:
-            front = ease((t - front_start) / 0.40) * umax
-            back = ease((t - back_start) / 0.40) * umax
+            front = ease((t - front_start) / 0.36) * umax
+            back = ease((t - back_start) / 0.36) * umax
             cover = np.clip(front - u + 0.5, 0, 1) * np.clip(u - back + 0.5, 0, 1)
             rgba[..., :3] = rgba[..., :3] * (1 - cover[..., None]) + np.array(color, np.float32) * cover[..., None]
             rgba[..., 3] = rgba[..., 3] * (1 - cover) + 255 * cover
         frame = Image.fromarray(np.clip(rgba, 0, 255).astype(np.uint8), "RGBA")
-        pop = float(smoothstep(0.30, 0.50, t) * (1 - smoothstep(0.58, 0.72, t)))
+        pop = float(smoothstep(0.28, 0.46, t) * (1 - smoothstep(0.60, 0.78, t)))
         if pop > 0:
             size = int(420 * (0.85 + 0.15 * pop))
             scaled = logo_img.resize((size, size), Image.LANCZOS)
@@ -191,7 +192,7 @@ def stinger(path, logo):
            {"in": ["-pix_fmt", "rgba"],
             "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "30",
                     "-auto-alt-ref", "0", "-an"]},
-           path)
+           path, fps=STINGER_FPS)
 
 
 def main():
