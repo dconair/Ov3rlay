@@ -10,7 +10,9 @@ OBS wählt den Übergang **nach der Zielszene**: Hat die Zielszene einen Szenen-
 |---|---|---|
 | 01 Starting Soon, 07 BRB, 08 Ending | `dc Stinger` (Schnittpunkt 520 ms) | Titelkarten sind Ereignisse im Stream: Farbwisch mit Logo, Wechsel unter voller Deckung |
 | 02 bis 06 (Kameras, Dual Cam, Screen) | `dc Slide` 450 ms (mit Move-Plugin `dc Move`) | Zwischen Bildinhalten kurz und ruhig, kein Logo-Effekt |
-| 09 Connection Lost | `dc Fade` 300 ms | Soll beim automatischen Failover so schnell und unauffällig wie möglich sein |
+| 09 Connection Lost | `Fade` (eingebaut) 300 ms | Soll beim automatischen Failover so schnell und unauffällig wie möglich sein |
+
+Hinweis: OBS speichert in der Collection nur *konfigurierbare* Übergänge. Die eingebauten `Cut` und `Fade` dürfen deshalb nicht als eigener Eintrag (`dc Fade`) angelegt werden, sonst verschwinden sie beim ersten Speichern durch OBS samt Szenen-Zuordnung. Der Selbsttest prüft das im echten OBS (Rundlauf) und `npm test` statisch.
 
 Nicht automatisch genutzt, aber vorhanden (manuell oder per Hotkey): `dc Swipe`, `dc Fade Black`.
 
@@ -18,14 +20,14 @@ Nicht automatisch genutzt, aber vorhanden (manuell oder per Hotkey): `dc Swipe`,
 
 | von \ nach | 01 Starting Soon | 02 Kamera iPhone | 03 Kamera Sony | 04 Dual Cam | 05 Screen + Cam | 06 Screen Only | 07 BRB | 08 Ending | 09 Connection Lost |
 |---|---|---|---|---|---|---|---|---|---|
-| **01 Starting Soon** | · | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | dc Fade 300 ms |
-| **02 Kamera iPhone** | dc Stinger (520 ms Schnitt) | · | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | dc Fade 300 ms |
-| **03 Kamera Sony** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | · | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | dc Fade 300 ms |
-| **04 Dual Cam** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | · | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | dc Fade 300 ms |
-| **05 Screen + Cam** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | · | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | dc Fade 300 ms |
-| **06 Screen Only** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | · | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | dc Fade 300 ms |
-| **07 BRB** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | · | dc Stinger (520 ms Schnitt) | dc Fade 300 ms |
-| **08 Ending** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | · | dc Fade 300 ms |
+| **01 Starting Soon** | · | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | Fade 300 ms |
+| **02 Kamera iPhone** | dc Stinger (520 ms Schnitt) | · | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | Fade 300 ms |
+| **03 Kamera Sony** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | · | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | Fade 300 ms |
+| **04 Dual Cam** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | · | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | Fade 300 ms |
+| **05 Screen + Cam** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | · | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | Fade 300 ms |
+| **06 Screen Only** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | · | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | Fade 300 ms |
+| **07 BRB** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | · | dc Stinger (520 ms Schnitt) | Fade 300 ms |
+| **08 Ending** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | · | Fade 300 ms |
 | **09 Connection Lost** | dc Stinger (520 ms Schnitt) | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Slide 450 ms | dc Stinger (520 ms Schnitt) | dc Stinger (520 ms Schnitt) | · |
 
 Neu erzeugen: `node cli/dc-onair.js matrix` (liest die Collection aus `payload/scenes`).
@@ -42,6 +44,6 @@ Gemessen mit OBS 30.0.2 unter Linux (Software-Rendering, also eher langsamer als
 |---|---|---|---|
 | dc Slide | 40 | 450 ms | 459 bis 594 ms |
 | dc Stinger | 24 | Video 1,1 s | 1357 bis 1448 ms (inkl. Start und Ende des Medienspielers) |
-| dc Fade | 8 | 300 ms | 341 bis 413 ms |
+| Fade | 8 | 300 ms | 341 bis 413 ms |
 
 Alle 72 Wechsel liefen mit dem erwarteten Übergang. Auf echter Windows- und macOS-Hardware ist das bisher nicht gemessen; die App führt denselben Test beim Einrichten aus.
