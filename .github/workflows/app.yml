@@ -2,9 +2,10 @@ name: App (Installer für Windows und macOS)
 
 on:
   push:
+    branches: [main]
+    tags: ['v*']          # Version-Tags (v1.0.0 usw.) erzeugen zusätzlich ein GitHub-Release mit den Installern
   pull_request:
   workflow_dispatch:
-  # Version-Tags (v1.0.0 usw.) erzeugen zusätzlich ein GitHub-Release mit den Installern
 
 permissions:
   contents: read
