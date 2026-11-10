@@ -18,12 +18,13 @@ $env:DC_FONT_DIR = Join-Path $t 'Fonts'; $env:DC_REC_DIR = Join-Path $t 'Videos'
 $env:ELECTRON_RUN_AS_NODE = '1'
 $cli = Join-Path $res 'app.asar\cli\dc-onair.js'
 $payload = Join-Path $res 'payload'
-function Dc { & $exe $cli @args --payload $payload; if ($LASTEXITCODE -ne 0) { throw "CLI-Fehler ($args)" } }
+# electron.exe ist ein GUI-Programm: nur mit Pipe wartet PowerShell auf das Ende und setzt $LASTEXITCODE
+function Dc { $global:LASTEXITCODE = $null; & $exe $cli @args --payload $payload | Out-Host; if ($LASTEXITCODE -ne 0) { throw "CLI-Fehler ($args), Exit $LASTEXITCODE" } }
 
 Dc status
 Dc encoder
 Dc cameras
-Dc matrix | Out-Null
+Dc matrix
 Dc install --service twitch --quality 1080p30
 $scene = Join-Path $env:DC_OBS_CONFIG 'basic\scenes\dc_onair.json'
 $text = Get-Content $scene -Raw
