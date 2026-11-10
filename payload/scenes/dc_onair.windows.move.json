@@ -3063,7 +3063,7 @@
    "deinterlace_field_order": 0,
    "monitoring_type": 0,
    "private_settings": {
-    "transition": "dc Fade",
+    "transition": "Fade",
     "transition_duration": 300
    }
   }
@@ -3078,7 +3078,7 @@
    "fade_to_black": false
   },
   {
-   "name": "dc Fade",
+   "name": "Fade",
    "duration": 300,
    "hotkeys": [],
    "id": 2,
@@ -3119,11 +3119,6 @@
     "hw_decode": false,
     "preload": true
    }
-  },
-  {
-   "name": "dc Fade",
-   "id": "fade_transition",
-   "settings": {}
   },
   {
    "name": "dc Slide",
