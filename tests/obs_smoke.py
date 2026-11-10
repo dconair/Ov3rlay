@@ -27,8 +27,8 @@ import build_collection as bc  # noqa: E402
 
 PORT = 4459
 EXPECTED_SCENES = ["01 Starting Soon", "02 Kamera iPhone", "03 Kamera Sony", "04 Dual Cam",
-                   "05 Screen + Cam", "06 Screen Only", "07 BRB", "08 Ending"]
-EXPECTED_TRANSITIONS = ["dc Stinger", "dc Slide", "dc Swipe", "dc Fade Black"]
+                   "05 Screen + Cam", "06 Screen Only", "07 BRB", "08 Ending", "09 Connection Lost"]
+EXPECTED_TRANSITIONS = ["dc Stinger", "dc Slide", "dc Swipe", "dc Fade Black", "dc Fade"]
 # Linux hat kein Pulse/V4L2-Gerät im Container; diese Warnungen sind erwartet.
 IGNORED_LOG = ("pulse", "v4l2", "dbus", "window manager", "Failed to glob", "libEGL", "MESA", "setTabOrder")
 
@@ -114,7 +114,7 @@ def main():
             raise SystemExit("OBS-WebSocket nicht erreichbar")
 
         scenes = [s["sceneName"] for s in ws.call("GetSceneList")["scenes"]]
-        check(all(n in scenes for n in EXPECTED_SCENES), f"alle 8 Szenen geladen ({len(scenes)} inkl. Hilfsszenen)")
+        check(all(n in scenes for n in EXPECTED_SCENES), f"alle 9 Szenen geladen ({len(scenes)} inkl. Hilfsszenen)")
         trans = ws.call("GetSceneTransitionList")
         names = [t["transitionName"] for t in trans["transitions"]]
         check(all(n in names for n in EXPECTED_TRANSITIONS), f"Übergänge vorhanden: {EXPECTED_TRANSITIONS}")
@@ -131,6 +131,8 @@ def main():
             check(count >= 2, f"{scene}: {count} Elemente")
         override = ws.call("GetSceneSceneTransitionOverride", {"sceneName": "02 Kamera iPhone"})
         check(override["transitionName"] == "dc Slide", f"Szenen-Override 02: {override}")
+        lost = ws.call("GetSceneSceneTransitionOverride", {"sceneName": "09 Connection Lost"})
+        check(lost["transitionName"] == "dc Fade", f"Szenen-Override 09: {lost}")
         stinger = ws.call("GetCurrentSceneTransition")
         check(stinger["transitionKind"] == "obs_stinger_transition", "Stinger ist vom Typ obs_stinger_transition")
 

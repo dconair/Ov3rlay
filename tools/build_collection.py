@@ -46,8 +46,6 @@ PLATFORMS = {
 BOUNDS_INNER, BOUNDS_OUTER = 2, 3
 ALIGN_CENTER, ALIGN_TOPLEFT = 0, 5
 
-SELECT_SCENE_KEYS = ["OBS_KEY_1", "OBS_KEY_2", "OBS_KEY_3", "OBS_KEY_4",
-                     "OBS_KEY_5", "OBS_KEY_6", "OBS_KEY_7", "OBS_KEY_8"]
 HOTKEY_MODS = {"control": True, "alt": True}  # Strg+Alt bzw. Ctrl+Option
 
 
@@ -143,7 +141,8 @@ class Collection:
         t = [
             {"name": "dc Stinger", "id": "obs_stinger_transition", "settings": {
                 "path": self.asset("video/stinger.webm"), "tp_type": 0, "transition_point": 520,
-                "audio_fade_style": 0, "audio_monitoring": 0}},
+                "audio_fade_style": 0, "enable_monitoring": False, "hw_decode": False, "preload": True}},
+            {"name": "dc Fade", "id": "fade_transition", "settings": {}},
             {"name": "dc Slide", "id": "slide_transition", "settings": {"direction": "left"}},
             {"name": "dc Swipe", "id": "swipe_transition", "settings": {"direction": "left"}},
             {"name": "dc Fade Black", "id": "fade_to_color_transition", "settings": {"color": 0xFF000000}},
@@ -153,7 +152,7 @@ class Collection:
         return t
 
     def quick_transitions(self):
-        names = ["Cut", "Fade", "dc Stinger", "dc Slide", "dc Fade Black"]
+        names = ["Cut", "dc Fade", "dc Stinger", "dc Slide", "dc Fade Black"]
         return [{"name": n, "duration": 300, "hotkeys": [], "id": i + 1, "fade_to_black": False}
                 for i, n in enumerate(names)]
 
@@ -191,7 +190,7 @@ class Collection:
                                                              "release_time": 60.0, "output_gain": 0.0}),
                         ("limiter_filter", "Limiter", {"threshold": -3.0, "release_time": 60.0})])
         # Texte
-        for key, label in (("starting", "Starting"), ("brb", "BRB"), ("ending", "Ending")):
+        for key, label in (("starting", "Starting"), ("brb", "BRB"), ("ending", "Ending"), ("lost", "Lost")):
             self.text(f"Txt {label}", t[key][0], 96)
             self.text(f"Txt {label} Sub", t[key][1], 40, bold=False)
         self.text("Txt Handle", BRAND["handle"], 38, color="primary")
@@ -257,6 +256,8 @@ class Collection:
 
         title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB")
         title_card(self.scene("08 Ending", "OBS_KEY_8"), "Ending")
+        # Notfall-Szene für IRL/Verbindungsabbruch: kurze Überblendung statt Stinger, damit sie sofort greift
+        title_card(self.scene("09 Connection Lost", "OBS_KEY_9", ("dc Fade", 300)), "Lost")
 
 
 class Scene:

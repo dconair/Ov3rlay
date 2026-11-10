@@ -30,10 +30,19 @@ Der Stream-Schlüssel wird nicht abgefragt und nicht gespeichert. Konto verbinde
 | 06 Screen Only | nur Bildschirm |
 | 07 BRB | Pausenbild |
 | 08 Ending | Abspann |
+| 09 Connection Lost | Notfallbild bei Verbindungsabbruch (IRL) |
 
 Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen eingebunden und werden einmal zentral gepflegt.
 
-**Übergänge:** `dc Stinger` (Standard, animierter Farbwisch mit Logo), `dc Slide`, `dc Swipe`, `dc Fade Black`. Zwischen den Kameraszenen wechselt OBS automatisch mit `dc Slide`. Der Lower Third fährt beim Einblenden und Ausblenden mit Slide-Animation ein und aus.
+**Übergänge:** `dc Stinger` (Standard, animierter Farbwisch mit Logo, 60 fps), `dc Slide`, `dc Swipe`, `dc Fade Black`, `dc Fade`. Pro Szene:
+
+| Wechsel nach | Übergang |
+|---|---|
+| 01 Starting, 07 BRB, 08 Ending | `dc Stinger` (Standard) |
+| 02 bis 06 (Kamera- und Screen-Szenen) | `dc Slide` (450 ms), mit Move-Plugin `dc Move` (600 ms) |
+| 09 Connection Lost | `dc Fade` (300 ms), damit das Notfallbild sofort greift |
+
+ Der Lower Third fährt beim Einblenden und Ausblenden mit Slide-Animation ein und aus.
 
 **Effekte:** Kamera-Farbkorrektur und Schärfe, scrollendes Warnband, animierter Hintergrund-Loop, Rahmen mit Eckklammern.
 
@@ -49,7 +58,7 @@ Mit dem kostenlosen Plugin [Move Transition](https://obsproject.com/forum/resour
 
 | Aktion | Taste |
 |---|---|
-| Szene 1 bis 8 | Strg+Alt+1 bis 8 (macOS: Control+Option) |
+| Szene 1 bis 9 | Strg+Alt+1 bis 9 (macOS: Control+Option) |
 | Lower Third ein / aus | Strg+Alt+L / H |
 | Mikrofon stumm | Strg+Alt+M |
 | Desktop-Ton stumm | Strg+Alt+D |

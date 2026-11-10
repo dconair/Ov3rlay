@@ -16,6 +16,7 @@
     "starting": ["GLEICH GEHT'S LOS", "Mach es dir bequem, wir starten in Kürze"],
     "brb": ["BIN GLEICH ZURÜCK", "Kurze Pause, bleib dran"],
     "ending": ["DANKE FÜRS ZUSCHAUEN", "Bis zum nächsten Stream"],
+    "lost": ["VERBINDUNG UNTERBROCHEN", "Gleich geht's weiter, bitte kurz warten"],
     "lower_third": ["dc_onair", "Live-Stream"]
   },
   "cameras": [

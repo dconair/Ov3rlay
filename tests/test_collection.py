@@ -71,7 +71,7 @@ class CollectionTests(unittest.TestCase):
             self.assertIn(doc["current_transition"], names)
             overrides = {s["private_settings"]["transition"] for s in doc["sources"] if s["private_settings"].get("transition")}
             self.assertLessEqual(overrides, names)
-            self.assertEqual(overrides, {"dc Move"} if move else {"dc Slide"})
+            self.assertEqual(overrides, {"dc Move", "dc Fade"} if move else {"dc Slide", "dc Fade"})
 
     def test_scene_hotkeys_unique(self):
         doc = bc.build("macos", False)

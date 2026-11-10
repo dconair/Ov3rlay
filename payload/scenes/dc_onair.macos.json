@@ -27,6 +27,9 @@
    "name": "08 Ending"
   },
   {
+   "name": "09 Connection Lost"
+  },
+  {
    "name": "_Lower Third Inhalt"
   },
   {
@@ -614,6 +617,80 @@
    "versioned_id": "text_ft2_source_v2",
    "settings": {
     "text": "Bis zum nächsten Stream",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 40,
+     "flags": 0,
+     "style": "Regular"
+    },
+    "color1": 4294967295,
+    "color2": 4294967295,
+    "drop_shadow": true,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Lost",
+   "uuid": "0b4c0824-d067-5c94-9fa5-90426f91763b",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "VERBINDUNG UNTERBROCHEN",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 96,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4294967295,
+    "color2": 4294967295,
+    "drop_shadow": true,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Lost Sub",
+   "uuid": "5de6dbf2-7be6-50ac-9c53-bd3ebc310902",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "Gleich geht's weiter, bitte kurz warten",
     "font": {
      "face": "{{FONT_FACE}}",
      "size": 40,
@@ -2755,6 +2832,238 @@
    "deinterlace_field_order": 0,
    "monitoring_type": 0,
    "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "09 Connection Lost",
+   "uuid": "8dffb2e9-5748-5e0e-b886-68af00764bde",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 6,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "BG Loop",
+      "source_uuid": "b8b7d7b9-5a09-5a9b-958a-ef808d3f0835",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 3,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 1920.0,
+       "y": 1080.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Band Stripes",
+      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 1040.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 360.0
+      },
+      "scale": {
+       "x": 0.42,
+       "y": 0.42
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Lost",
+      "source_uuid": "0b4c0824-d067-5c94-9fa5-90426f91763b",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 700.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Lost Sub",
+      "source_uuid": "5de6dbf2-7be6-50ac-9c53-bd3ebc310902",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 800.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 5,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 960.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": [
+     {
+      "key": "OBS_KEY_9",
+      "control": true,
+      "alt": true
+     }
+    ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {
+    "transition": "dc Fade",
+    "transition_duration": 300
+   }
   }
  ],
  "groups": [],
@@ -2767,7 +3076,7 @@
    "fade_to_black": false
   },
   {
-   "name": "Fade",
+   "name": "dc Fade",
    "duration": 300,
    "hotkeys": [],
    "id": 2,
@@ -2804,8 +3113,15 @@
     "tp_type": 0,
     "transition_point": 520,
     "audio_fade_style": 0,
-    "audio_monitoring": 0
+    "enable_monitoring": false,
+    "hw_decode": false,
+    "preload": true
    }
+  },
+  {
+   "name": "dc Fade",
+   "id": "fade_transition",
+   "settings": {}
   },
   {
    "name": "dc Slide",
