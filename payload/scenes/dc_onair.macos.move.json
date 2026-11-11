@@ -120,6 +120,37 @@
   },
   {
    "prev_ver": 503316482,
+   "name": "EQ Bars Gradient",
+   "uuid": "e28d73c9-cce2-5bac-9538-ea1c0d672778",
+   "id": "ffmpeg_source",
+   "versioned_id": "ffmpeg_source",
+   "settings": {
+    "local_file": "{{ASSETS}}/video/eq_bars_gradient.webm",
+    "is_local_file": true,
+    "looping": true,
+    "close_when_inactive": false,
+    "restart_on_activate": false,
+    "hw_decode": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
    "name": "Live Tag",
    "uuid": "37c8c06b-792e-5ba1-a967-082a65e52fce",
    "id": "ffmpeg_source",
@@ -2191,8 +2222,8 @@
       "private_settings": {}
      },
      {
-      "name": "EQ Bars",
-      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
+      "name": "EQ Bars Gradient",
+      "source_uuid": "e28d73c9-cce2-5bac-9538-ea1c0d672778",
       "visible": true,
       "locked": false,
       "rot": 0.0,

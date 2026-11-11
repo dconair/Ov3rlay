@@ -140,6 +140,7 @@ Es reicht, die Dateien unter `payload/assets/` zu ersetzen (gleicher Dateiname) 
 | `video/bg_loop.mp4` | animierter Hintergrund für Starting, BRB, Ending und Dual Cam |
 | `video/live_tag.webm` | LIVE-Zeichen mit blinkendem Punkt |
 | `video/eq_bars.webm` | springende Equalizer-Balken auf den Titelszenen |
+| `video/eq_bars_gradient.webm` | dieselben Balken mit wanderndem Limette-Orange-Verlauf, nur auf „Gleich geht’s los“ |
 | `overlays/frame_cam.png` | Eckmarken um Kamerabilder |
 | `overlays/lower_third.png`, `ticker.png`, `partner_plate.png` | Platten für Lower Third, Laufband und Partner-Schild |
 | `overlays/cam_offline_*.png` | Karte, wenn eine Kamera fehlt |

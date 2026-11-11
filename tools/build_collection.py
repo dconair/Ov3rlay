@@ -178,6 +178,9 @@ class Collection:
         self.source("ffmpeg_source", "EQ Bars", {
             "local_file": self.asset("video/eq_bars.webm"), "is_local_file": True, "looping": True,
             "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
+        self.source("ffmpeg_source", "EQ Bars Gradient", {
+            "local_file": self.asset("video/eq_bars_gradient.webm"), "is_local_file": True, "looping": True,
+            "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
         self.source("ffmpeg_source", "Live Tag", {
             "local_file": self.asset("video/live_tag.webm"), "is_local_file": True, "looping": True,
             "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
@@ -280,10 +283,10 @@ class Collection:
             if frame:
                 scene.add("Frame Cam", pos, bounds=size, bounds_type=BOUNDS_INNER)
 
-        def title_card(scene, label, countdown=None):
+        def title_card(scene, label, countdown=None, eq="EQ Bars"):
             """Titelszene: Hintergrund, Equalizer, Text links, rechts Countdown (Starting, BRB) oder großes Logo."""
             scene.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
-            scene.add("EQ Bars", (0, H - 46 - 170))
+            scene.add(eq, (0, H - 46 - 170))
             scene.add(f"Txt {label} Eyebrow", (120, 290))
             scene.add(f"Txt {label}", (120, 340))
             scene.add(f"Txt {label} Sub", (120, 700))
@@ -296,7 +299,7 @@ class Collection:
                 scene.add("Logo", (1440, 300), scale=0.75)
                 overlay(scene, bug=False, lower=False)
 
-        title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting", "Web Countdown Start")
+        title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting", "Web Countdown Start", eq="EQ Bars Gradient")
 
         s = self.scene("02 Kamera iPhone", "OBS_KEY_2", move_or_slide)
         cam(s, off_iphone, cam_iphone, (0, 0), (W, H)); overlay(s)

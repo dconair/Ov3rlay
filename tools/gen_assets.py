@@ -8,6 +8,7 @@ demselben Namen in payload/assets/ ersetzt werden, die Szenen bleiben gleich.
 Bewusst flach: harte Kanten, Vollflächen, keine Verläufe und kein Leuchten.
 """
 import json
+import colorsys
 import math
 import shutil
 import subprocess
@@ -189,8 +190,9 @@ def live_tag(path):
                                   "-auto-alt-ref", "0", "-an"]}, path, size=(w, h))
 
 
-def eq_bars(path, seconds=4):
-    """Equalizer-Balken für Titelszenen: flache Limetten-Balken, die im Takt springen. Ganzzahlige Frequenzen -> nahtloser Loop."""
+def eq_bars(path, seconds=4, gradient=False):
+    """Equalizer-Balken für Titelszenen: flache Limetten-Balken, die im Takt springen. Ganzzahlige Frequenzen -> nahtloser Loop.
+    gradient=True: Farbverlauf Limette -> Orange -> Limette, der einmal pro Loop durch die Balken wandert (nur "Gleich geht's los")."""
     w, h, n, bw = 1920, 170, 48, 28
     rng = np.random.default_rng(11)
     ph = rng.random((n, 2))
@@ -206,9 +208,20 @@ def eq_bars(path, seconds=4):
             v = 0.55 * math.sin(2 * math.pi * (k1[b] * t + ph[b, 0])) + 0.45 * math.sin(2 * math.pi * (k2[b] * t + ph[b, 1]))
             hh = int(14 + (v * 0.5 + 0.5) ** 1.3 * (h - 18))
             x = b * 40 + 6
-            color = BONE if b % 8 == 3 else LIME
+            color = (255, 255, 255) if gradient else (BONE if b % 8 == 3 else LIME)
             d.rectangle([x, h - hh, x + bw - 1, h - 1], fill=color + (255,))
-        frames.append(np.asarray(img))
+        frame = np.asarray(img)
+        if gradient:
+            frame = frame.copy()
+            phase = np.arange(w, dtype=np.float32) / w * 1.5 - t  # Verlauf wandert nach rechts, ganzzahlig pro Loop
+            tri = 1 - np.abs(2 * (phase % 1.0) - 1)                 # 0 = Limette, 1 = Orange
+            hl, sl, vl = colorsys.rgb_to_hsv(*[c / 255 for c in LIME])
+            ho, so, vo = colorsys.rgb_to_hsv(*[c / 255 for c in ORANGE])
+            col = np.array([[v * 255 for v in colorsys.hsv_to_rgb(hl + (ho - hl) * a, sl + (so - sl) * a, vl + (vo - vl) * a)]
+                            for a in tri], np.float32)               # Verlauf im Farbton: Limette -> Gelb -> Orange, nicht matschig
+            rows = np.linspace(1.0, 0.86, h, dtype=np.float32)[:, None, None]  # oben hell, unten leicht dunkler
+            frame[..., :3] = np.clip(col[None, :, :] * rows, 0, 255).astype(np.uint8)
+        frames.append(frame)
     encode(iter(frames), {"in": ["-pix_fmt", "rgba"],
                           "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "34",
                                   "-auto-alt-ref", "0", "-an"]}, path, size=(w, h))
@@ -272,6 +285,7 @@ def main():
     bg_loop(OUT / "video" / "bg_loop.mp4")
     live_tag(OUT / "video" / "live_tag.webm")
     eq_bars(OUT / "video" / "eq_bars.webm")
+    eq_bars(OUT / "video" / "eq_bars_gradient.webm", gradient=True)
     stinger(OUT / "video" / "stinger.webm", logo)
     ticker = OUT / "ticker.txt"
     if not ticker.exists():  # vorhandene (lokale) Laufband-Datei nie überschreiben
