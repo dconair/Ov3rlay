@@ -83,6 +83,17 @@ test('Schrift aus dem Payload wird installiert und beim Entfernen gelöscht', as
   assert.ok(calls.some((c) => c[0] === 'reg' && c[1] === 'delete'));
 });
 
+test('Eigenes Partner-Logo (CoOp) übersteht eine Neuinstallation', async () => {
+  const { paths } = sandbox('partner');
+  const opts = { payloadDir, platform: 'windows', paths, exec: async () => '', move: false, env: { DC_FONT_DIR: 'x' }, cameras: {} };
+  await install({ ...opts, stamp: '20260101-000010' });
+  const file = nodePath.join(paths.appDir, 'assets', 'branding', 'partner_logo.png');
+  assert.ok(fs.existsSync(file), 'Platzhalter wird mitgeliefert');
+  fs.writeFileSync(file, 'MEIN-LOGO');
+  await install({ ...opts, stamp: '20260101-000011' });
+  assert.equal(fs.readFileSync(file, 'utf8'), 'MEIN-LOGO');
+});
+
 test('Ungültige Eingaben werden abgelehnt', async () => {
   const { paths } = sandbox('bad');
   await assert.rejects(install({ payloadDir, platform: 'windows', paths, service: 'tiktok' }), /Unbekannter Dienst/);

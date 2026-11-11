@@ -79,9 +79,13 @@ async function install(opts) {
     ['Profile', 'ProfileDir', 'SceneCollection', 'SceneCollectionFile'].map((k) => [k, iniGet(f, 'Basic', k)]))]));
 
   // 2. Assets
+  // Eigene (lokale) Partner-Logo-Datei für den CoOp-Modus bleibt bei Neuinstallation erhalten
+  const partnerFile = nodePath.join(assetsDir, 'branding', 'partner_logo.png');
+  const partnerKeep = exists(partnerFile) ? fs.readFileSync(partnerFile) : null;
   fs.rmSync(assetsDir, { recursive: true, force: true });
   fs.mkdirSync(paths.appDir, { recursive: true });
   fs.cpSync(nodePath.join(payloadDir, 'assets'), assetsDir, { recursive: true });
+  if (partnerKeep) { fs.writeFileSync(partnerFile, partnerKeep); log('Eigenes Partner-Logo (CoOp) beibehalten'); }
   fs.rmSync(nodePath.join(assetsDir, 'fonts', 'HIER_SCHRIFTEN_ABLEGEN.txt'), { force: true });
   log(`Grafiken und Videos nach ${assetsDir} kopiert`);
 

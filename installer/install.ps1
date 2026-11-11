@@ -199,8 +199,13 @@ if (Move-Plugin-Installed) { $variant = 'windows.move'; Ok "Plugin 'Move Transit
 New-Item -ItemType Directory -Force $AppDir | Out-Null
 $assets = Join-Path $AppDir 'assets'
 Backup $assets
+# Eigene (lokale) Partner-Logo-Datei für den CoOp-Modus bleibt bei Neuinstallation erhalten
+$partnerKeep = $null
+$partnerFile = Join-Path $assets 'branding\partner_logo.png'
+if (Test-Path $partnerFile) { $partnerKeep = [System.IO.Path]::GetTempFileName(); Copy-Item $partnerFile $partnerKeep -Force }
 if (Test-Path $assets) { Remove-Item $assets -Recurse -Force }
 Copy-Item (Join-Path $Payload 'assets') $assets -Recurse
+if ($partnerKeep) { Copy-Item $partnerKeep $partnerFile -Force; Remove-Item $partnerKeep -Force; Ok 'Eigenes Partner-Logo (CoOp) beibehalten' }
 Remove-Item (Join-Path $assets 'fonts\HIER_SCHRIFTEN_ABLEGEN.txt') -Force -ErrorAction SilentlyContinue
 Ok "Grafiken und Videos nach $assets kopiert"
 

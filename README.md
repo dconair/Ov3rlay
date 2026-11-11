@@ -52,6 +52,32 @@ Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen einge
 
 **Effekte:** Kamera-Farbkorrektur und Schärfe, animierter Blau/Teal-Hintergrund (weiche, kreisende Lichter), fließende Akzentlinie, Verlaufsrahmen mit Eckmarken, abgerundeter Lower Third. Das Design ist dunkel und ruhig gehalten, damit bei IRL-Streams das Kamerabild im Vordergrund bleibt.
 
+### CoOp-Modus (nur auf Abruf)
+
+Wenn ihr zusammen streamt, blendet **Strg+Alt+P** oben rechts eine Kapsel "CO-STREAM" mit dem Logo des Partners ein, dazu eine fließende Linie am unteren Rand und ein Leuchten in den Partnerfarben. **Strg+Alt+O** blendet alles wieder aus. Nach der Installation ist der Modus aus und bleibt es, bis du ihn einschaltest. Alternativ in OBS die Szene `_CoOp` öffnen und das Auge bei `_CoOp Inhalt` anklicken.
+
+Für den Szenenwechsel zu Beginn gibt es den Übergang `dc Stinger CoOp` (Stinger mit beiden Farbwelten, im Übergangsmenü oder als Schnellübergang wählbar). Der normale `dc Stinger` bleibt Standard.
+
+**Partner-Logo:** Mitgeliefert ist nur ein neutraler Platzhalter. Das echte Logo gehört dem Partner und liegt deshalb nicht im Repository. Lege es lokal als `assets/branding/partner_logo.png` in den Ordner der installierten Dateien (macOS: `~/Library/Application Support/dc_onair/assets/branding/`, Windows: `%APPDATA%\dc_onair\assets\branding\`). Eine Neuinstallation überschreibt diese Datei nicht. Name und Beschriftung der Kapsel änderst du in OBS über die Textquellen `Txt CoOp Name` und `Txt CoOp Label` oder dauerhaft in `brand/brand.json` unter `coop`.
+
+### Wo welche Farbe verwendet wird
+
+Die eigene Farbwelt (Teal `#00D1C1`, Blau `#2D6BFF`) bildet immer die Grundlage. Die Partnerfarben (Orange `#FF6200`, Blau `#0062FF`) kommen nur im CoOp-Modus dazu.
+
+| Bereich | Eigene Farben (Teal/Blau) | Partnerfarben (Orange/Blau), nur CoOp |
+|---|---|---|
+| Hintergrund (Starting, BRB, Ending, Dual Cam) | Teal und Blau als weiche Lichter | wird nicht verändert |
+| Overlay (Rahmen, Lower Third, Logo-Bug, LIVE-Zeichen, Akzentbalken, Akzentlinie unten) | durchgehend Teal bis Blau | wird nicht verändert |
+| CoOp-Kapsel und Partner-Logo | Beschriftung "CO-STREAM" und oberer Teil des Balkens in Teal | unterer Teil des Balkens und Rahmen um das Partner-Logo in Orange |
+| CoOp-Linie am unteren Rand | Verlauf beginnt in Teal | läuft in Orange aus, fließt wie die normale Akzentlinie |
+| Leuchten in den Bildecken | Teal oben links | Orange unten rechts |
+| Stinger `dc Stinger` (Standard) | Farbwisch Teal und Blau mit Logo | nicht enthalten |
+| Stinger `dc Stinger CoOp` | Teal und Blau | zusätzlich Orange und Partnerblau im Wechsel, dein Logo in der Mitte, 1,2 s |
+| Übergänge Slide, Swipe, Fade | farbneutral (Bildwechsel) | farbneutral |
+| Alerts | **noch nicht im Paket enthalten** (siehe unten) | |
+
+**Alerts:** Follower-, Abo- und Spenden-Einblendungen kommen von einem Alert-Dienst wie Streamlabs oder StreamElements und werden dort als Browserquelle angelegt. Ein Alert-Design mit beiden Farbwelten ist als nächster Schritt möglich, sobald du den Dienst festlegst.
+
 **Audio:** Desktop-Ton und Mikrofon (`Mic/Aux`) mit Rauschunterdrückung, Verstärkung, Kompressor und Limiter.
 
 **Fehlt eine Kamera**, zeigt die Szene eine Karte "Kamera nicht verbunden" statt eines schwarzen Bildes.
@@ -68,6 +94,7 @@ Mit dem kostenlosen Plugin [Move Transition](https://obsproject.com/forum/resour
 | Lower Third ein / aus | Strg+Alt+L / H |
 | Mikrofon stumm | Strg+Alt+M |
 | Desktop-Ton stumm | Strg+Alt+D |
+| CoOp-Modus ein / aus | Strg+Alt+P / O |
 
 Auf macOS muss OBS dafür unter Systemeinstellungen > Datenschutz & Sicherheit die Rechte "Bedienungshilfen" und "Eingabeüberwachung" haben.
 
@@ -105,6 +132,9 @@ Es reicht, die Dateien unter `payload/assets/` zu ersetzen (gleicher Dateiname) 
 | `overlays/logo_glow.png` | weiches Leuchten hinter dem Logo |
 | `overlays/accent_line.png` | Akzentlinie am unteren Rand |
 | `overlays/lower_third.png` | Platte hinter Name und Titel |
+| `branding/partner_logo.png` | Partner-Logo für den CoOp-Modus (Platzhalter, echtes Logo lokal einsetzen, nicht committen) |
+| `overlays/costream_plate.png`, `coop_glow.png`, `coop_line.png` | Kapsel, Eckleuchten und Linie des CoOp-Modus |
+| `video/stinger_coop.webm` | Übergangsvideo `dc Stinger CoOp` mit beiden Farbwelten |
 | `overlays/cam_offline_*.png` | Karte, wenn eine Kamera fehlt |
 
 **Schrift:** Mitgeliefert ist Chakra Petch (kantig, leicht kursiv, SIL Open Font License; Lizenztext liegt in `payload/assets/fonts/`). Der Installer richtet sie ein und trägt sie in alle Textquellen ein. Eigene Schrift: `.ttf` oder `.otf` in `payload/assets/fonts/` legen, in `brand/brand.json` bei `font.family` den Familiennamen eintragen und `python3 tools/build.py` ausführen. Bei leerem Eintrag wird die Systemschrift genutzt (macOS: Helvetica Neue, Windows: Segoe UI).

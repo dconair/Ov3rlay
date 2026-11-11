@@ -38,6 +38,8 @@ TEAL = hex_rgb(BRAND["colors"]["primary"])
 BLUE = hex_rgb(BRAND["colors"]["secondary"])
 DARK = hex_rgb(BRAND["colors"]["dark"])
 WHITE = hex_rgb(BRAND["colors"]["light"])
+PARTNER = hex_rgb(BRAND["coop"]["colors"]["primary"])  # CoOp-Modus: Partnerfarben
+PARTNER2 = hex_rgb(BRAND["coop"]["colors"]["secondary"])
 
 
 def font(size):
@@ -132,6 +134,62 @@ def logo_glow(path):
     rgb = np.array(TEAL, np.float32) * (1 - mix) + np.array(BLUE, np.float32) * mix
     img = np.dstack([rgb, alpha * 255]).astype(np.uint8)
     Image.fromarray(img, "RGBA").save(path, optimize=True)
+
+
+def costream_plate(path):
+    """Karte für den CoOp-Modus: Platte mit Verlaufs-Akzent; Texte und Partner-Logo liegen als Quellen darüber."""
+    w, h = 340, 124
+
+    def draw(d, s):
+        rounded(d, [0, 0, w * s - 1, h * s - 1], 26 * s, fill=DARK + (222,), outline=WHITE + (46,), width=2 * s)
+        rounded(d, [18 * s, 24 * s, 26 * s, (h - 24) * s], 4 * s, fill=TEAL + (255,))
+        rounded(d, [18 * s, (h // 2) * s, 26 * s, (h - 24) * s], 4 * s, fill=PARTNER + (255,))
+        rounded(d, [(w - 106) * s, 20 * s, (w - 14) * s, (h - 20) * s], 18 * s, fill=WHITE + (14,), outline=PARTNER + (150,), width=2 * s)
+
+    save_supersampled(draw, (w, h), path)
+
+
+def coop_line(path):
+    """CoOp-Akzentlinie: Teal und Partnerfarbe im Wechsel; Periode 960 teilt 1920 -> nahtlos scrollbar."""
+    half = gradient_h(480, 8, TEAL, PARTNER)
+    Image.fromarray(np.concatenate([half, half[:, ::-1], half, half[:, ::-1]], axis=1), "RGB").save(path, optimize=True)
+
+
+def coop_glow(path):
+    """Zwei weiche Farbleuchten in den Bildecken (Teal oben links, Partnerfarbe unten rechts) als Effekt-Ebene."""
+    y, x = np.mgrid[0:H, 0:W].astype(np.float32)
+
+    def glow(cx, cy, radius, strength):
+        return strength * np.clip(1 - np.sqrt((x - cx) ** 2 + (y - cy) ** 2) / radius, 0, 1) ** 2
+
+    a1, a2 = glow(0, 0, 900, 0.34), glow(W, H, 1000, 0.34)
+    alpha = 1 - (1 - a1) * (1 - a2)
+    weight = (a2 / np.maximum(a1 + a2, 1e-6))[..., None]
+    rgb = np.array(TEAL, np.float32) * (1 - weight) + np.array(PARTNER, np.float32) * weight
+    Image.fromarray(np.dstack([rgb, alpha * 255]).astype(np.uint8), "RGBA").save(path, optimize=True)
+
+
+def partner_logo_placeholder(path):
+    """Neutrale Platzhalterkachel (gestrichelter Rahmen mit Plus) für das Partner-Logo.
+    Die echte Datei bleibt lokal beim Nutzer und kommt nicht ins Repository."""
+    size, k = 256, 4
+    img = Image.new("RGBA", (size * k, size * k), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    m, step = 20 * k, 26 * k
+    edge = [(m, m, size * k - m, m), (size * k - m, m, size * k - m, size * k - m),
+            (size * k - m, size * k - m, m, size * k - m), (m, size * k - m, m, m)]
+    for x0, y0, x1, y1 in edge:  # gestrichelter Rahmen
+        length = max(abs(x1 - x0), abs(y1 - y0))
+        dx, dy = (x1 - x0) / length, (y1 - y0) / length
+        pos = 0
+        while pos < length:
+            end = min(pos + step * 0.55, length)
+            d.line([x0 + dx * pos, y0 + dy * pos, x0 + dx * end, y0 + dy * end], fill=TEAL + (170,), width=5 * k)
+            pos += step
+    c, arm = size * k // 2, 46 * k
+    d.line([c - arm, c, c + arm, c], fill=TEAL + (200,), width=9 * k)
+    d.line([c, c - arm, c, c + arm], fill=TEAL + (200,), width=9 * k)
+    img.resize((size, size), Image.LANCZOS).save(path, optimize=True)
 
 
 def live_badge(path):
@@ -266,13 +324,20 @@ STINGER_FPS = 60  # entspricht dem Standard-Profil (1080p60); Stinger-Guides emp
 STINGER_COVER_MS = 520  # Mitte der Phase 0,44 bis 0,60 s, in der der Bildschirm vollständig verdeckt ist (ca. 10 Bilder)
 
 
-def stinger_frames(logo):
+STINGER_LAYERS = [(TEAL, 0.00, 0.68), (BLUE, 0.04, 0.64), (DARK, 0.08, 0.60)]  # (Farbe, Start vorn, Start hinten)
+# CoOp: beide Farbwelten im Wechsel; längere Dauer, Deckungspunkt (transition_point) 560 ms
+COOP_LAYERS = [(TEAL, 0.00, 0.76), (PARTNER, 0.03, 0.73), (BLUE, 0.06, 0.70), (PARTNER2, 0.09, 0.67), (DARK, 0.12, 0.64)]
+COOP_SECONDS = 1.2
+
+
+def stinger_frames(logo, layers=None, seconds=None):
+    layers = layers or STINGER_LAYERS
+    seconds = seconds or STINGER_SECONDS
     y, x = np.mgrid[0:H, 0:W].astype(np.float32)
     u = x + y * TAN
     umax = W + H * TAN + 4
-    layers = [(TEAL, 0.00, 0.68), (BLUE, 0.04, 0.64), (DARK, 0.08, 0.60)]  # (Farbe, Start vorn, Start hinten)
     logo_img = Image.open(logo).convert("RGBA").resize((420, 420), Image.LANCZOS)
-    for i in range(round(STINGER_SECONDS * STINGER_FPS)):
+    for i in range(round(seconds * STINGER_FPS)):
         t = i / STINGER_FPS
         rgba = np.zeros((H, W, 4), np.float32)
         for color, front_start, back_start in layers:
@@ -291,8 +356,8 @@ def stinger_frames(logo):
         yield np.asarray(frame)
 
 
-def stinger(path, logo):
-    encode(stinger_frames(logo),
+def stinger(path, logo, layers=None, seconds=None):
+    encode(stinger_frames(logo, layers, seconds),
            {"in": ["-pix_fmt", "rgba"],
             "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "30",
                     "-auto-alt-ref", "0", "-an"]},
@@ -313,11 +378,17 @@ def main():
     accent_bar(OUT / "overlays" / "accent_bar.png")
     logo_glow(OUT / "overlays" / "logo_glow.png")
     live_badge(OUT / "overlays" / "live_badge.png")
+    costream_plate(OUT / "overlays" / "costream_plate.png")
+    coop_line(OUT / "overlays" / "coop_line.png")
+    coop_glow(OUT / "overlays" / "coop_glow.png")
+    if not (OUT / "branding" / "partner_logo.png").exists():  # eine vorhandene (lokale) Datei nie überschreiben
+        partner_logo_placeholder(OUT / "branding" / "partner_logo.png")
     accent_line(OUT / "overlays" / "accent_line.png")
     for cam in BRAND["cameras"]:
         cam_offline(OUT / "overlays" / f"cam_offline_{cam['id']}.png", cam["label"])
     bg_loop(OUT / "video" / "bg_loop.mp4")
     stinger(OUT / "video" / "stinger.webm", logo)
+    stinger(OUT / "video" / "stinger_coop.webm", logo, COOP_LAYERS, COOP_SECONDS)
     print("Assets erzeugt in", OUT)
 
 

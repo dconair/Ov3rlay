@@ -39,6 +39,12 @@
    "name": "_Live Badge"
   },
   {
+   "name": "_CoOp Inhalt"
+  },
+  {
+   "name": "_CoOp"
+  },
+  {
    "name": "_Lower Third"
   }
  ],
@@ -218,6 +224,139 @@
    "versioned_id": "image_source",
    "settings": {
     "file": "{{ASSETS}}/overlays/live_badge.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "CoOp Plate",
+   "uuid": "d9020157-fdc8-5243-80e5-89150b625edb",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/overlays/costream_plate.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "CoOp Glow",
+   "uuid": "6a97b1d4-c1a2-565a-95db-4458ba73d58e",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/overlays/coop_glow.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "CoOp Line",
+   "uuid": "ace563bd-31c5-5496-a88d-12d4ece59d45",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/overlays/coop_line.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {},
+   "filters": [
+    {
+     "prev_ver": 503316482,
+     "name": "Scroll",
+     "uuid": "e4aa7217-5fa8-59ba-9036-51f92d9a4b75",
+     "id": "scroll_filter",
+     "versioned_id": "scroll_filter",
+     "settings": {
+      "speed_x": 70.0,
+      "speed_y": 0.0,
+      "loop": true,
+      "limit_cx": false,
+      "limit_cy": false
+     },
+     "mixers": 0,
+     "sync": 0,
+     "flags": 0,
+     "volume": 1.0,
+     "balance": 0.5,
+     "enabled": true,
+     "muted": false,
+     "hotkeys": {},
+     "private_settings": {}
+    }
+   ]
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Partner Logo",
+   "uuid": "ae2a9e0b-6552-5fbd-a0c3-ade88cd4d874",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/branding/partner_logo.png",
     "unload": false
    },
    "mixers": 0,
@@ -1030,6 +1169,80 @@
   },
   {
    "prev_ver": 503316482,
+   "name": "Txt CoOp Label",
+   "uuid": "f1425b7c-d924-5910-b1e1-dfa4427ddb52",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "CO-STREAM",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 20,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4290892032,
+    "color2": 4290892032,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt CoOp Name",
+   "uuid": "4c2a1a47-4d31-56bc-a8c3-68547bdd38e4",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "Partner",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 34,
+     "flags": 3,
+     "style": "Bold Italic"
+    },
+    "color1": 4294966258,
+    "color2": 4294966258,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
    "name": "Txt LT Name",
    "uuid": "797d2144-1d66-5319-8f88-40d6b4012e2d",
    "id": "text_ft2_source_v2",
@@ -1389,6 +1602,318 @@
   },
   {
    "prev_ver": 503316482,
+   "name": "_CoOp Inhalt",
+   "uuid": "a9ea533b-7097-5c1d-afbb-40fb9c453d02",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 6,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "CoOp Glow",
+      "source_uuid": "6a97b1d4-c1a2-565a-95db-4458ba73d58e",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "CoOp Plate",
+      "source_uuid": "d9020157-fdc8-5243-80e5-89150b625edb",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1400.0,
+       "y": 40.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt CoOp Label",
+      "source_uuid": "f1425b7c-d924-5910-b1e1-dfa4427ddb52",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1446.0,
+       "y": 60.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt CoOp Name",
+      "source_uuid": "4c2a1a47-4d31-56bc-a8c3-68547bdd38e4",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1446.0,
+       "y": 94.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Partner Logo",
+      "source_uuid": "ae2a9e0b-6552-5fbd-a0c3-ade88cd4d874",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1646.0,
+       "y": 60.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 2,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 84.0,
+       "y": 84.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 5,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "CoOp Line",
+      "source_uuid": "ace563bd-31c5-5496-a88d-12d4ece59d45",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 1072.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_CoOp",
+   "uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 1,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "_CoOp Inhalt",
+      "source_uuid": "a9ea533b-7097-5c1d-afbb-40fb9c453d02",
+      "visible": false,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {},
+      "show_transition": {
+       "name": "fade_transition",
+       "id": "fade_transition",
+       "settings": {}
+      },
+      "show_transition_duration": 400,
+      "hide_transition": {
+       "name": "fade_transition",
+       "id": "fade_transition",
+       "settings": {}
+      },
+      "hide_transition_duration": 400
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": [],
+    "libobs.show_scene_item.1": [
+     {
+      "key": "OBS_KEY_P",
+      "control": true,
+      "alt": true
+     }
+    ],
+    "libobs.hide_scene_item.1": [
+     {
+      "key": "OBS_KEY_O",
+      "control": true,
+      "alt": true
+     }
+    ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
    "name": "_Lower Third",
    "uuid": "48045492-1bdf-5519-b23d-bdb163658358",
    "id": "scene",
@@ -1487,7 +2012,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -1777,6 +2302,38 @@
       "blend_method": "default",
       "blend_type": "normal",
       "private_settings": {}
+     },
+     {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
      }
     ]
    },
@@ -1812,7 +2369,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 5,
+    "id_counter": 6,
     "custom_size": false,
     "items": [
      {
@@ -1912,6 +2469,38 @@
       "private_settings": {}
      },
      {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
       "name": "_Live Badge",
       "source_uuid": "d855b078-b6c6-5730-9270-a50f3fa57a51",
       "visible": true,
@@ -1936,7 +2525,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 4,
+      "id": 5,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1968,7 +2557,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 5,
+      "id": 6,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2012,7 +2601,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 5,
+    "id_counter": 6,
     "custom_size": false,
     "items": [
      {
@@ -2112,6 +2701,38 @@
       "private_settings": {}
      },
      {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
       "name": "_Live Badge",
       "source_uuid": "d855b078-b6c6-5730-9270-a50f3fa57a51",
       "visible": true,
@@ -2136,7 +2757,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 4,
+      "id": 5,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2168,7 +2789,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 5,
+      "id": 6,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2212,7 +2833,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 11,
+    "id_counter": 12,
     "custom_size": false,
     "items": [
      {
@@ -2504,6 +3125,38 @@
       "private_settings": {}
      },
      {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
       "name": "_Live Badge",
       "source_uuid": "d855b078-b6c6-5730-9270-a50f3fa57a51",
       "visible": true,
@@ -2528,7 +3181,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 10,
+      "id": 11,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2560,7 +3213,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 11,
+      "id": 12,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2604,7 +3257,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -2768,6 +3421,38 @@
       "private_settings": {}
      },
      {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
       "name": "_Lower Third",
       "source_uuid": "48045492-1bdf-5519-b23d-bdb163658358",
       "visible": true,
@@ -2792,7 +3477,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 6,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2836,7 +3521,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 2,
+    "id_counter": 3,
     "custom_size": false,
     "items": [
      {
@@ -2902,6 +3587,38 @@
       "blend_method": "default",
       "blend_type": "normal",
       "private_settings": {}
+     },
+     {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
      }
     ]
    },
@@ -2940,7 +3657,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -3230,6 +3947,38 @@
       "blend_method": "default",
       "blend_type": "normal",
       "private_settings": {}
+     },
+     {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
      }
     ]
    },
@@ -3265,7 +4014,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -3555,6 +4304,38 @@
       "blend_method": "default",
       "blend_type": "normal",
       "private_settings": {}
+     },
+     {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
      }
     ]
    },
@@ -3590,7 +4371,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -3880,6 +4661,38 @@
       "blend_method": "default",
       "blend_type": "normal",
       "private_settings": {}
+     },
+     {
+      "name": "_CoOp",
+      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
      }
     ]
    },
@@ -3936,17 +4749,24 @@
    "fade_to_black": false
   },
   {
-   "name": "dc Slide",
+   "name": "dc Stinger CoOp",
    "duration": 300,
    "hotkeys": [],
    "id": 4,
    "fade_to_black": false
   },
   {
-   "name": "dc Fade Black",
+   "name": "dc Slide",
    "duration": 300,
    "hotkeys": [],
    "id": 5,
+   "fade_to_black": false
+  },
+  {
+   "name": "dc Fade Black",
+   "duration": 300,
+   "hotkeys": [],
+   "id": 6,
    "fade_to_black": false
   }
  ],
@@ -3958,6 +4778,19 @@
     "path": "{{ASSETS}}/video/stinger.webm",
     "tp_type": 0,
     "transition_point": 520,
+    "audio_fade_style": 0,
+    "enable_monitoring": false,
+    "hw_decode": false,
+    "preload": true
+   }
+  },
+  {
+   "name": "dc Stinger CoOp",
+   "id": "obs_stinger_transition",
+   "settings": {
+    "path": "{{ASSETS}}/video/stinger_coop.webm",
+    "tp_type": 0,
+    "transition_point": 560,
     "audio_fade_style": 0,
     "enable_monitoring": false,
     "hw_decode": false,

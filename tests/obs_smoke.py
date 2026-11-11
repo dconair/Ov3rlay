@@ -28,7 +28,7 @@ import build_collection as bc  # noqa: E402
 PORT = 4459
 EXPECTED_SCENES = ["01 Starting Soon", "02 Kamera iPhone", "03 Kamera Sony", "04 Dual Cam",
                    "05 Screen + Cam", "06 Screen Only", "07 BRB", "08 Ending", "09 Connection Lost"]
-EXPECTED_TRANSITIONS = ["dc Stinger", "dc Slide", "dc Swipe", "dc Fade Black", "Fade"]
+EXPECTED_TRANSITIONS = ["dc Stinger", "dc Stinger CoOp", "dc Slide", "dc Swipe", "dc Fade Black", "Fade"]
 # Linux hat kein Pulse/V4L2-Gerät im Container; diese Warnungen sind erwartet.
 IGNORED_LOG = ("pulse", "v4l2", "dbus", "window manager", "Failed to glob", "libEGL", "MESA", "setTabOrder")
 
@@ -138,6 +138,8 @@ def main():
         check(override["transitionName"] == "dc Slide", f"Szenen-Override 02: {override}")
         lost = ws.call("GetSceneSceneTransitionOverride", {"sceneName": "09 Connection Lost"})
         check(lost["transitionName"] == "Fade", f"Szenen-Override 09: {lost}")
+        coop = ws.call("GetSceneItemList", {"sceneName": "_CoOp"})["sceneItems"]
+        check(len(coop) == 1 and coop[0]["sceneItemEnabled"] is False, "CoOp-Einblendung ist standardmäßig aus (nur auf Abruf)")
         stinger = ws.call("GetCurrentSceneTransition")
         check(stinger["transitionKind"] == "obs_stinger_transition", "Stinger ist vom Typ obs_stinger_transition")
 
@@ -170,6 +172,14 @@ def main():
                                                        "imageWidth": 960, "imageHeight": 540})
                 data = shot["imageData"].split(",", 1)[1]
                 (args.shots / f"{scene.replace(' ', '_').replace('+', 'plus')}.png").write_bytes(base64.b64decode(data))
+            ws.call("SetSceneItemEnabled", {"sceneName": "_CoOp", "sceneItemId": coop[0]["sceneItemId"], "sceneItemEnabled": True})
+            time.sleep(2.5)  # Einblendung abwarten
+            for scene in ("02 Kamera iPhone", "04 Dual Cam"):
+                if scene in scenes:
+                    shot = ws.call("GetSourceScreenshot", {"sourceName": scene, "imageFormat": "png",
+                                                           "imageWidth": 960, "imageHeight": 540})
+                    (args.shots / f"CoOp_an_{scene.replace(' ', '_').replace('+', 'plus')}.png").write_bytes(
+                        base64.b64decode(shot["imageData"].split(",", 1)[1]))
             print("Screenshots in", args.shots)
         completed = True
     finally:

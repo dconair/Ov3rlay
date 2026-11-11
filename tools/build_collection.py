@@ -143,6 +143,9 @@ class Collection:
             {"name": "dc Stinger", "id": "obs_stinger_transition", "settings": {
                 "path": self.asset("video/stinger.webm"), "tp_type": 0, "transition_point": 520,
                 "audio_fade_style": 0, "enable_monitoring": False, "hw_decode": False, "preload": True}},
+            {"name": "dc Stinger CoOp", "id": "obs_stinger_transition", "settings": {
+                "path": self.asset("video/stinger_coop.webm"), "tp_type": 0, "transition_point": 560,
+                "audio_fade_style": 0, "enable_monitoring": False, "hw_decode": False, "preload": True}},
             {"name": "dc Slide", "id": "slide_transition", "settings": {"direction": "left"}},
             {"name": "dc Swipe", "id": "swipe_transition", "settings": {"direction": "left"}},
             {"name": "dc Fade Black", "id": "fade_to_color_transition", "settings": {"color": 0xFF000000}},
@@ -152,7 +155,7 @@ class Collection:
         return t
 
     def quick_transitions(self):
-        names = ["Cut", "Fade", "dc Stinger", "dc Slide", "dc Fade Black"]
+        names = ["Cut", "Fade", "dc Stinger", "dc Stinger CoOp", "dc Slide", "dc Fade Black"]
         return [{"name": n, "duration": 300, "hotkeys": [], "id": i + 1, "fade_to_black": False}
                 for i, n in enumerate(names)]
 
@@ -169,6 +172,12 @@ class Collection:
         self.image("Accent Bar", "overlays/accent_bar.png")
         self.image("Logo Glow", "overlays/logo_glow.png")
         self.image("Live Badge", "overlays/live_badge.png")
+        self.image("CoOp Plate", "overlays/costream_plate.png")
+        self.image("CoOp Glow", "overlays/coop_glow.png")
+        self.image("CoOp Line", "overlays/coop_line.png", filters=[
+            ("scroll_filter", "Scroll", {"speed_x": 70.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
+                                         "limit_cy": False})])
+        self.image("Partner Logo", "branding/partner_logo.png")
         self.image("Accent Line", "overlays/accent_line.png", filters=[
             ("scroll_filter", "Scroll", {"speed_x": 70.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
                                          "limit_cy": False})])
@@ -200,6 +209,8 @@ class Collection:
             self.text(f"Txt {label} Sub", sub, 40, color="muted", bold=False)
         self.text("Txt Handle", BRAND["handle"], 34, color="primary")
         self.text("Txt Live", "LIVE", 28)
+        self.text("Txt CoOp Label", BRAND["coop"]["label"], 20, color="primary")
+        self.text("Txt CoOp Name", BRAND["coop"]["name"], 34, italic=True)
         self.text("Txt LT Name", t["lower_third"][0], 58, italic=True)
         self.text("Txt LT Title", t["lower_third"][1], 28, color="primary")
 
@@ -218,6 +229,18 @@ class Collection:
         live = self.scene("_Live Badge")
         live.add("Live Badge", (48, 40))
         live.add("Txt Live", (100, 48))
+        # CoOp-Modus (nur auf Abruf, standardmäßig aus): beide Farbwelten. Strg+Alt+P ein, Strg+Alt+O aus.
+        # Der Inhalt liegt in Vollbild-Koordinaten, damit Leuchten und Linie die ganze Fläche nutzen.
+        coop = self.scene("_CoOp Inhalt")
+        coop.add("CoOp Glow", (0, 0))
+        coop.add("CoOp Plate", (1400, 40))
+        coop.add("Txt CoOp Label", (1446, 60))
+        coop.add("Txt CoOp Name", (1446, 94))
+        coop.add("Partner Logo", (1646, 60), bounds=(84, 84), bounds_type=BOUNDS_INNER)
+        coop.add("CoOp Line", (0, H - 8))
+        coop_switch = self.scene("_CoOp")
+        coop_switch.add("_CoOp Inhalt", (0, 0), visible=False, show=("fade_transition", {}),
+                        hide=("fade_transition", {}), hotkeys=("OBS_KEY_P", "OBS_KEY_O"))
         lower = self.scene("_Lower Third")
         lower.add("_Lower Third Inhalt", (80, 800), visible=False, show=("slide_transition", {"direction": "left"}),
                   hide=("slide_transition", {"direction": "right"}), hotkeys=("OBS_KEY_L", "OBS_KEY_H"))
@@ -238,16 +261,17 @@ class Collection:
             scene.add(f"Txt {label}", (160, 335))
             scene.add(f"Txt {label} Sub", (160, 650))
             scene.add("Txt Handle", (160, 940))
+            scene.add("_CoOp", (0, 0))
 
         title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting")
 
         s = self.scene("02 Kamera iPhone", "OBS_KEY_2", move_or_slide)
         cam(s, off_iphone, cam_iphone, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
+        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
 
         s = self.scene("03 Kamera Sony", "OBS_KEY_3", move_or_slide)
         cam(s, off_sony, cam_sony, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
+        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
 
         s = self.scene("04 Dual Cam", "OBS_KEY_4", move_or_slide)
         s.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
@@ -255,16 +279,16 @@ class Collection:
         cam(s, off_sony, cam_sony, (990, 290), (880, 495), frame=True)
         s.add("Logo", (960, 120), scale=0.16, align=ALIGN_CENTER)
         s.add("Accent Line", (0, H - 8))
-        s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
+        s.add("_CoOp", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
 
         s = self.scene("05 Screen + Cam", "OBS_KEY_5", move_or_slide)
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)
         cam(s, off_sony, cam_sony, (1330, 745), (540, 304), frame=True)
-        s.add("_Branding Bug", (0, 0)); s.add("_Lower Third", (0, 0))
+        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0)); s.add("_Lower Third", (0, 0))
 
         s = self.scene("06 Screen Only", "OBS_KEY_6", move_or_slide)
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)
-        s.add("_Branding Bug", (0, 0))
+        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0))
 
         title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB")
         title_card(self.scene("08 Ending", "OBS_KEY_8"), "Ending")

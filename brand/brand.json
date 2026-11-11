@@ -13,6 +13,15 @@
     "family": "Chakra Petch",
     "note": "Mitgelieferte Markenschrift: Chakra Petch (SIL Open Font License, siehe payload/assets/fonts/OFL-ChakraPetch.txt). Eigene Schrift: .ttf/.otf nach payload/assets/fonts/ legen und hier den Familiennamen eintragen; leer = Systemschrift (macOS: Helvetica Neue, Windows: Segoe UI)."
   },
+  "coop": {
+    "note": "CoOp-Modus (nur auf Abruf): Partnerfarben aus dem Partner-Logo (Orange und Blau). Das Partner-Logo selbst gehört nicht ins Repository, die Datei liegt lokal unter assets/branding/partner_logo.png.",
+    "label": "CO-STREAM",
+    "name": "Partner",
+    "colors": {
+      "primary": "#FF6200",
+      "secondary": "#0062FF"
+    }
+  },
   "texts": {
     "starting": [
       "STARTING SOON",

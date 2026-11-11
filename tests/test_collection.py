@@ -72,6 +72,18 @@ class CollectionTests(unittest.TestCase):
             overrides = {s["private_settings"]["transition"] for s in doc["sources"] if s["private_settings"].get("transition")}
             self.assertLessEqual(overrides - {"Fade", "Cut"}, names)  # eingebaute Übergänge stehen nicht in der Liste
             self.assertEqual(overrides, {"dc Move", "Fade"} if move else {"dc Slide", "Fade"})
+            self.assertIn("dc Stinger CoOp", names)
+
+    def test_coop_is_off_by_default(self):
+        """CoOp nur auf Abruf: Die Einblendung in der Schalter-Szene ist ausgeschaltet, alle Szenen enthalten den Schalter."""
+        doc = bc.build("macos", False)
+        by_name = {s["name"]: s for s in doc["sources"]}
+        items = by_name["_CoOp"]["settings"]["items"]
+        self.assertEqual([i["name"] for i in items], ["_CoOp Inhalt"])
+        self.assertFalse(items[0]["visible"], "CoOp darf nicht standardmäßig sichtbar sein")
+        users = [s["name"] for s in doc["sources"] if s["id"] == "scene"
+                 and any(i["name"] == "_CoOp" for i in s["settings"]["items"])]
+        self.assertGreaterEqual(len(users), 8)
 
     def test_scene_hotkeys_unique(self):
         doc = bc.build("macos", False)

@@ -256,8 +256,14 @@ if move_plugin_installed; then VARIANT="macos.move"; ok "Plugin 'Move Transition
 
 mkdir -p "$APP_DIR"
 backup "$APP_DIR/assets"
+# Eigene (lokale) Partner-Logo-Datei für den CoOp-Modus bleibt bei Neuinstallation erhalten
+PARTNER_KEEP=""
+if [ -f "$APP_DIR/assets/branding/partner_logo.png" ]; then
+  PARTNER_KEEP="$(mktemp)"; cp "$APP_DIR/assets/branding/partner_logo.png" "$PARTNER_KEEP"
+fi
 rm -rf "$APP_DIR/assets"
 cp -R "$PAYLOAD/assets" "$APP_DIR/assets"
+if [ -n "$PARTNER_KEEP" ]; then cp "$PARTNER_KEEP" "$APP_DIR/assets/branding/partner_logo.png"; rm -f "$PARTNER_KEEP"; ok "Eigenes Partner-Logo (CoOp) beibehalten"; fi
 rm -f "$APP_DIR/assets/fonts/HIER_SCHRIFTEN_ABLEGEN.txt"
 ok "Grafiken und Videos nach $APP_DIR/assets kopiert"
 
