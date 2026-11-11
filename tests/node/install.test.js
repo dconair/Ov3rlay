@@ -83,15 +83,22 @@ test('Schrift aus dem Payload wird installiert und beim Entfernen gelöscht', as
   assert.ok(calls.some((c) => c[0] === 'reg' && c[1] === 'delete'));
 });
 
-test('Eigenes Partner-Logo (CoOp) übersteht eine Neuinstallation', async () => {
+test('Eigene lokale Dateien (Partner-Logo, Laufband, Web-Einstellungen) überstehen eine Neuinstallation', async () => {
   const { paths } = sandbox('partner');
   const opts = { payloadDir, platform: 'windows', paths, exec: async () => '', move: false, env: { DC_FONT_DIR: 'x' }, cameras: {} };
   await install({ ...opts, stamp: '20260101-000010' });
-  const file = nodePath.join(paths.appDir, 'assets', 'branding', 'partner_logo.png');
-  assert.ok(fs.existsSync(file), 'Platzhalter wird mitgeliefert');
-  fs.writeFileSync(file, 'MEIN-LOGO');
+  const files = ['branding/partner_logo.png', 'ticker.txt', 'web/config.js'].map((rel) => nodePath.join(paths.appDir, 'assets', ...rel.split('/')));
+  for (const f of files) assert.ok(fs.existsSync(f), `${f} wird mitgeliefert`);
+  files.forEach((f, i) => fs.writeFileSync(f, `MEINE-DATEI-${i}`));
   await install({ ...opts, stamp: '20260101-000011' });
-  assert.equal(fs.readFileSync(file, 'utf8'), 'MEIN-LOGO');
+  files.forEach((f, i) => assert.equal(fs.readFileSync(f, 'utf8'), `MEINE-DATEI-${i}`));
+});
+
+test('Alerts- und Chat-Skripte sind gültiges JavaScript', () => {
+  const { execFileSync } = require('node:child_process');
+  for (const f of ['alerts.js', 'chat.js', 'config.js']) {
+    execFileSync(process.execPath, ['--check', nodePath.join(payloadDir, 'assets', 'web', f)]);
+  }
 });
 
 test('Ungültige Eingaben werden abgelehnt', async () => {

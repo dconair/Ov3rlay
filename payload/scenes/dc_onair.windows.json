@@ -33,19 +33,25 @@
    "name": "_Lower Third Inhalt"
   },
   {
-   "name": "_Branding Bug"
-  },
-  {
-   "name": "_Live Badge"
-  },
-  {
-   "name": "_CoOp Inhalt"
-  },
-  {
-   "name": "_CoOp"
-  },
-  {
    "name": "_Lower Third"
+  },
+  {
+   "name": "_Bug"
+  },
+  {
+   "name": "_Partner Inhalt"
+  },
+  {
+   "name": "_Partner"
+  },
+  {
+   "name": "_Ticker Inhalt"
+  },
+  {
+   "name": "_Ticker"
+  },
+  {
+   "name": "_Web"
   }
  ],
  "name": "dc_onair",
@@ -58,6 +64,37 @@
    "versioned_id": "ffmpeg_source",
    "settings": {
     "local_file": "{{ASSETS}}/video/bg_loop.mp4",
+    "is_local_file": true,
+    "looping": true,
+    "close_when_inactive": false,
+    "restart_on_activate": false,
+    "hw_decode": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Live Tag",
+   "uuid": "356f4988-8021-51cd-85ad-e038b9c7c658",
+   "id": "ffmpeg_source",
+   "versioned_id": "ffmpeg_source",
+   "settings": {
+    "local_file": "{{ASSETS}}/video/live_tag.webm",
     "is_local_file": true,
     "looping": true,
     "close_when_inactive": false,
@@ -164,12 +201,12 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "Accent Bar",
-   "uuid": "a5f4583e-8c0e-54ca-9f6e-a566e2af9bd5",
+   "name": "Ticker Plate",
+   "uuid": "2969f121-205f-5149-a82d-f34754512cf5",
    "id": "image_source",
    "versioned_id": "image_source",
    "settings": {
-    "file": "{{ASSETS}}/overlays/accent_bar.png",
+    "file": "{{ASSETS}}/overlays/ticker.png",
     "unload": false
    },
    "mixers": 0,
@@ -191,12 +228,12 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "Logo Glow",
-   "uuid": "936accf2-3b67-5765-98f1-d4924a0ffb15",
+   "name": "Partner Plate",
+   "uuid": "6b0ef6b2-2caa-5871-baba-9e02dc8f68bd",
    "id": "image_source",
    "versioned_id": "image_source",
    "settings": {
-    "file": "{{ASSETS}}/overlays/logo_glow.png",
+    "file": "{{ASSETS}}/overlays/partner_plate.png",
     "unload": false
    },
    "mixers": 0,
@@ -215,139 +252,6 @@
    "deinterlace_field_order": 0,
    "monitoring_type": 0,
    "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "Live Badge",
-   "uuid": "4deaa3c3-d423-5571-b961-8d4f1100e433",
-   "id": "image_source",
-   "versioned_id": "image_source",
-   "settings": {
-    "file": "{{ASSETS}}/overlays/live_badge.png",
-    "unload": false
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {},
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "CoOp Plate",
-   "uuid": "d9020157-fdc8-5243-80e5-89150b625edb",
-   "id": "image_source",
-   "versioned_id": "image_source",
-   "settings": {
-    "file": "{{ASSETS}}/overlays/costream_plate.png",
-    "unload": false
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {},
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "CoOp Glow",
-   "uuid": "6a97b1d4-c1a2-565a-95db-4458ba73d58e",
-   "id": "image_source",
-   "versioned_id": "image_source",
-   "settings": {
-    "file": "{{ASSETS}}/overlays/coop_glow.png",
-    "unload": false
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {},
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "CoOp Line",
-   "uuid": "ace563bd-31c5-5496-a88d-12d4ece59d45",
-   "id": "image_source",
-   "versioned_id": "image_source",
-   "settings": {
-    "file": "{{ASSETS}}/overlays/coop_line.png",
-    "unload": false
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {},
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {},
-   "filters": [
-    {
-     "prev_ver": 503316482,
-     "name": "Scroll",
-     "uuid": "e4aa7217-5fa8-59ba-9036-51f92d9a4b75",
-     "id": "scroll_filter",
-     "versioned_id": "scroll_filter",
-     "settings": {
-      "speed_x": 70.0,
-      "speed_y": 0.0,
-      "loop": true,
-      "limit_cx": false,
-      "limit_cy": false
-     },
-     "mixers": 0,
-     "sync": 0,
-     "flags": 0,
-     "volume": 1.0,
-     "balance": 0.5,
-     "enabled": true,
-     "muted": false,
-     "hotkeys": {},
-     "private_settings": {}
-    }
-   ]
   },
   {
    "prev_ver": 503316482,
@@ -375,58 +279,6 @@
    "deinterlace_field_order": 0,
    "monitoring_type": 0,
    "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "Accent Line",
-   "uuid": "b560d8e2-c866-5a25-8698-0aeced5187f3",
-   "id": "image_source",
-   "versioned_id": "image_source",
-   "settings": {
-    "file": "{{ASSETS}}/overlays/accent_line.png",
-    "unload": false
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {},
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {},
-   "filters": [
-    {
-     "prev_ver": 503316482,
-     "name": "Scroll",
-     "uuid": "40e158ff-3486-59f7-be36-33dc6ac40af1",
-     "id": "scroll_filter",
-     "versioned_id": "scroll_filter",
-     "settings": {
-      "speed_x": 70.0,
-      "speed_y": 0.0,
-      "loop": true,
-      "limit_cx": false,
-      "limit_cy": false
-     },
-     "mixers": 0,
-     "sync": 0,
-     "flags": 0,
-     "volume": 1.0,
-     "balance": 0.5,
-     "enabled": true,
-     "muted": false,
-     "hotkeys": {},
-     "private_settings": {}
-    }
-   ]
   },
   {
    "prev_ver": 503316482,
@@ -658,13 +510,13 @@
    "settings": {
     "text": "STARTING SOON",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 34,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4290892032,
-    "color2": 4290892032,
+    "color1": 4280153032,
+    "color2": 4280153032,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -696,12 +548,12 @@
     "text": "GLEICH\nGEHT'S LOS",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 118,
-     "flags": 3,
-     "style": "Bold Italic"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
+    "color1": 4292273900,
+    "color2": 4292273900,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -732,13 +584,13 @@
    "settings": {
     "text": "Mach es dir bequem, wir starten in Kürze",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4291211933,
-    "color2": 4291211933,
+    "color1": 4286089100,
+    "color2": 4286089100,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -769,13 +621,13 @@
    "settings": {
     "text": "PAUSE",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 34,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4290892032,
-    "color2": 4290892032,
+    "color1": 4280153032,
+    "color2": 4280153032,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -807,12 +659,12 @@
     "text": "BIN GLEICH\nZURÜCK",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 118,
-     "flags": 3,
-     "style": "Bold Italic"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
+    "color1": 4292273900,
+    "color2": 4292273900,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -843,13 +695,13 @@
    "settings": {
     "text": "Kurze Pause, bleib dran",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4291211933,
-    "color2": 4291211933,
+    "color1": 4286089100,
+    "color2": 4286089100,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -880,13 +732,13 @@
    "settings": {
     "text": "STREAM BEENDET",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 34,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4290892032,
-    "color2": 4290892032,
+    "color1": 4280153032,
+    "color2": 4280153032,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -918,12 +770,12 @@
     "text": "DANKE FÜRS\nZUSCHAUEN",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 118,
-     "flags": 3,
-     "style": "Bold Italic"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
+    "color1": 4292273900,
+    "color2": 4292273900,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -952,15 +804,15 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "Bis zum nächsten Stream",
+    "text": "Bis zum nächsten Mal",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4291211933,
-    "color2": 4291211933,
+    "color1": 4286089100,
+    "color2": 4286089100,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -991,13 +843,13 @@
    "settings": {
     "text": "SIGNAL VERLOREN",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 34,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4290892032,
-    "color2": 4290892032,
+    "color1": 4280153032,
+    "color2": 4280153032,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -1029,12 +881,12 @@
     "text": "VERBINDUNG\nUNTERBROCHEN",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 118,
-     "flags": 3,
-     "style": "Bold Italic"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
+    "color1": 4292273900,
+    "color2": 4292273900,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -1065,13 +917,13 @@
    "settings": {
     "text": "Gleich geht's weiter, bitte kurz warten",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4291211933,
-    "color2": 4291211933,
+    "color1": 4286089100,
+    "color2": 4286089100,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -1102,13 +954,13 @@
    "settings": {
     "text": "@dc_onair",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 34,
+     "face": "{{FONT_MONO}}",
+     "size": 26,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4290892032,
-    "color2": 4290892032,
+    "color1": 4280153032,
+    "color2": 4280153032,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -1132,94 +984,20 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "Txt Live",
-   "uuid": "1c2d5519-35bd-5d0c-b253-2a7f43550dc7",
+   "name": "Txt Partner Name",
+   "uuid": "9a9571ad-2ce8-50a9-ac81-7a440c3ed5d6",
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "LIVE",
+    "text": "PARTNER",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 28,
+     "face": "{{FONT_MONO}}",
+     "size": 18,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
-    "drop_shadow": false,
-    "outline": false,
-    "word_wrap": false
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {},
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "Txt CoOp Label",
-   "uuid": "f1425b7c-d924-5910-b1e1-dfa4427ddb52",
-   "id": "text_ft2_source_v2",
-   "versioned_id": "text_ft2_source_v2",
-   "settings": {
-    "text": "CO-STREAM",
-    "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 20,
-     "flags": 1,
-     "style": "Bold"
-    },
-    "color1": 4290892032,
-    "color2": 4290892032,
-    "drop_shadow": false,
-    "outline": false,
-    "word_wrap": false
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {},
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "Txt CoOp Name",
-   "uuid": "4c2a1a47-4d31-56bc-a8c3-68547bdd38e4",
-   "id": "text_ft2_source_v2",
-   "versioned_id": "text_ft2_source_v2",
-   "settings": {
-    "text": "Partner",
-    "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 34,
-     "flags": 3,
-     "style": "Bold Italic"
-    },
-    "color1": 4294966258,
-    "color2": 4294966258,
+    "color1": 4292273900,
+    "color2": 4292273900,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -1248,15 +1026,15 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "dc_onair",
+    "text": "DC_ONAIR",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 58,
-     "flags": 3,
-     "style": "Bold Italic"
+     "face": "{{FONT_MONO}}",
+     "size": 26,
+     "flags": 1,
+     "style": "Bold"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
+    "color1": 4292273900,
+    "color2": 4292273900,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
@@ -1285,18 +1063,155 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "LIVE-STREAM",
+    "text": "IRL · OUTDOOR",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 28,
+     "face": "{{FONT_MONO}}",
+     "size": 15,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4290892032,
-    "color2": 4290892032,
+    "color1": 4280153032,
+    "color2": 4280153032,
     "drop_shadow": false,
     "outline": false,
     "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Ticker",
+   "uuid": "c839bbe7-a27c-5aea-aa3f-4c18a08e4195",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "",
+    "font": {
+     "face": "{{FONT_MONO}}",
+     "size": 22,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false,
+    "from_file": true,
+    "text_file": "{{ASSETS}}/ticker.txt"
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {},
+   "filters": [
+    {
+     "prev_ver": 503316482,
+     "name": "Lauftext",
+     "uuid": "a9a5bf59-c372-5e44-9f67-00584d32a48c",
+     "id": "scroll_filter",
+     "versioned_id": "scroll_filter",
+     "settings": {
+      "speed_x": 90.0,
+      "speed_y": 0.0,
+      "loop": true,
+      "limit_cx": true,
+      "cx": 1920,
+      "limit_cy": false
+     },
+     "mixers": 0,
+     "sync": 0,
+     "flags": 0,
+     "volume": 1.0,
+     "balance": 0.5,
+     "enabled": true,
+     "muted": false,
+     "hotkeys": {},
+     "private_settings": {}
+    }
+   ]
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Web Alerts",
+   "uuid": "8642c5de-fdfb-5a39-9f07-810865d5353a",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/alerts.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Web Chat",
+   "uuid": "eb09f237-a618-595b-8233-3ae89c8100e5",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/chat.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
    },
    "mixers": 0,
    "sync": 0,
@@ -1364,8 +1279,8 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 72.0,
-       "y": 22.0
+       "x": 32.0,
+       "y": 20.0
       },
       "scale": {
        "x": 1.0,
@@ -1396,8 +1311,8 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 74.0,
-       "y": 108.0
+       "x": 34.0,
+       "y": 62.0
       },
       "scale": {
        "x": 1.0,
@@ -1436,476 +1351,6 @@
    "push-to-talk-delay": 0,
    "hotkeys": {
     "OBSBasic.SelectScene": []
-   },
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "_Branding Bug",
-   "uuid": "8c53b018-90e5-5f8f-a6f2-495bd0a183e4",
-   "id": "scene",
-   "versioned_id": "scene",
-   "settings": {
-    "id_counter": 1,
-    "custom_size": false,
-    "items": [
-     {
-      "name": "Logo",
-      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 1760.0,
-       "y": 40.0
-      },
-      "scale": {
-       "x": 0.12,
-       "y": 0.12
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 1,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     }
-    ]
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {
-    "OBSBasic.SelectScene": []
-   },
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "_Live Badge",
-   "uuid": "d855b078-b6c6-5730-9270-a50f3fa57a51",
-   "id": "scene",
-   "versioned_id": "scene",
-   "settings": {
-    "id_counter": 2,
-    "custom_size": false,
-    "items": [
-     {
-      "name": "Live Badge",
-      "source_uuid": "4deaa3c3-d423-5571-b961-8d4f1100e433",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 48.0,
-       "y": 40.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 1,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "Txt Live",
-      "source_uuid": "1c2d5519-35bd-5d0c-b253-2a7f43550dc7",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 100.0,
-       "y": 48.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 2,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     }
-    ]
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {
-    "OBSBasic.SelectScene": []
-   },
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "_CoOp Inhalt",
-   "uuid": "a9ea533b-7097-5c1d-afbb-40fb9c453d02",
-   "id": "scene",
-   "versioned_id": "scene",
-   "settings": {
-    "id_counter": 6,
-    "custom_size": false,
-    "items": [
-     {
-      "name": "CoOp Glow",
-      "source_uuid": "6a97b1d4-c1a2-565a-95db-4458ba73d58e",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 1,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "CoOp Plate",
-      "source_uuid": "d9020157-fdc8-5243-80e5-89150b625edb",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 1400.0,
-       "y": 40.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 2,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "Txt CoOp Label",
-      "source_uuid": "f1425b7c-d924-5910-b1e1-dfa4427ddb52",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 1446.0,
-       "y": 60.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 3,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "Txt CoOp Name",
-      "source_uuid": "4c2a1a47-4d31-56bc-a8c3-68547bdd38e4",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 1446.0,
-       "y": 94.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 4,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "Partner Logo",
-      "source_uuid": "ae2a9e0b-6552-5fbd-a0c3-ade88cd4d874",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 1646.0,
-       "y": 60.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 2,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 84.0,
-       "y": 84.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 5,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "CoOp Line",
-      "source_uuid": "ace563bd-31c5-5496-a88d-12d4ece59d45",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 1072.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 6,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     }
-    ]
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {
-    "OBSBasic.SelectScene": []
-   },
-   "deinterlace_mode": 0,
-   "deinterlace_field_order": 0,
-   "monitoring_type": 0,
-   "private_settings": {}
-  },
-  {
-   "prev_ver": 503316482,
-   "name": "_CoOp",
-   "uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
-   "id": "scene",
-   "versioned_id": "scene",
-   "settings": {
-    "id_counter": 1,
-    "custom_size": false,
-    "items": [
-     {
-      "name": "_CoOp Inhalt",
-      "source_uuid": "a9ea533b-7097-5c1d-afbb-40fb9c453d02",
-      "visible": false,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 1,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {},
-      "show_transition": {
-       "name": "fade_transition",
-       "id": "fade_transition",
-       "settings": {}
-      },
-      "show_transition_duration": 400,
-      "hide_transition": {
-       "name": "fade_transition",
-       "id": "fade_transition",
-       "settings": {}
-      },
-      "hide_transition_duration": 400
-     }
-    ]
-   },
-   "mixers": 0,
-   "sync": 0,
-   "flags": 0,
-   "volume": 1.0,
-   "balance": 0.5,
-   "enabled": true,
-   "muted": false,
-   "push-to-mute": false,
-   "push-to-mute-delay": 0,
-   "push-to-talk": false,
-   "push-to-talk-delay": 0,
-   "hotkeys": {
-    "OBSBasic.SelectScene": [],
-    "libobs.show_scene_item.1": [
-     {
-      "key": "OBS_KEY_P",
-      "control": true,
-      "alt": true
-     }
-    ],
-    "libobs.hide_scene_item.1": [
-     {
-      "key": "OBS_KEY_O",
-      "control": true,
-      "alt": true
-     }
-    ]
    },
    "deinterlace_mode": 0,
    "deinterlace_field_order": 0,
@@ -1929,8 +1374,323 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 80.0,
-       "y": 800.0
+       "x": 40.0,
+       "y": 890.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {},
+      "show_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "right"
+       }
+      },
+      "show_transition_duration": 400,
+      "hide_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "left"
+       }
+      },
+      "hide_transition_duration": 400
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": [],
+    "libobs.show_scene_item.1": [
+     {
+      "key": "OBS_KEY_L",
+      "control": true,
+      "alt": true
+     }
+    ],
+    "libobs.hide_scene_item.1": [
+     {
+      "key": "OBS_KEY_H",
+      "control": true,
+      "alt": true
+     }
+    ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Bug",
+   "uuid": "815068c4-736c-5e35-9509-acfe28c01225",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 2,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Logo",
+      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 40.0,
+       "y": 36.0
+      },
+      "scale": {
+       "x": 0.09,
+       "y": 0.09
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Live Tag",
+      "source_uuid": "356f4988-8021-51cd-85ad-e038b9c7c658",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 96.0,
+       "y": 39.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Partner Inhalt",
+   "uuid": "865f3011-e779-50b5-b0b9-100e1dfa6fba",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 3,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Partner Plate",
+      "source_uuid": "6b0ef6b2-2caa-5871-baba-9e02dc8f68bd",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Partner Logo",
+      "source_uuid": "ae2a9e0b-6552-5fbd-a0c3-ade88cd4d874",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 10.0,
+       "y": 5.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 2,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 40.0,
+       "y": 40.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Partner Name",
+      "source_uuid": "9a9571ad-2ce8-50a9-ac81-7a440c3ed5d6",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 62.0,
+       "y": 14.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Partner",
+   "uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 1,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "_Partner Inhalt",
+      "source_uuid": "865f3011-e779-50b5-b0b9-100e1dfa6fba",
+      "visible": false,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1590.0,
+       "y": 36.0
       },
       "scale": {
        "x": 1.0,
@@ -1987,18 +1747,301 @@
     "OBSBasic.SelectScene": [],
     "libobs.show_scene_item.1": [
      {
-      "key": "OBS_KEY_L",
+      "key": "OBS_KEY_P",
       "control": true,
       "alt": true
      }
     ],
     "libobs.hide_scene_item.1": [
      {
-      "key": "OBS_KEY_H",
+      "key": "OBS_KEY_O",
       "control": true,
       "alt": true
      }
     ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Ticker Inhalt",
+   "uuid": "881a4c17-f5eb-51aa-992f-77f650f45a29",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 2,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Ticker Plate",
+      "source_uuid": "2969f121-205f-5149-a82d-f34754512cf5",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Ticker",
+      "source_uuid": "c839bbe7-a27c-5aea-aa3f-4c18a08e4195",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 11.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Ticker",
+   "uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 1,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "_Ticker Inhalt",
+      "source_uuid": "881a4c17-f5eb-51aa-992f-77f650f45a29",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 1034.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {},
+      "show_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "up"
+       }
+      },
+      "show_transition_duration": 400,
+      "hide_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "down"
+       }
+      },
+      "hide_transition_duration": 400
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": [],
+    "libobs.show_scene_item.1": [
+     {
+      "key": "OBS_KEY_T",
+      "control": true,
+      "alt": true
+     }
+    ],
+    "libobs.hide_scene_item.1": [
+     {
+      "key": "OBS_KEY_Z",
+      "control": true,
+      "alt": true
+     }
+    ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Web",
+   "uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 2,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Web Chat",
+      "source_uuid": "eb09f237-a618-595b-8233-3ae89c8100e5",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Web Alerts",
+      "source_uuid": "8642c5de-fdfb-5a39-9f07-810865d5353a",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
    },
    "deinterlace_mode": 0,
    "deinterlace_field_order": 0,
@@ -2012,7 +2055,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 10,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -2048,18 +2091,18 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Line",
-      "source_uuid": "b560d8e2-c866-5a25-8698-0aeced5187f3",
+      "name": "Logo",
+      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 0.0,
-       "y": 1072.0
+       "x": 1440.0,
+       "y": 300.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.75,
+       "y": 0.75
       },
       "align": 5,
       "bounds_type": 0,
@@ -2080,20 +2123,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo Glow",
-      "source_uuid": "936accf2-3b67-5765-98f1-d4924a0ffb15",
+      "name": "Txt Starting Eyebrow",
+      "source_uuid": "e4e59723-711e-54e0-b392-f223bdc80f6a",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 1.3,
-       "y": 1.3
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2112,20 +2155,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
+      "name": "Txt Starting",
+      "source_uuid": "d73b659b-12e8-5939-a8ef-d5aea6aa9c08",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2144,14 +2187,14 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Bar",
-      "source_uuid": "a5f4583e-8c0e-54ca-9f6e-a566e2af9bd5",
+      "name": "Txt Starting Sub",
+      "source_uuid": "5f624d5e-daf2-5b62-a26f-163ce4500048",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 110.0,
-       "y": 290.0
+       "x": 120.0,
+       "y": 790.0
       },
       "scale": {
        "x": 1.0,
@@ -2176,14 +2219,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Starting Eyebrow",
-      "source_uuid": "e4e59723-711e-54e0-b392-f223bdc80f6a",
+      "name": "Txt Handle",
+      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 285.0
+       "x": 120.0,
+       "y": 940.0
       },
       "scale": {
        "x": 1.0,
@@ -2208,14 +2251,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Starting",
-      "source_uuid": "d73b659b-12e8-5939-a8ef-d5aea6aa9c08",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 335.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -2240,14 +2283,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Starting Sub",
-      "source_uuid": "5f624d5e-daf2-5b62-a26f-163ce4500048",
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 650.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -2272,14 +2315,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 940.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -2297,38 +2340,6 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 9,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2369,7 +2380,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -2437,8 +2448,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "8c53b018-90e5-5f8f-a6f2-495bd0a183e4",
+      "name": "_Bug",
+      "source_uuid": "815068c4-736c-5e35-9509-acfe28c01225",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -2469,8 +2480,8 @@
       "private_settings": {}
      },
      {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -2494,38 +2505,6 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 4,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "_Live Badge",
-      "source_uuid": "d855b078-b6c6-5730-9270-a50f3fa57a51",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 5,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2557,7 +2536,71 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
+      "id": 5,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2601,7 +2644,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -2669,8 +2712,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "8c53b018-90e5-5f8f-a6f2-495bd0a183e4",
+      "name": "_Bug",
+      "source_uuid": "815068c4-736c-5e35-9509-acfe28c01225",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -2701,8 +2744,8 @@
       "private_settings": {}
      },
      {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -2726,38 +2769,6 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 4,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "_Live Badge",
-      "source_uuid": "d855b078-b6c6-5730-9270-a50f3fa57a51",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 5,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2789,7 +2800,71 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
+      "id": 5,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2876,7 +2951,7 @@
       "rot": 0.0,
       "pos": {
        "x": 50.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -2908,7 +2983,7 @@
       "rot": 0.0,
       "pos": {
        "x": 50.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -2940,7 +3015,7 @@
       "rot": 0.0,
       "pos": {
        "x": 50.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -2972,7 +3047,7 @@
       "rot": 0.0,
       "pos": {
        "x": 990.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -3004,7 +3079,7 @@
       "rot": 0.0,
       "pos": {
        "x": 990.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -3036,7 +3111,7 @@
       "rot": 0.0,
       "pos": {
        "x": 990.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -3061,20 +3136,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
+      "name": "_Bug",
+      "source_uuid": "815068c4-736c-5e35-9509-acfe28c01225",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 120.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
-       "x": 0.16,
-       "y": 0.16
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3093,14 +3168,14 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Line",
-      "source_uuid": "b560d8e2-c866-5a25-8698-0aeced5187f3",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1072.0
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -3125,8 +3200,8 @@
       "private_settings": {}
      },
      {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "name": "_Lower Third",
+      "source_uuid": "48045492-1bdf-5519-b23d-bdb163658358",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -3157,8 +3232,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Live Badge",
-      "source_uuid": "d855b078-b6c6-5730-9270-a50f3fa57a51",
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -3189,8 +3264,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Lower Third",
-      "source_uuid": "48045492-1bdf-5519-b23d-bdb163658358",
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -3257,7 +3332,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 7,
+    "id_counter": 8,
     "custom_size": false,
     "items": [
      {
@@ -3300,7 +3375,7 @@
       "rot": 0.0,
       "pos": {
        "x": 1330.0,
-       "y": 745.0
+       "y": 690.0
       },
       "scale": {
        "x": 1.0,
@@ -3332,7 +3407,7 @@
       "rot": 0.0,
       "pos": {
        "x": 1330.0,
-       "y": 745.0
+       "y": 690.0
       },
       "scale": {
        "x": 1.0,
@@ -3364,7 +3439,7 @@
       "rot": 0.0,
       "pos": {
        "x": 1330.0,
-       "y": 745.0
+       "y": 690.0
       },
       "scale": {
        "x": 1.0,
@@ -3389,8 +3464,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "8c53b018-90e5-5f8f-a6f2-495bd0a183e4",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -3414,38 +3489,6 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 5,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 6,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -3477,7 +3520,71 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
+      "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
       "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -3521,7 +3628,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 3,
+    "id_counter": 4,
     "custom_size": false,
     "items": [
      {
@@ -3557,8 +3664,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "8c53b018-90e5-5f8f-a6f2-495bd0a183e4",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -3589,8 +3696,8 @@
       "private_settings": {}
      },
      {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -3614,6 +3721,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -3657,7 +3796,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 10,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -3693,18 +3832,18 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Line",
-      "source_uuid": "b560d8e2-c866-5a25-8698-0aeced5187f3",
+      "name": "Logo",
+      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 0.0,
-       "y": 1072.0
+       "x": 1440.0,
+       "y": 300.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.75,
+       "y": 0.75
       },
       "align": 5,
       "bounds_type": 0,
@@ -3725,20 +3864,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo Glow",
-      "source_uuid": "936accf2-3b67-5765-98f1-d4924a0ffb15",
+      "name": "Txt BRB Eyebrow",
+      "source_uuid": "4df92ccf-436a-534d-9d27-70a0567a561e",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 1.3,
-       "y": 1.3
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3757,20 +3896,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
+      "name": "Txt BRB",
+      "source_uuid": "a4e2884e-e8d0-56b6-acb5-849296745b31",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3789,14 +3928,14 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Bar",
-      "source_uuid": "a5f4583e-8c0e-54ca-9f6e-a566e2af9bd5",
+      "name": "Txt BRB Sub",
+      "source_uuid": "569de14a-79fa-564d-9c40-57e62ff6161e",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 110.0,
-       "y": 290.0
+       "x": 120.0,
+       "y": 790.0
       },
       "scale": {
        "x": 1.0,
@@ -3821,14 +3960,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt BRB Eyebrow",
-      "source_uuid": "4df92ccf-436a-534d-9d27-70a0567a561e",
+      "name": "Txt Handle",
+      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 285.0
+       "x": 120.0,
+       "y": 940.0
       },
       "scale": {
        "x": 1.0,
@@ -3853,14 +3992,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt BRB",
-      "source_uuid": "a4e2884e-e8d0-56b6-acb5-849296745b31",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 335.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -3885,14 +4024,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt BRB Sub",
-      "source_uuid": "569de14a-79fa-564d-9c40-57e62ff6161e",
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 650.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -3917,14 +4056,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 940.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -3942,38 +4081,6 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 9,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4014,7 +4121,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 10,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -4050,18 +4157,18 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Line",
-      "source_uuid": "b560d8e2-c866-5a25-8698-0aeced5187f3",
+      "name": "Logo",
+      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 0.0,
-       "y": 1072.0
+       "x": 1440.0,
+       "y": 300.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.75,
+       "y": 0.75
       },
       "align": 5,
       "bounds_type": 0,
@@ -4082,20 +4189,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo Glow",
-      "source_uuid": "936accf2-3b67-5765-98f1-d4924a0ffb15",
+      "name": "Txt Ending Eyebrow",
+      "source_uuid": "2b8c23bf-0bc6-5547-b87b-caa830e76381",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 1.3,
-       "y": 1.3
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -4114,20 +4221,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
+      "name": "Txt Ending",
+      "source_uuid": "0c89786d-b4f2-51b1-a364-a2c3c7c3e0f7",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -4146,14 +4253,14 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Bar",
-      "source_uuid": "a5f4583e-8c0e-54ca-9f6e-a566e2af9bd5",
+      "name": "Txt Ending Sub",
+      "source_uuid": "d291c14a-2734-5016-b0d3-a3c016648b67",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 110.0,
-       "y": 290.0
+       "x": 120.0,
+       "y": 790.0
       },
       "scale": {
        "x": 1.0,
@@ -4178,14 +4285,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Ending Eyebrow",
-      "source_uuid": "2b8c23bf-0bc6-5547-b87b-caa830e76381",
+      "name": "Txt Handle",
+      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 285.0
+       "x": 120.0,
+       "y": 940.0
       },
       "scale": {
        "x": 1.0,
@@ -4210,14 +4317,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Ending",
-      "source_uuid": "0c89786d-b4f2-51b1-a364-a2c3c7c3e0f7",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 335.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -4242,14 +4349,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Ending Sub",
-      "source_uuid": "d291c14a-2734-5016-b0d3-a3c016648b67",
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 650.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -4274,14 +4381,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 940.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -4299,38 +4406,6 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 9,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4371,7 +4446,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 10,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -4407,18 +4482,18 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Line",
-      "source_uuid": "b560d8e2-c866-5a25-8698-0aeced5187f3",
+      "name": "Logo",
+      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 0.0,
-       "y": 1072.0
+       "x": 1440.0,
+       "y": 300.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.75,
+       "y": 0.75
       },
       "align": 5,
       "bounds_type": 0,
@@ -4439,20 +4514,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo Glow",
-      "source_uuid": "936accf2-3b67-5765-98f1-d4924a0ffb15",
+      "name": "Txt Lost Eyebrow",
+      "source_uuid": "416f85b9-cd80-5fca-967e-fab96304745f",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 1.3,
-       "y": 1.3
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -4471,20 +4546,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "a67715a9-8cfc-5bff-a279-96e0843e0b97",
+      "name": "Txt Lost",
+      "source_uuid": "88dbac2a-2131-590a-b0f8-fd6286a708bb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1450.0,
-       "y": 520.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -4503,14 +4578,14 @@
       "private_settings": {}
      },
      {
-      "name": "Accent Bar",
-      "source_uuid": "a5f4583e-8c0e-54ca-9f6e-a566e2af9bd5",
+      "name": "Txt Lost Sub",
+      "source_uuid": "ede1d18b-7f40-5dbb-bc9a-b7c038fdc750",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 110.0,
-       "y": 290.0
+       "x": 120.0,
+       "y": 790.0
       },
       "scale": {
        "x": 1.0,
@@ -4535,14 +4610,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Lost Eyebrow",
-      "source_uuid": "416f85b9-cd80-5fca-967e-fab96304745f",
+      "name": "Txt Handle",
+      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 285.0
+       "x": 120.0,
+       "y": 940.0
       },
       "scale": {
        "x": 1.0,
@@ -4567,14 +4642,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Lost",
-      "source_uuid": "88dbac2a-2131-590a-b0f8-fd6286a708bb",
+      "name": "_Partner",
+      "source_uuid": "5b409908-cdae-5897-8af9-dcae4b5b8bbb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 335.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -4599,14 +4674,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Lost Sub",
-      "source_uuid": "ede1d18b-7f40-5dbb-bc9a-b7c038fdc750",
+      "name": "_Ticker",
+      "source_uuid": "f0e721b2-7273-50a9-a128-a8a244d7b5de",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 650.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -4631,14 +4706,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "db29bb2d-98e8-513f-b1f3-33f84893ea29",
+      "name": "_Web",
+      "source_uuid": "becb2353-ccad-5104-831d-a2dfa327fcf0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 160.0,
-       "y": 940.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -4656,38 +4731,6 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 9,
-      "group_item_backup": false,
-      "scale_filter": "disable",
-      "blend_method": "default",
-      "blend_type": "normal",
-      "private_settings": {}
-     },
-     {
-      "name": "_CoOp",
-      "source_uuid": "8aeb2ce3-0559-5270-a25a-d61367c3f965",
-      "visible": true,
-      "locked": false,
-      "rot": 0.0,
-      "pos": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "scale": {
-       "x": 1.0,
-       "y": 1.0
-      },
-      "align": 5,
-      "bounds_type": 0,
-      "bounds_align": 0,
-      "bounds": {
-       "x": 0.0,
-       "y": 0.0
-      },
-      "crop_left": 0,
-      "crop_top": 0,
-      "crop_right": 0,
-      "crop_bottom": 0,
-      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4749,24 +4792,17 @@
    "fade_to_black": false
   },
   {
-   "name": "dc Stinger CoOp",
+   "name": "dc Slide",
    "duration": 300,
    "hotkeys": [],
    "id": 4,
    "fade_to_black": false
   },
   {
-   "name": "dc Slide",
-   "duration": 300,
-   "hotkeys": [],
-   "id": 5,
-   "fade_to_black": false
-  },
-  {
    "name": "dc Fade Black",
    "duration": 300,
    "hotkeys": [],
-   "id": 6,
+   "id": 5,
    "fade_to_black": false
   }
  ],
@@ -4778,19 +4814,6 @@
     "path": "{{ASSETS}}/video/stinger.webm",
     "tp_type": 0,
     "transition_point": 520,
-    "audio_fade_style": 0,
-    "enable_monitoring": false,
-    "hw_decode": false,
-    "preload": true
-   }
-  },
-  {
-   "name": "dc Stinger CoOp",
-   "id": "obs_stinger_transition",
-   "settings": {
-    "path": "{{ASSETS}}/video/stinger_coop.webm",
-    "tp_type": 0,
-    "transition_point": 560,
     "audio_fade_style": 0,
     "enable_monitoring": false,
     "hw_decode": false,

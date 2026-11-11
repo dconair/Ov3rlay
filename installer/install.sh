@@ -182,7 +182,7 @@ BRAND_NAME="$(brand_value NAME)"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 BACKUP_DIR="$APP_DIR/backups/$STAMP"
 BACKED_UP=0
-TOKEN_NAMES="ASSETS FONT_FACE CAM_IPHONE_ID CAM_IPHONE_NAME CAM_SONY_ID CAM_SONY_NAME"
+TOKEN_NAMES="ASSETS FONT_FACE FONT_MONO CAM_IPHONE_ID CAM_IPHONE_NAME CAM_SONY_ID CAM_SONY_NAME"
 
 say "${B}$BRAND_NAME OBS-Setup${R}"
 say "Richtet Szenen, Übergänge, Effekte und ein Streaming-Profil in OBS ein."
@@ -256,28 +256,34 @@ if move_plugin_installed; then VARIANT="macos.move"; ok "Plugin 'Move Transition
 
 mkdir -p "$APP_DIR"
 backup "$APP_DIR/assets"
-# Eigene (lokale) Partner-Logo-Datei für den CoOp-Modus bleibt bei Neuinstallation erhalten
-PARTNER_KEEP=""
-if [ -f "$APP_DIR/assets/branding/partner_logo.png" ]; then
-  PARTNER_KEEP="$(mktemp)"; cp "$APP_DIR/assets/branding/partner_logo.png" "$PARTNER_KEEP"
-fi
+# Eigene (lokale) Dateien bleiben bei einer Neuinstallation erhalten: Partner-Logo, Laufband-Text, Chat-/Alert-Einstellungen
+KEEP_DIR="$(mktemp -d)"
+KEEP_FILES="branding/partner_logo.png ticker.txt web/config.js"
+for rel in $KEEP_FILES; do
+  if [ -f "$APP_DIR/assets/$rel" ]; then mkdir -p "$KEEP_DIR/$(dirname "$rel")"; cp "$APP_DIR/assets/$rel" "$KEEP_DIR/$rel"; fi
+done
 rm -rf "$APP_DIR/assets"
 cp -R "$PAYLOAD/assets" "$APP_DIR/assets"
-if [ -n "$PARTNER_KEEP" ]; then cp "$PARTNER_KEEP" "$APP_DIR/assets/branding/partner_logo.png"; rm -f "$PARTNER_KEEP"; ok "Eigenes Partner-Logo (CoOp) beibehalten"; fi
+for rel in $KEEP_FILES; do
+  if [ -f "$KEEP_DIR/$rel" ]; then cp "$KEEP_DIR/$rel" "$APP_DIR/assets/$rel"; ok "Eigene Datei beibehalten: $rel"; fi
+done
+rm -rf "$KEEP_DIR"
 rm -f "$APP_DIR/assets/fonts/HIER_SCHRIFTEN_ABLEGEN.txt"
 ok "Grafiken und Videos nach $APP_DIR/assets kopiert"
 
 FONT_FACE="Helvetica Neue"
+FONT_MONO="Menlo"
 FONT_FILES="$(find "$APP_DIR/assets/fonts" -type f \( -iname '*.ttf' -o -iname '*.otf' \) 2>/dev/null || true)"
 if [ -n "$FONT_FILES" ]; then
   mkdir -p "$FONT_DIR"
   printf '%s\n' "$FONT_FILES" | while IFS= read -r font; do cp "$font" "$FONT_DIR/"; done
   [ -z "$(brand_value FONT_FAMILY)" ] || FONT_FACE="$(brand_value FONT_FAMILY)"
-  ok "Markenschrift installiert: $FONT_FACE"
+  [ -z "$(brand_value FONT_MONO)" ] || FONT_MONO="$(brand_value FONT_MONO)"
+  ok "Markenschriften installiert: $FONT_FACE, $FONT_MONO"
 fi
 
-export T_ASSETS T_FONT_FACE T_CAM_IPHONE_ID T_CAM_IPHONE_NAME T_CAM_SONY_ID T_CAM_SONY_NAME
-T_ASSETS="$(json_escape "$APP_DIR/assets")"; T_FONT_FACE="$(json_escape "$FONT_FACE")"
+export T_ASSETS T_FONT_FACE T_FONT_MONO T_CAM_IPHONE_ID T_CAM_IPHONE_NAME T_CAM_SONY_ID T_CAM_SONY_NAME
+T_ASSETS="$(json_escape "$APP_DIR/assets")"; T_FONT_FACE="$(json_escape "$FONT_FACE")"; T_FONT_MONO="$(json_escape "$FONT_MONO")"
 T_CAM_IPHONE_ID="$(json_escape "$IPHONE_ID")"; T_CAM_IPHONE_NAME="$(json_escape "$IPHONE_NAME")"
 T_CAM_SONY_ID="$(json_escape "$SONY_ID")"; T_CAM_SONY_NAME="$(json_escape "$SONY_NAME")"
 

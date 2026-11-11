@@ -72,18 +72,30 @@ class CollectionTests(unittest.TestCase):
             overrides = {s["private_settings"]["transition"] for s in doc["sources"] if s["private_settings"].get("transition")}
             self.assertLessEqual(overrides - {"Fade", "Cut"}, names)  # eingebaute Übergänge stehen nicht in der Liste
             self.assertEqual(overrides, {"dc Move", "Fade"} if move else {"dc Slide", "Fade"})
-            self.assertIn("dc Stinger CoOp", names)
 
-    def test_coop_is_off_by_default(self):
-        """CoOp nur auf Abruf: Die Einblendung in der Schalter-Szene ist ausgeschaltet, alle Szenen enthalten den Schalter."""
+    def test_partner_badge_is_off_by_default(self):
+        """Partner-Schild nur auf Abruf: ausgeschaltet; Laufband standardmäßig an; beides in allen Kamera- und Titelszenen."""
         doc = bc.build("macos", False)
         by_name = {s["name"]: s for s in doc["sources"]}
-        items = by_name["_CoOp"]["settings"]["items"]
-        self.assertEqual([i["name"] for i in items], ["_CoOp Inhalt"])
-        self.assertFalse(items[0]["visible"], "CoOp darf nicht standardmäßig sichtbar sein")
-        users = [s["name"] for s in doc["sources"] if s["id"] == "scene"
-                 and any(i["name"] == "_CoOp" for i in s["settings"]["items"])]
-        self.assertGreaterEqual(len(users), 8)
+        items = by_name["_Partner"]["settings"]["items"]
+        self.assertEqual([i["name"] for i in items], ["_Partner Inhalt"])
+        self.assertFalse(items[0]["visible"], "Partner-Schild darf nicht standardmäßig sichtbar sein")
+        self.assertTrue(by_name["_Ticker"]["settings"]["items"][0]["visible"])
+        for name in ("_Partner", "_Ticker"):
+            users = [s["name"] for s in doc["sources"] if s["id"] == "scene"
+                     and any(i["name"] == name for i in s["settings"]["items"])]
+            self.assertGreaterEqual(len(users), 9, name)
+
+    def test_web_overlays(self):
+        """Alerts und Chat sind Browserquellen mit lokalen Seiten (nicht im Linux-Testsystem ohne Browser)."""
+        for platform in ("macos", "windows"):
+            doc = bc.build(platform, False)
+            web = {s["name"]: s for s in doc["sources"] if s["id"] == "browser_source"}
+            self.assertEqual(set(web), {"Web Alerts", "Web Chat"})
+            for src in web.values():
+                self.assertTrue(src["settings"]["is_local_file"])
+                self.assertTrue(src["settings"]["local_file"].endswith(".html"))
+        self.assertFalse([s for s in bc.build("linux", False)["sources"] if s["id"] == "browser_source"])
 
     def test_scene_hotkeys_unique(self):
         doc = bc.build("macos", False)

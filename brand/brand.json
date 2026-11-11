@@ -3,24 +3,20 @@
   "handle": "@dc_onair",
   "collection": "dc_onair",
   "colors": {
-    "primary": "#00D1C1",
-    "secondary": "#2D6BFF",
-    "dark": "#050B16",
-    "light": "#F2FBFF",
-    "muted": "#9DB2C6"
+    "primary": "#C8F31D",
+    "secondary": "#FF6200",
+    "dark": "#0E0F0F",
+    "light": "#ECE6D6",
+    "muted": "#8C8778"
   },
   "font": {
-    "family": "Chakra Petch",
-    "note": "Mitgelieferte Markenschrift: Chakra Petch (SIL Open Font License, siehe payload/assets/fonts/OFL-ChakraPetch.txt). Eigene Schrift: .ttf/.otf nach payload/assets/fonts/ legen und hier den Familiennamen eintragen; leer = Systemschrift (macOS: Helvetica Neue, Windows: Segoe UI)."
+    "family": "Anton",
+    "mono": "Space Mono",
+    "note": "Mitgelieferte Schriften: Anton (Überschriften) und Space Mono (Text, Laufband), beide SIL Open Font License (Lizenztexte in payload/assets/fonts/). Eigene Schriften: .ttf/.otf nach payload/assets/fonts/ legen und hier die Familiennamen eintragen; leer = Systemschrift (macOS: Helvetica Neue/Menlo, Windows: Segoe UI/Consolas)."
   },
   "coop": {
-    "note": "CoOp-Modus (nur auf Abruf): Partnerfarben aus dem Partner-Logo (Orange und Blau). Das Partner-Logo selbst gehört nicht ins Repository, die Datei liegt lokal unter assets/branding/partner_logo.png.",
-    "label": "CO-STREAM",
-    "name": "Partner",
-    "colors": {
-      "primary": "#FF6200",
-      "secondary": "#0062FF"
-    }
+    "note": "Partner-Modus (nur auf Abruf, Strg+Alt+P ein, Strg+Alt+O aus): kleines Namensschild mit Logo des Partners. Das Partner-Logo gehört nicht ins Repository, die Datei liegt lokal unter assets/branding/partner_logo.png.",
+    "name": "Partner"
   },
   "texts": {
     "starting": [
@@ -36,7 +32,7 @@
     "ending": [
       "STREAM BEENDET",
       "DANKE FÜRS\nZUSCHAUEN",
-      "Bis zum nächsten Stream"
+      "Bis zum nächsten Mal"
     ],
     "lost": [
       "SIGNAL VERLOREN",
@@ -45,7 +41,7 @@
     ],
     "lower_third": [
       "dc_onair",
-      "LIVE-STREAM"
+      "IRL · OUTDOOR"
     ]
   },
   "cameras": [
@@ -57,5 +53,6 @@
       "id": "sony",
       "label": "Sony A7 II"
     }
-  ]
+  ],
+  "ticker": "LIVE  ///  IRL OUTDOOR  ///  NOW PLAYING: Artist - Titel  ///  TRACKLIST: 01 Artist - Titel, 02 Artist - Titel  ///  Ort: hier eintragen  ///  "
 }

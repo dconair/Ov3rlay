@@ -26,21 +26,23 @@ Der Stream-Schlüssel wird nicht abgefragt und nicht gespeichert. Konto verbinde
 
 ## Was eingerichtet wird
 
+Das Design ist flach und bewusst zurückhaltend: Schwarz, Papierweiß, Limette als Akzentfarbe und Orange nur für den Partner und den LIVE-Punkt. Schriften sind Anton (Überschriften) und Space Mono (alles andere). Es gibt keine Verläufe und kein Leuchten, damit bei IRL- und DJ-Streams das Bild im Vordergrund bleibt.
+
 | Szene | Inhalt |
 |---|---|
-| 01 Starting Soon | animierter Hintergrund, Logo mit Leuchten, großer Titel links, fließende Akzentlinie |
-| 02 Kamera iPhone | iPhone vollbild, LIVE-Zeichen, Logo-Bug, Lower Third |
-| 03 Kamera Sony | Sony A7 II vollbild, LIVE-Zeichen, Logo-Bug, Lower Third |
-| 04 Dual Cam | beide Kameras nebeneinander mit Verlaufsrahmen, LIVE-Zeichen |
+| 01 Starting Soon | Hintergrund mit wandernden Streifen, große Überschrift, Logo, Laufband |
+| 02 Kamera iPhone | iPhone vollbild, kleines Logo mit blinkendem LIVE-Zeichen, Laufband |
+| 03 Kamera Sony | Sony A7 II vollbild, dasselbe |
+| 04 Dual Cam | beide Kameras nebeneinander mit Eckmarken |
 | 05 Screen + Cam | Bildschirm mit Sony-Kamera unten rechts |
 | 06 Screen Only | nur Bildschirm |
 | 07 BRB | Pausenbild |
 | 08 Ending | Abspann |
 | 09 Connection Lost | Notfallbild bei Verbindungsabbruch (IRL) |
 
-Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen eingebunden und werden einmal zentral gepflegt.
+Hilfsszenen mit `_` am Anfang (Logo/LIVE, Lower Third, Partner, Laufband, Web) sind in allen Szenen eingebunden und werden einmal zentral gepflegt.
 
-**Übergänge:** `dc Stinger` (Standard, Farbwisch in Teal und Blau mit Logo, 60 fps), `dc Slide`, `dc Swipe`, `dc Fade Black` und der eingebaute `Fade`. Pro Szene:
+**Übergänge:** `dc Stinger` (Standard, harte Farbwische in Limette, Papierweiß und Schwarz mit Logo, 60 fps), `dc Slide`, `dc Swipe`, `dc Fade Black` und der eingebaute `Fade`. Pro Szene:
 
 | Wechsel nach | Übergang |
 |---|---|
@@ -48,39 +50,32 @@ Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen einge
 | 02 bis 06 (Kamera- und Screen-Szenen) | `dc Slide` (450 ms), mit Move-Plugin `dc Move` (600 ms) |
 | 09 Connection Lost | `Fade` (300 ms, eingebaut), damit das Notfallbild sofort greift |
 
- Der Lower Third fährt beim Einblenden und Ausblenden mit Slide-Animation ein und aus.
+**Bewegung:** blinkender LIVE-Punkt, laufendes Band unten, Streifen im Hintergrund, harte Wisch-Übergänge. Lower Third, Partner-Schild und Laufband fahren per Slide ein und aus. Alerts und Chat haben eigene Animationen (siehe unten).
 
-**Effekte:** Kamera-Farbkorrektur und Schärfe, animierter Blau/Teal-Hintergrund (weiche, kreisende Lichter), fließende Akzentlinie, Verlaufsrahmen mit Eckmarken, abgerundeter Lower Third. Das Design ist dunkel und ruhig gehalten, damit bei IRL-Streams das Kamerabild im Vordergrund bleibt.
-
-### CoOp-Modus (nur auf Abruf)
-
-Wenn ihr zusammen streamt, blendet **Strg+Alt+P** oben rechts eine Kapsel "CO-STREAM" mit dem Logo des Partners ein, dazu eine fließende Linie am unteren Rand und ein Leuchten in den Partnerfarben. **Strg+Alt+O** blendet alles wieder aus. Nach der Installation ist der Modus aus und bleibt es, bis du ihn einschaltest. Alternativ in OBS die Szene `_CoOp` öffnen und das Auge bei `_CoOp Inhalt` anklicken.
-
-Für den Szenenwechsel zu Beginn gibt es den Übergang `dc Stinger CoOp` (Stinger mit beiden Farbwelten, im Übergangsmenü oder als Schnellübergang wählbar). Der normale `dc Stinger` bleibt Standard.
-
-**Partner-Logo:** Mitgeliefert ist nur ein neutraler Platzhalter. Das echte Logo gehört dem Partner und liegt deshalb nicht im Repository. Lege es lokal als `assets/branding/partner_logo.png` in den Ordner der installierten Dateien (macOS: `~/Library/Application Support/dc_onair/assets/branding/`, Windows: `%APPDATA%\dc_onair\assets\branding\`). Eine Neuinstallation überschreibt diese Datei nicht. Name und Beschriftung der Kapsel änderst du in OBS über die Textquellen `Txt CoOp Name` und `Txt CoOp Label` oder dauerhaft in `brand/brand.json` unter `coop`.
-
-### Wo welche Farbe verwendet wird
-
-Die eigene Farbwelt (Teal `#00D1C1`, Blau `#2D6BFF`) bildet immer die Grundlage. Die Partnerfarben (Orange `#FF6200`, Blau `#0062FF`) kommen nur im CoOp-Modus dazu.
-
-| Bereich | Eigene Farben (Teal/Blau) | Partnerfarben (Orange/Blau), nur CoOp |
-|---|---|---|
-| Hintergrund (Starting, BRB, Ending, Dual Cam) | Teal und Blau als weiche Lichter | wird nicht verändert |
-| Overlay (Rahmen, Lower Third, Logo-Bug, LIVE-Zeichen, Akzentbalken, Akzentlinie unten) | durchgehend Teal bis Blau | wird nicht verändert |
-| CoOp-Kapsel und Partner-Logo | Beschriftung "CO-STREAM" und oberer Teil des Balkens in Teal | unterer Teil des Balkens und Rahmen um das Partner-Logo in Orange |
-| CoOp-Linie am unteren Rand | Verlauf beginnt in Teal | läuft in Orange aus, fließt wie die normale Akzentlinie |
-| Leuchten in den Bildecken | Teal oben links | Orange unten rechts |
-| Stinger `dc Stinger` (Standard) | Farbwisch Teal und Blau mit Logo | nicht enthalten |
-| Stinger `dc Stinger CoOp` | Teal und Blau | zusätzlich Orange und Partnerblau im Wechsel, dein Logo in der Mitte, 1,2 s |
-| Übergänge Slide, Swipe, Fade | farbneutral (Bildwechsel) | farbneutral |
-| Alerts | **noch nicht im Paket enthalten** (siehe unten) | |
-
-**Alerts:** Follower-, Abo- und Spenden-Einblendungen kommen von einem Alert-Dienst wie Streamlabs oder StreamElements und werden dort als Browserquelle angelegt. Ein Alert-Design mit beiden Farbwelten ist als nächster Schritt möglich, sobald du den Dienst festlegst.
-
-**Audio:** Desktop-Ton und Mikrofon (`Mic/Aux`) mit Rauschunterdrückung, Verstärkung, Kompressor und Limiter.
+**Audio:** Desktop-Ton und Mikrofon (`Mic/Aux`) mit Rauschunterdrückung, Verstärkung, Kompressor und Limiter. Kamera-Farbkorrektur und Schärfe sind auf den Kameraquellen eingestellt.
 
 **Fehlt eine Kamera**, zeigt die Szene eine Karte "Kamera nicht verbunden" statt eines schwarzen Bildes.
+
+### Laufband mit Tracklist, laufendem Titel und Ort
+
+Das Band unten liest den Text aus der Datei `ticker.txt` im Ordner der installierten Dateien (macOS: `~/Library/Application Support/dc_onair/assets/`, Windows: `%APPDATA%\dc_onair\assets\`). Datei öffnen, Text ändern, speichern: OBS übernimmt die Änderung selbst. Trenne Abschnitte mit `///` und halte die Zeile länger als etwa 150 Zeichen, damit das Band durchgehend gefüllt bleibt. Schreibt dein DJ-Programm oder ein Zusatztool den laufenden Titel in eine Textdatei, kannst du in OBS bei der Quelle `Txt Ticker` (Eigenschaften, "Aus Datei lesen") diese Datei auswählen. Die Datei wird bei einer Neuinstallation nicht überschrieben.
+
+### Partner-Schild (nur auf Abruf)
+
+Wenn der Partner dabei ist, blendet **Strg+Alt+P** oben rechts ein kleines Schild mit Logo und Name ein, **Strg+Alt+O** blendet es wieder aus. Nach der Installation ist es aus. Es ist bewusst klein gehalten und kein zweiter Stream.
+
+**Partner-Logo:** Mitgeliefert ist nur ein neutraler Platzhalter. Das echte Logo gehört dem Partner und liegt deshalb nicht im Repository. Lege es lokal als `assets/branding/partner_logo.png` in den Ordner der installierten Dateien (siehe oben, Unterordner `branding`). Eine Neuinstallation überschreibt diese Datei nicht. Den Namen änderst du in OBS bei der Textquelle `Txt Partner Name` oder dauerhaft in `brand/brand.json` unter `coop.name` (danach `python3 tools/build.py`).
+
+### Alerts und Chat
+
+Beide sind Browserquellen mit eigenen Seiten unter `assets/web/` (Quellen `Web Alerts` und `Web Chat` in der Hilfsszene `_Web`), transparent und im selben Stil wie der Rest.
+
+- **Alerts:** Klebeband-Wisch quer durchs Bild, Karte schlägt ein und wackelt, der Name wird eingetippt, flache Konfetti-Quadrate fliegen, ein Zeitbalken zählt die Anzeigedauer herunter, dann fährt die Karte nach oben raus. Typen: Follower, Abo, Tip, Raid, Bits. Mehrere Alerts laufen nacheinander. Von Hand auslösen: `window.dcAlert({type: "follow", name: "mara_k"})`.
+- **Chat:** Nachrichten springen mit kleiner Bewegung ein und gleiten nach einer Weile wieder raus. Moderatoren, VIPs und der Kanalinhaber haben Orange, alle anderen Limette. Der **Twitch-Chat** wird anonym gelesen (nur Lesen, ohne Anmeldung und ohne Token): Kanalname in `assets/web/config.js` bei `twitchChannel` eintragen.
+- **Vorschau:** Eine der Seiten (`alerts.html`, `chat.html`) per Doppelklick im Browser öffnen, dort laufen Testdaten. In OBS laufen die Testdaten nur, wenn in `config.js` `demo: true` steht.
+- **Noch nicht angebunden:** Echte Alert-Ereignisse (Follower, Abos, Tips) kommen von einem Dienst wie Streamlabs oder StreamElements. Diese Anbindung und Chat-Plattformen außer Twitch sind noch nicht eingebaut. Die Gestaltung und die Animationen stehen, die Schnittstelle `window.dcAlert` ist dafür vorbereitet.
+
+`config.js` bleibt bei einer Neuinstallation erhalten. Trage dort keine geheimen Schlüssel ein, wenn du die Datei teilst.
 
 ### Optional: weiche Kamerawechsel mit "Move Transition"
 
@@ -92,9 +87,10 @@ Mit dem kostenlosen Plugin [Move Transition](https://obsproject.com/forum/resour
 |---|---|
 | Szene 1 bis 9 | Strg+Alt+1 bis 9 (macOS: Control+Option) |
 | Lower Third ein / aus | Strg+Alt+L / H |
+| Partner-Schild ein / aus | Strg+Alt+P / O |
+| Laufband ein / aus | Strg+Alt+T / Z |
 | Mikrofon stumm | Strg+Alt+M |
 | Desktop-Ton stumm | Strg+Alt+D |
-| CoOp-Modus ein / aus | Strg+Alt+P / O |
 
 Auf macOS muss OBS dafür unter Systemeinstellungen > Datenschutz & Sicherheit die Rechte "Bedienungshilfen" und "Eingabeüberwachung" haben.
 
@@ -123,21 +119,18 @@ Es reicht, die Dateien unter `payload/assets/` zu ersetzen (gleicher Dateiname) 
 
 | Datei | Zweck |
 |---|---|
-| `branding/logo.png` | Logo (eigener Platzhalter: Sende-Signal auf dunkler Kachel, einfach durch das eigene Logo ersetzen) |
+| `branding/logo.png` | Logo (Platzhalter: Limetten-Quadrat mit "D", einfach durch das eigene Logo ersetzen) |
+| `branding/partner_logo.png` | Logo des Partners für das Partner-Schild (Platzhalter, echtes Logo lokal einsetzen, nicht committen) |
+| `ticker.txt` | Text des Laufbands (bleibt bei Neuinstallation erhalten) |
+| `web/config.js` | Einstellungen für Alerts und Chat (bleibt bei Neuinstallation erhalten) |
 | `video/stinger.webm` | Übergangsvideo, VP9 mit Transparenz, Deckungspunkt bei 520 ms |
 | `video/bg_loop.mp4` | animierter Hintergrund für Starting, BRB, Ending und Dual Cam |
-| `overlays/frame_cam.png` | Rahmen um Kamerabilder |
-| `overlays/live_badge.png` | Kapsel für das LIVE-Zeichen (Text `Txt Live` liegt darüber) |
-| `overlays/accent_bar.png` | Verlaufsbalken links neben den Titeln |
-| `overlays/logo_glow.png` | weiches Leuchten hinter dem Logo |
-| `overlays/accent_line.png` | Akzentlinie am unteren Rand |
-| `overlays/lower_third.png` | Platte hinter Name und Titel |
-| `branding/partner_logo.png` | Partner-Logo für den CoOp-Modus (Platzhalter, echtes Logo lokal einsetzen, nicht committen) |
-| `overlays/costream_plate.png`, `coop_glow.png`, `coop_line.png` | Kapsel, Eckleuchten und Linie des CoOp-Modus |
-| `video/stinger_coop.webm` | Übergangsvideo `dc Stinger CoOp` mit beiden Farbwelten |
+| `video/live_tag.webm` | LIVE-Zeichen mit blinkendem Punkt |
+| `overlays/frame_cam.png` | Eckmarken um Kamerabilder |
+| `overlays/lower_third.png`, `ticker.png`, `partner_plate.png` | Platten für Lower Third, Laufband und Partner-Schild |
 | `overlays/cam_offline_*.png` | Karte, wenn eine Kamera fehlt |
 
-**Schrift:** Mitgeliefert ist Chakra Petch (kantig, leicht kursiv, SIL Open Font License; Lizenztext liegt in `payload/assets/fonts/`). Der Installer richtet sie ein und trägt sie in alle Textquellen ein. Eigene Schrift: `.ttf` oder `.otf` in `payload/assets/fonts/` legen, in `brand/brand.json` bei `font.family` den Familiennamen eintragen und `python3 tools/build.py` ausführen. Bei leerem Eintrag wird die Systemschrift genutzt (macOS: Helvetica Neue, Windows: Segoe UI).
+**Schrift:** Mitgeliefert sind Anton und Space Mono (SIL Open Font License; Lizenztexte liegen in `payload/assets/fonts/`). Der Installer richtet sie ein und trägt sie in alle Textquellen ein. Eigene Schriften: `.ttf` oder `.otf` in `payload/assets/fonts/` legen, in `brand/brand.json` bei `font.family` (Überschriften) und `font.mono` (Text, Laufband) die Familiennamen eintragen und `python3 tools/build.py` ausführen. Bei leerem Eintrag wird die Systemschrift genutzt (macOS: Helvetica Neue und Menlo, Windows: Segoe UI und Consolas).
 
 **Texte:** in OBS die Textquellen `Txt …` bearbeiten, oder dauerhaft in `brand/brand.json` ändern und neu bauen.
 

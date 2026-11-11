@@ -1,0 +1,9 @@
+#chat { position: absolute; right: 40px; bottom: 76px; width: 560px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.msg { background: var(--ink); padding: 9px 16px 10px; font: 400 21px/1.35 "Space Mono"; max-width: 560px; overflow-wrap: anywhere; border-right: 6px solid var(--lime);
+  animation: pop .45s cubic-bezier(.2,1.5,.4,1) both; }
+.msg.mod { border-right-color: var(--hot); }
+.msg b { color: var(--lime); font-weight: 700; margin-right: 8px; }
+.msg.mod b { color: var(--hot); }
+.msg.out { animation: out .35s ease-in both; }
+@keyframes pop { from { opacity: 0; transform: translate(40px, 24px) scale(.9) rotate(1.5deg); } to { opacity: 1; transform: none; } }
+@keyframes out { to { opacity: 0; transform: translateX(120px); } }

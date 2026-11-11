@@ -16,7 +16,7 @@ OUT = ROOT / "payload" / "scenes"
 PREV_VER = 503316482  # OBS 30.0.2
 W, H = 1920, 1080
 
-TOKENS = ["ASSETS", "FONT_FACE", "CAM_IPHONE_ID", "CAM_IPHONE_NAME", "CAM_SONY_ID", "CAM_SONY_NAME"]
+TOKENS = ["ASSETS", "FONT_FACE", "FONT_MONO", "CAM_IPHONE_ID", "CAM_IPHONE_NAME", "CAM_SONY_ID", "CAM_SONY_NAME"]
 
 # Quellen-IDs und Einstellungen, die sich je Betriebssystem unterscheiden.
 # "linux" dient nur den automatischen Tests mit einem echten OBS.
@@ -100,12 +100,24 @@ class Collection:
     def image(self, name, rel, **kw):
         return self.source("image_source", name, {"file": self.asset(rel), "unload": False}, **kw)
 
-    def text(self, name, text, size, color="light", bold=True, italic=False):
-        style = " ".join(x for x in ("Bold" if bold else "", "Italic" if italic else "") if x) or "Regular"
-        font = {"face": "{{FONT_FACE}}", "size": size, "flags": (1 if bold else 0) | (2 if italic else 0), "style": style}
+    def text(self, name, text, size, color="light", mono=False, bold=False, filters=None, **extra):
+        """Anton (Überschrift) oder Space Mono (mono=True); Anton gibt es nur in einem Schnitt."""
+        bold = bold and mono
+        face = "{{FONT_MONO}}" if mono else "{{FONT_FACE}}"
+        style = "Bold" if bold else "Regular"
+        font = {"face": face, "size": size, "flags": 1 if bold else 0, "style": style}
         return self.source("text_ft2_source_v2", name, {
             "text": text, "font": font, "color1": self.colors[color], "color2": self.colors[color],
-            "drop_shadow": False, "outline": False, "word_wrap": False})
+            "drop_shadow": False, "outline": False, "word_wrap": False, **extra}, filters=filters)
+
+    def web(self, name, rel):
+        """Browserquelle mit lokaler Seite (Alerts, Chat). Das Linux-Testsystem hat keinen Browser, dort entfällt sie."""
+        if self.platform == "linux":
+            return None
+        return self.source("browser_source", name, {
+            "is_local_file": True, "local_file": self.asset(rel), "url": "", "width": W, "height": H,
+            "fps_custom": True, "fps": 60, "css": "", "shutdown": False, "restart_when_active": False,
+            "reroute_audio": False})
 
     def scene(self, name, hotkey_key=None, transition=None):
         scene = Scene(self, name)
@@ -143,9 +155,6 @@ class Collection:
             {"name": "dc Stinger", "id": "obs_stinger_transition", "settings": {
                 "path": self.asset("video/stinger.webm"), "tp_type": 0, "transition_point": 520,
                 "audio_fade_style": 0, "enable_monitoring": False, "hw_decode": False, "preload": True}},
-            {"name": "dc Stinger CoOp", "id": "obs_stinger_transition", "settings": {
-                "path": self.asset("video/stinger_coop.webm"), "tp_type": 0, "transition_point": 560,
-                "audio_fade_style": 0, "enable_monitoring": False, "hw_decode": False, "preload": True}},
             {"name": "dc Slide", "id": "slide_transition", "settings": {"direction": "left"}},
             {"name": "dc Swipe", "id": "swipe_transition", "settings": {"direction": "left"}},
             {"name": "dc Fade Black", "id": "fade_to_color_transition", "settings": {"color": 0xFF000000}},
@@ -155,32 +164,26 @@ class Collection:
         return t
 
     def quick_transitions(self):
-        names = ["Cut", "Fade", "dc Stinger", "dc Stinger CoOp", "dc Slide", "dc Fade Black"]
+        names = ["Cut", "Fade", "dc Stinger", "dc Slide", "dc Fade Black"]
         return [{"name": n, "duration": 300, "hotkeys": [], "id": i + 1, "fade_to_black": False}
                 for i, n in enumerate(names)]
 
     # -- Inhalt --
     def define_sources(self):
-        c, t = self.colors, BRAND["texts"]
+        t = BRAND["texts"]
         # Medien und Grafiken
         self.source("ffmpeg_source", "BG Loop", {
             "local_file": self.asset("video/bg_loop.mp4"), "is_local_file": True, "looping": True,
             "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
+        self.source("ffmpeg_source", "Live Tag", {
+            "local_file": self.asset("video/live_tag.webm"), "is_local_file": True, "looping": True,
+            "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
         self.image("Logo", "branding/logo.png")
         self.image("Frame Cam", "overlays/frame_cam.png")
         self.image("Lower Third Plate", "overlays/lower_third.png")
-        self.image("Accent Bar", "overlays/accent_bar.png")
-        self.image("Logo Glow", "overlays/logo_glow.png")
-        self.image("Live Badge", "overlays/live_badge.png")
-        self.image("CoOp Plate", "overlays/costream_plate.png")
-        self.image("CoOp Glow", "overlays/coop_glow.png")
-        self.image("CoOp Line", "overlays/coop_line.png", filters=[
-            ("scroll_filter", "Scroll", {"speed_x": 70.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
-                                         "limit_cy": False})])
+        self.image("Ticker Plate", "overlays/ticker.png")
+        self.image("Partner Plate", "overlays/partner_plate.png")
         self.image("Partner Logo", "branding/partner_logo.png")
-        self.image("Accent Line", "overlays/accent_line.png", filters=[
-            ("scroll_filter", "Scroll", {"speed_x": 70.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
-                                         "limit_cy": False})])
         # Kameras: je Quelle eine Platzhalterkarte darunter, falls das Gerät fehlt
         vid_id, vid_cfg = self.p["video"]
         for cam in BRAND["cameras"]:
@@ -204,15 +207,20 @@ class Collection:
         # Texte
         for key, label in (("starting", "Starting"), ("brb", "BRB"), ("ending", "Ending"), ("lost", "Lost")):
             eyebrow, headline, sub = t[key]
-            self.text(f"Txt {label} Eyebrow", eyebrow, 34, color="primary")
-            self.text(f"Txt {label}", headline, 118, italic=True)
-            self.text(f"Txt {label} Sub", sub, 40, color="muted", bold=False)
-        self.text("Txt Handle", BRAND["handle"], 34, color="primary")
-        self.text("Txt Live", "LIVE", 28)
-        self.text("Txt CoOp Label", BRAND["coop"]["label"], 20, color="primary")
-        self.text("Txt CoOp Name", BRAND["coop"]["name"], 34, italic=True)
-        self.text("Txt LT Name", t["lower_third"][0], 58, italic=True)
-        self.text("Txt LT Title", t["lower_third"][1], 28, color="primary")
+            self.text(f"Txt {label} Eyebrow", eyebrow, 30, color="primary", mono=True, bold=True)
+            self.text(f"Txt {label}", headline, 150)
+            self.text(f"Txt {label} Sub", sub, 30, color="muted", mono=True)
+        self.text("Txt Handle", BRAND["handle"], 26, color="primary", mono=True, bold=True)
+        self.text("Txt Partner Name", BRAND["coop"]["name"].upper(), 18, mono=True, bold=True)
+        self.text("Txt LT Name", t["lower_third"][0].upper(), 26, mono=True, bold=True)
+        self.text("Txt LT Title", t["lower_third"][1], 15, color="primary", mono=True, bold=True)
+        # Laufband: liest ticker.txt (Tracklist, laufender Titel, Ort), läuft endlos von rechts nach links
+        self.text("Txt Ticker", "", 22, mono=True, bold=True, from_file=True, text_file=self.asset("ticker.txt"),
+                  filters=[("scroll_filter", "Lauftext", {"speed_x": 90.0, "speed_y": 0.0, "loop": True,
+                                                          "limit_cx": True, "cx": W, "limit_cy": False})])
+        # Browserquellen für Alerts und Chat (transparente Seiten, selbst gestaltet)
+        self.web("Web Alerts", "web/alerts.html")
+        self.web("Web Chat", "web/chat.html")
 
     def define_scenes(self):
         move_or_slide = ("dc Move", 600) if self.move else ("dc Slide", 450)
@@ -222,28 +230,44 @@ class Collection:
         # Wiederverwendbare Bausteine (Unterstrich = Hilfsszene)
         lt = self.scene("_Lower Third Inhalt")
         lt.add("Lower Third Plate", (0, 0))
-        lt.add("Txt LT Name", (72, 22))
-        lt.add("Txt LT Title", (74, 108))
-        bug = self.scene("_Branding Bug")
-        bug.add("Logo", (1760, 40), scale=0.12)
-        live = self.scene("_Live Badge")
-        live.add("Live Badge", (48, 40))
-        live.add("Txt Live", (100, 48))
-        # CoOp-Modus (nur auf Abruf, standardmäßig aus): beide Farbwelten. Strg+Alt+P ein, Strg+Alt+O aus.
-        # Der Inhalt liegt in Vollbild-Koordinaten, damit Leuchten und Linie die ganze Fläche nutzen.
-        coop = self.scene("_CoOp Inhalt")
-        coop.add("CoOp Glow", (0, 0))
-        coop.add("CoOp Plate", (1400, 40))
-        coop.add("Txt CoOp Label", (1446, 60))
-        coop.add("Txt CoOp Name", (1446, 94))
-        coop.add("Partner Logo", (1646, 60), bounds=(84, 84), bounds_type=BOUNDS_INNER)
-        coop.add("CoOp Line", (0, H - 8))
-        coop_switch = self.scene("_CoOp")
-        coop_switch.add("_CoOp Inhalt", (0, 0), visible=False, show=("fade_transition", {}),
-                        hide=("fade_transition", {}), hotkeys=("OBS_KEY_P", "OBS_KEY_O"))
+        lt.add("Txt LT Name", (32, 20))
+        lt.add("Txt LT Title", (34, 62))
         lower = self.scene("_Lower Third")
-        lower.add("_Lower Third Inhalt", (80, 800), visible=False, show=("slide_transition", {"direction": "left"}),
-                  hide=("slide_transition", {"direction": "right"}), hotkeys=("OBS_KEY_L", "OBS_KEY_H"))
+        lower.add("_Lower Third Inhalt", (40, 890), visible=False, show=("slide_transition", {"direction": "right"}),
+                  hide=("slide_transition", {"direction": "left"}), hotkeys=("OBS_KEY_L", "OBS_KEY_H"))
+        bug = self.scene("_Bug")
+        bug.add("Logo", (40, 36), scale=0.09)
+        bug.add("Live Tag", (96, 39))
+        # Partner-Schild (nur auf Abruf, standardmäßig aus): Strg+Alt+P ein, Strg+Alt+O aus
+        pin = self.scene("_Partner Inhalt")
+        pin.add("Partner Plate", (0, 0))
+        pin.add("Partner Logo", (10, 5), bounds=(40, 40), bounds_type=BOUNDS_INNER)
+        pin.add("Txt Partner Name", (62, 14))
+        partner = self.scene("_Partner")
+        partner.add("_Partner Inhalt", (1590, 36), visible=False, show=("slide_transition", {"direction": "left"}),
+                    hide=("slide_transition", {"direction": "right"}), hotkeys=("OBS_KEY_P", "OBS_KEY_O"))
+        # Laufband unten: Tracklist, laufender Titel, Ort. Standardmäßig an, Strg+Alt+Z aus, Strg+Alt+T an.
+        tin = self.scene("_Ticker Inhalt")
+        tin.add("Ticker Plate", (0, 0))
+        tin.add("Txt Ticker", (0, 11))
+        ticker = self.scene("_Ticker")
+        ticker.add("_Ticker Inhalt", (0, H - 46), show=("slide_transition", {"direction": "up"}),
+                   hide=("slide_transition", {"direction": "down"}), hotkeys=("OBS_KEY_T", "OBS_KEY_Z"))
+        web = None
+        if "Web Alerts" in self.sources:
+            web = self.scene("_Web")
+            web.add("Web Chat", (0, 0))
+            web.add("Web Alerts", (0, 0))
+
+        def overlay(scene, bug=True, lower=True):
+            if bug:
+                scene.add("_Bug", (0, 0))
+            scene.add("_Partner", (0, 0))
+            if lower:
+                scene.add("_Lower Third", (0, 0))
+            scene.add("_Ticker", (0, 0))
+            if web:
+                scene.add("_Web", (0, 0))
 
         def cam(scene, label_off, label_cam, pos, size, frame=False, bounds=BOUNDS_INNER):
             scene.add(label_off, pos, bounds=size, bounds_type=bounds)
@@ -253,42 +277,35 @@ class Collection:
 
         def title_card(scene, label):
             scene.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
-            scene.add("Accent Line", (0, H - 8))
-            scene.add("Logo Glow", (1450, 520), scale=1.3, align=ALIGN_CENTER)
-            scene.add("Logo", (1450, 520), scale=0.42, align=ALIGN_CENTER)
-            scene.add("Accent Bar", (110, 290))
-            scene.add(f"Txt {label} Eyebrow", (160, 285))
-            scene.add(f"Txt {label}", (160, 335))
-            scene.add(f"Txt {label} Sub", (160, 650))
-            scene.add("Txt Handle", (160, 940))
-            scene.add("_CoOp", (0, 0))
+            scene.add("Logo", (1440, 300), scale=0.75)
+            scene.add(f"Txt {label} Eyebrow", (120, 290))
+            scene.add(f"Txt {label}", (120, 340))
+            scene.add(f"Txt {label} Sub", (120, 790))
+            scene.add("Txt Handle", (120, 940))
+            overlay(scene, bug=False, lower=False)
 
         title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting")
 
         s = self.scene("02 Kamera iPhone", "OBS_KEY_2", move_or_slide)
-        cam(s, off_iphone, cam_iphone, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
+        cam(s, off_iphone, cam_iphone, (0, 0), (W, H)); overlay(s)
 
         s = self.scene("03 Kamera Sony", "OBS_KEY_3", move_or_slide)
-        cam(s, off_sony, cam_sony, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
+        cam(s, off_sony, cam_sony, (0, 0), (W, H)); overlay(s)
 
         s = self.scene("04 Dual Cam", "OBS_KEY_4", move_or_slide)
         s.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
-        cam(s, off_iphone, cam_iphone, (50, 290), (880, 495), frame=True)
-        cam(s, off_sony, cam_sony, (990, 290), (880, 495), frame=True)
-        s.add("Logo", (960, 120), scale=0.16, align=ALIGN_CENTER)
-        s.add("Accent Line", (0, H - 8))
-        s.add("_CoOp", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
+        cam(s, off_iphone, cam_iphone, (50, 190), (880, 495), frame=True)
+        cam(s, off_sony, cam_sony, (990, 190), (880, 495), frame=True)
+        overlay(s)
 
         s = self.scene("05 Screen + Cam", "OBS_KEY_5", move_or_slide)
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)
-        cam(s, off_sony, cam_sony, (1330, 745), (540, 304), frame=True)
-        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0)); s.add("_Lower Third", (0, 0))
+        cam(s, off_sony, cam_sony, (1330, 690), (540, 304), frame=True)
+        overlay(s, bug=False)
 
         s = self.scene("06 Screen Only", "OBS_KEY_6", move_or_slide)
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)
-        s.add("_Branding Bug", (0, 0)); s.add("_CoOp", (0, 0))
+        overlay(s, bug=False, lower=False)
 
         title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB")
         title_card(self.scene("08 Ending", "OBS_KEY_8"), "Ending")
@@ -344,7 +361,7 @@ def build(platform, move):
 def write_all():
     OUT.mkdir(parents=True, exist_ok=True)
     (ROOT / "payload" / "brand.env").write_text(
-        f"COLLECTION={BRAND['collection']}\nNAME={BRAND['name']}\nFONT_FAMILY={BRAND['font']['family']}\n",
+        f"COLLECTION={BRAND['collection']}\nNAME={BRAND['name']}\nFONT_FAMILY={BRAND['font']['family']}\nFONT_MONO={BRAND['font']['mono']}\n",
         encoding="utf-8")
     for platform in ("macos", "windows"):
         for move in (False, True):
