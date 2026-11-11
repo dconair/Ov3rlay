@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  collection:
+    name: Szenen-Collection (Struktur + echtes OBS)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Struktur-Tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Generator-Ergebnis ist eingecheckt
+        run: python3 tools/build.py && git diff --exit-code payload
+      - name: OBS installieren
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends obs-studio xvfb libgl1-mesa-dri fonts-dejavu-core
+          pip install websocket-client
+      - name: Collection in OBS laden (Xvfb)
+        run: python3 tests/obs_smoke.py --shots shots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: szenen-screenshots
+          path: shots
+
+  installer-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash tests/test_installer_macos.sh
+
+  installer-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Windows PowerShell 5.1
+        shell: powershell
+        run: .\tests\test_installer_windows.ps1
+
+  shellcheck:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: shellcheck installer/install.sh Install-macOS.command tests/test_installer_macos.sh tools/package.sh
+
+  package:
+    runs-on: ubuntu-24.04
+    needs: [collection, installer-macos, installer-windows]
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash tools/package.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dc_onair-obs-setup
+          path: dist/dc_onair-obs-setup.zip
