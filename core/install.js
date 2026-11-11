@@ -137,7 +137,9 @@ async function install(opts) {
 
   // 6. OBS startet künftig mit diesem Profil und dieser Collection
   for (const f of iniFiles) {
-    if (!exists(f) && nodePath.basename(f) === 'global.ini') iniSet(f, 'General', 'FirstRun', 'true');
+    // Ohne FirstRun=true öffnet OBS beim ersten Start den Assistenten für die automatische Konfiguration (blockiert Selbsttest/WebSocket).
+    // OBS 30 liest den Wert aus global.ini, ab OBS 31 aus user.ini; wir setzen ihn in beiden, falls noch nicht vorhanden.
+    if (!iniGet(f, 'General', 'FirstRun')) iniSet(f, 'General', 'FirstRun', 'true');
     iniSet(f, 'Basic', 'Profile', collection);
     iniSet(f, 'Basic', 'ProfileDir', collection);
     iniSet(f, 'Basic', 'SceneCollection', collection);
