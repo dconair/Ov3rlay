@@ -158,12 +158,39 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "Panel",
-   "uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
+   "name": "Accent Bar",
+   "uuid": "171441c5-b55d-525d-835b-6b9fd1f7cfd0",
    "id": "image_source",
    "versioned_id": "image_source",
    "settings": {
-    "file": "{{ASSETS}}/overlays/panel.png",
+    "file": "{{ASSETS}}/overlays/accent_bar.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Logo Glow",
+   "uuid": "8b5e8112-d72e-5725-a84c-46bf3f8c44f5",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/overlays/logo_glow.png",
     "unload": false
    },
    "mixers": 0,
@@ -483,21 +510,58 @@
   },
   {
    "prev_ver": 503316482,
+   "name": "Txt Starting Eyebrow",
+   "uuid": "4c864481-f506-5bc3-bd4f-225b4d8ea885",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "STARTING SOON",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 34,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4290892032,
+    "color2": 4290892032,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
    "name": "Txt Starting",
    "uuid": "6ce1fbfe-da6a-5a62-b1f7-b40421bb9ee6",
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "GLEICH GEHT'S LOS",
+    "text": "GLEICH\nGEHT'S LOS",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 118,
+     "flags": 3,
+     "style": "Bold Italic"
     },
     "color1": 4294966258,
     "color2": 4294966258,
-    "drop_shadow": true,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -532,9 +596,46 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
-    "drop_shadow": true,
+    "color1": 4291211933,
+    "color2": 4291211933,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt BRB Eyebrow",
+   "uuid": "342b3e50-5195-562c-ab54-6eea33a7ae3d",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "PAUSE",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 34,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4290892032,
+    "color2": 4290892032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -562,16 +663,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "BIN GLEICH ZURÜCK",
+    "text": "BIN GLEICH\nZURÜCK",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 118,
+     "flags": 3,
+     "style": "Bold Italic"
     },
     "color1": 4294966258,
     "color2": 4294966258,
-    "drop_shadow": true,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -606,9 +707,46 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
-    "drop_shadow": true,
+    "color1": 4291211933,
+    "color2": 4291211933,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Ending Eyebrow",
+   "uuid": "d95376f4-cedc-5894-8ec4-a4f9c5a75b3b",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "STREAM BEENDET",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 34,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4290892032,
+    "color2": 4290892032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -636,16 +774,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "DANKE FÜRS ZUSCHAUEN",
+    "text": "DANKE FÜRS\nZUSCHAUEN",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 118,
+     "flags": 3,
+     "style": "Bold Italic"
     },
     "color1": 4294966258,
     "color2": 4294966258,
-    "drop_shadow": true,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -680,9 +818,46 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
-    "drop_shadow": true,
+    "color1": 4291211933,
+    "color2": 4291211933,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Lost Eyebrow",
+   "uuid": "a06b1349-0a42-5615-9b5e-5b1754d4f376",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "SIGNAL VERLOREN",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 34,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4290892032,
+    "color2": 4290892032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -710,16 +885,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "VERBINDUNG UNTERBROCHEN",
+    "text": "VERBINDUNG\nUNTERBROCHEN",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 118,
+     "flags": 3,
+     "style": "Bold Italic"
     },
     "color1": 4294966258,
     "color2": 4294966258,
-    "drop_shadow": true,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -754,9 +929,9 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
-    "drop_shadow": true,
+    "color1": 4291211933,
+    "color2": 4291211933,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -787,13 +962,13 @@
     "text": "@dc_onair",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 38,
+     "size": 34,
      "flags": 1,
      "style": "Bold"
     },
     "color1": 4290892032,
     "color2": 4290892032,
-    "drop_shadow": true,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -824,13 +999,13 @@
     "text": "LIVE",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 30,
+     "size": 28,
      "flags": 1,
      "style": "Bold"
     },
     "color1": 4294966258,
     "color2": 4294966258,
-    "drop_shadow": true,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -861,13 +1036,13 @@
     "text": "dc_onair",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 64,
-     "flags": 1,
-     "style": "Bold"
+     "size": 58,
+     "flags": 3,
+     "style": "Bold Italic"
     },
     "color1": 4294966258,
     "color2": 4294966258,
-    "drop_shadow": true,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -895,16 +1070,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "Live-Stream",
+    "text": "LIVE-STREAM",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 34,
-     "flags": 0,
-     "style": "Regular"
+     "size": 28,
+     "flags": 1,
+     "style": "Bold"
     },
-    "color1": 4294966258,
-    "color2": 4294966258,
-    "drop_shadow": true,
+    "color1": 4290892032,
+    "color2": 4290892032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -975,7 +1150,7 @@
       "rot": 0.0,
       "pos": {
        "x": 72.0,
-       "y": 18.0
+       "y": 22.0
       },
       "scale": {
        "x": 1.0,
@@ -1007,7 +1182,7 @@
       "rot": 0.0,
       "pos": {
        "x": 74.0,
-       "y": 98.0
+       "y": 108.0
       },
       "scale": {
        "x": 1.0,
@@ -1310,7 +1485,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 7,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -1378,18 +1553,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Logo Glow",
+      "source_uuid": "8b5e8112-d72e-5725-a84c-46bf3f8c44f5",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 300.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 0.3,
-       "y": 0.3
+       "x": 1.3,
+       "y": 1.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -1410,20 +1585,20 @@
       "private_settings": {}
      },
      {
-      "name": "Panel",
-      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 210.0,
-       "y": 500.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.42,
+       "y": 0.42
       },
-      "align": 5,
+      "align": 0,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1442,20 +1617,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Starting",
-      "source_uuid": "6ce1fbfe-da6a-5a62-b1f7-b40421bb9ee6",
+      "name": "Accent Bar",
+      "source_uuid": "171441c5-b55d-525d-835b-6b9fd1f7cfd0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 620.0
+       "x": 110.0,
+       "y": 290.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1474,20 +1649,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Starting Sub",
-      "source_uuid": "d7ea9779-6d72-5d77-9c71-73fbc2b0750c",
+      "name": "Txt Starting Eyebrow",
+      "source_uuid": "4c864481-f506-5bc3-bd4f-225b4d8ea885",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 740.0
+       "x": 160.0,
+       "y": 285.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1506,20 +1681,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt Starting",
+      "source_uuid": "6ce1fbfe-da6a-5a62-b1f7-b40421bb9ee6",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 930.0
+       "x": 160.0,
+       "y": 335.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1531,6 +1706,70 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Starting Sub",
+      "source_uuid": "d7ea9779-6d72-5d77-9c71-73fbc2b0750c",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 650.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 940.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2699,7 +2938,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 7,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -2767,18 +3006,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Logo Glow",
+      "source_uuid": "8b5e8112-d72e-5725-a84c-46bf3f8c44f5",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 300.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 0.3,
-       "y": 0.3
+       "x": 1.3,
+       "y": 1.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -2799,20 +3038,20 @@
       "private_settings": {}
      },
      {
-      "name": "Panel",
-      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 210.0,
-       "y": 500.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.42,
+       "y": 0.42
       },
-      "align": 5,
+      "align": 0,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2831,20 +3070,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt BRB",
-      "source_uuid": "068d3109-9cc6-58b9-a145-7bd2bd0106eb",
+      "name": "Accent Bar",
+      "source_uuid": "171441c5-b55d-525d-835b-6b9fd1f7cfd0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 620.0
+       "x": 110.0,
+       "y": 290.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2863,20 +3102,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt BRB Sub",
-      "source_uuid": "42c40b89-d5e9-5faf-9e09-877446355be9",
+      "name": "Txt BRB Eyebrow",
+      "source_uuid": "342b3e50-5195-562c-ab54-6eea33a7ae3d",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 740.0
+       "x": 160.0,
+       "y": 285.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2895,20 +3134,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt BRB",
+      "source_uuid": "068d3109-9cc6-58b9-a145-7bd2bd0106eb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 930.0
+       "x": 160.0,
+       "y": 335.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2920,6 +3159,70 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt BRB Sub",
+      "source_uuid": "42c40b89-d5e9-5faf-9e09-877446355be9",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 650.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 940.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2960,7 +3263,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 7,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -3028,18 +3331,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Logo Glow",
+      "source_uuid": "8b5e8112-d72e-5725-a84c-46bf3f8c44f5",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 300.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 0.3,
-       "y": 0.3
+       "x": 1.3,
+       "y": 1.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -3060,20 +3363,20 @@
       "private_settings": {}
      },
      {
-      "name": "Panel",
-      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 210.0,
-       "y": 500.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.42,
+       "y": 0.42
       },
-      "align": 5,
+      "align": 0,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3092,20 +3395,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Ending",
-      "source_uuid": "24bbc2aa-fba4-5042-bca8-e060d0dbbf1a",
+      "name": "Accent Bar",
+      "source_uuid": "171441c5-b55d-525d-835b-6b9fd1f7cfd0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 620.0
+       "x": 110.0,
+       "y": 290.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3124,20 +3427,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Ending Sub",
-      "source_uuid": "9cf03bcd-7fbe-55b6-a528-e54cd349b059",
+      "name": "Txt Ending Eyebrow",
+      "source_uuid": "d95376f4-cedc-5894-8ec4-a4f9c5a75b3b",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 740.0
+       "x": 160.0,
+       "y": 285.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3156,20 +3459,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt Ending",
+      "source_uuid": "24bbc2aa-fba4-5042-bca8-e060d0dbbf1a",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 930.0
+       "x": 160.0,
+       "y": 335.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3181,6 +3484,70 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Ending Sub",
+      "source_uuid": "9cf03bcd-7fbe-55b6-a528-e54cd349b059",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 650.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 940.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -3221,7 +3588,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 7,
+    "id_counter": 9,
     "custom_size": false,
     "items": [
      {
@@ -3289,18 +3656,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Logo Glow",
+      "source_uuid": "8b5e8112-d72e-5725-a84c-46bf3f8c44f5",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 300.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 0.3,
-       "y": 0.3
+       "x": 1.3,
+       "y": 1.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -3321,20 +3688,20 @@
       "private_settings": {}
      },
      {
-      "name": "Panel",
-      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 210.0,
-       "y": 500.0
+       "x": 1450.0,
+       "y": 520.0
       },
       "scale": {
-       "x": 1.0,
-       "y": 1.0
+       "x": 0.42,
+       "y": 0.42
       },
-      "align": 5,
+      "align": 0,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3353,20 +3720,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Lost",
-      "source_uuid": "0b4c0824-d067-5c94-9fa5-90426f91763b",
+      "name": "Accent Bar",
+      "source_uuid": "171441c5-b55d-525d-835b-6b9fd1f7cfd0",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 620.0
+       "x": 110.0,
+       "y": 290.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3385,20 +3752,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Lost Sub",
-      "source_uuid": "5de6dbf2-7be6-50ac-9c53-bd3ebc310902",
+      "name": "Txt Lost Eyebrow",
+      "source_uuid": "a06b1349-0a42-5615-9b5e-5b1754d4f376",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 740.0
+       "x": 160.0,
+       "y": 285.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3417,20 +3784,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt Lost",
+      "source_uuid": "0b4c0824-d067-5c94-9fa5-90426f91763b",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 930.0
+       "x": 160.0,
+       "y": 335.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3442,6 +3809,70 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Lost Sub",
+      "source_uuid": "5de6dbf2-7be6-50ac-9c53-bd3ebc310902",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 650.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 160.0,
+       "y": 940.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",

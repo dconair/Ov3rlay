@@ -28,7 +28,7 @@ Der Stream-Schlüssel wird nicht abgefragt und nicht gespeichert. Konto verbinde
 
 | Szene | Inhalt |
 |---|---|
-| 01 Starting Soon | animierter Hintergrund, Logo, Textkarte, fließende Akzentlinie |
+| 01 Starting Soon | animierter Hintergrund, Logo mit Leuchten, großer Titel links, fließende Akzentlinie |
 | 02 Kamera iPhone | iPhone vollbild, LIVE-Zeichen, Logo-Bug, Lower Third |
 | 03 Kamera Sony | Sony A7 II vollbild, LIVE-Zeichen, Logo-Bug, Lower Third |
 | 04 Dual Cam | beide Kameras nebeneinander mit Verlaufsrahmen, LIVE-Zeichen |
@@ -96,17 +96,18 @@ Es reicht, die Dateien unter `payload/assets/` zu ersetzen (gleicher Dateiname) 
 
 | Datei | Zweck |
 |---|---|
-| `branding/logo.png` | Logo (Platzhalter "dc"-Kachel, einfach durch das eigene ersetzen) |
+| `branding/logo.png` | Logo (eigener Platzhalter: Sende-Signal auf dunkler Kachel, einfach durch das eigene Logo ersetzen) |
 | `video/stinger.webm` | Übergangsvideo, VP9 mit Transparenz, Deckungspunkt bei 520 ms |
 | `video/bg_loop.mp4` | animierter Hintergrund für Starting, BRB, Ending und Dual Cam |
 | `overlays/frame_cam.png` | Rahmen um Kamerabilder |
 | `overlays/live_badge.png` | Kapsel für das LIVE-Zeichen (Text `Txt Live` liegt darüber) |
-| `overlays/panel.png` | Textkarte der Titelszenen |
+| `overlays/accent_bar.png` | Verlaufsbalken links neben den Titeln |
+| `overlays/logo_glow.png` | weiches Leuchten hinter dem Logo |
 | `overlays/accent_line.png` | Akzentlinie am unteren Rand |
 | `overlays/lower_third.png` | Platte hinter Name und Titel |
 | `overlays/cam_offline_*.png` | Karte, wenn eine Kamera fehlt |
 
-**Schrift:** `.ttf` oder `.otf` in `payload/assets/fonts/` legen und in `payload/brand.env` bei `FONT_FAMILY=` den Familiennamen eintragen. Der Installer richtet die Schrift ein und trägt sie in alle Textquellen ein. Ohne Eintrag wird die Systemschrift genutzt (macOS: Helvetica Neue, Windows: Segoe UI).
+**Schrift:** Mitgeliefert ist Chakra Petch (kantig, leicht kursiv, SIL Open Font License; Lizenztext liegt in `payload/assets/fonts/`). Der Installer richtet sie ein und trägt sie in alle Textquellen ein. Eigene Schrift: `.ttf` oder `.otf` in `payload/assets/fonts/` legen, in `brand/brand.json` bei `font.family` den Familiennamen eintragen und `python3 tools/build.py` ausführen. Bei leerem Eintrag wird die Systemschrift genutzt (macOS: Helvetica Neue, Windows: Segoe UI).
 
 **Texte:** in OBS die Textquellen `Txt …` bearbeiten, oder dauerhaft in `brand/brand.json` ändern und neu bauen.
 

@@ -6,21 +6,47 @@
     "primary": "#00D1C1",
     "secondary": "#2D6BFF",
     "dark": "#050B16",
-    "light": "#F2FBFF"
+    "light": "#F2FBFF",
+    "muted": "#9DB2C6"
   },
   "font": {
-    "family": "",
-    "note": "Leer = Systemschrift (macOS: Helvetica Neue, Windows: Segoe UI). Eigene Schrift: .ttf/.otf nach payload/assets/fonts/ legen und hier den Familiennamen eintragen."
+    "family": "Chakra Petch",
+    "note": "Mitgelieferte Markenschrift: Chakra Petch (SIL Open Font License, siehe payload/assets/fonts/OFL-ChakraPetch.txt). Eigene Schrift: .ttf/.otf nach payload/assets/fonts/ legen und hier den Familiennamen eintragen; leer = Systemschrift (macOS: Helvetica Neue, Windows: Segoe UI)."
   },
   "texts": {
-    "starting": ["GLEICH GEHT'S LOS", "Mach es dir bequem, wir starten in Kürze"],
-    "brb": ["BIN GLEICH ZURÜCK", "Kurze Pause, bleib dran"],
-    "ending": ["DANKE FÜRS ZUSCHAUEN", "Bis zum nächsten Stream"],
-    "lost": ["VERBINDUNG UNTERBROCHEN", "Gleich geht's weiter, bitte kurz warten"],
-    "lower_third": ["dc_onair", "Live-Stream"]
+    "starting": [
+      "STARTING SOON",
+      "GLEICH\nGEHT'S LOS",
+      "Mach es dir bequem, wir starten in Kürze"
+    ],
+    "brb": [
+      "PAUSE",
+      "BIN GLEICH\nZURÜCK",
+      "Kurze Pause, bleib dran"
+    ],
+    "ending": [
+      "STREAM BEENDET",
+      "DANKE FÜRS\nZUSCHAUEN",
+      "Bis zum nächsten Stream"
+    ],
+    "lost": [
+      "SIGNAL VERLOREN",
+      "VERBINDUNG\nUNTERBROCHEN",
+      "Gleich geht's weiter, bitte kurz warten"
+    ],
+    "lower_third": [
+      "dc_onair",
+      "LIVE-STREAM"
+    ]
   },
   "cameras": [
-    {"id": "iphone", "label": "iPhone"},
-    {"id": "sony", "label": "Sony A7 II"}
+    {
+      "id": "iphone",
+      "label": "iPhone"
+    },
+    {
+      "id": "sony",
+      "label": "Sony A7 II"
+    }
   ]
 }

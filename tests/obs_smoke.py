@@ -60,10 +60,15 @@ class Ws:
 def prepare_home(home, config):
     assets = home / "dc_onair" / "assets"
     shutil.copytree(ROOT / "payload" / "assets", assets)
+    fonts = home / ".local" / "share" / "fonts"  # wie der Installer: mitgelieferte Markenschrift einrichten
+    fonts.mkdir(parents=True)
+    for f in (ROOT / "payload" / "assets" / "fonts").glob("*.[to]tf"):
+        shutil.copy(f, fonts)
+    face = bc.BRAND["font"]["family"] or "DejaVu Sans"
     doc = json.dumps(bc.build("linux", move=False), ensure_ascii=False)
     for token in bc.TOKENS:
         doc = doc.replace("{{%s}}" % token, str(assets) if token == "ASSETS" else
-                          "DejaVu Sans" if token == "FONT_FACE" else "")
+                          face if token == "FONT_FACE" else "")
     (config / "basic" / "scenes").mkdir(parents=True)
     (config / "basic" / "profiles" / "dc_onair").mkdir(parents=True)
     scene_file = config / "basic" / "scenes" / "dc_onair.json"

@@ -21,6 +21,7 @@ OUT = ROOT / "payload" / "assets"
 W, H = 1920, 1080
 TAN = math.tan(math.radians(12))  # Neigung der Wisch-Kanten im Stinger
 FONT_CANDIDATES = [
+    str(ROOT / "payload" / "assets" / "fonts" / "ChakraPetch-Bold.ttf"),
     "/System/Library/Fonts/Helvetica.ttc",
     "C:/Windows/Fonts/segoeuib.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
@@ -107,14 +108,30 @@ def lower_third(path):
     save_supersampled(draw, (w, h), path)
 
 
-def panel(path):
-    """Halbtransparente Karte hinter Texten der Titelszenen."""
-    w, h = 1500, 340
+def accent_bar(path):
+    """Senkrechter Verlaufsbalken links neben dem Titeltext."""
+    w, h = 12, 440
+    t = np.linspace(0, 1, h, dtype=np.float32)[:, None, None]
+    col = np.array(TEAL, np.float32) * (1 - t) + np.array(BLUE, np.float32) * t
+    rgb = np.repeat(col, w, axis=1).astype(np.uint8)
 
-    def draw(d, s):
-        rounded(d, [0, 0, w * s - 1, h * s - 1], 40 * s, fill=DARK + (150,), outline=TEAL + (110,), width=2 * s)
+    mask = Image.new("L", (w * 4, h * 4), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, w * 4 - 1, h * 4 - 1], radius=w * 2, fill=255)
+    img = Image.fromarray(rgb, "RGB").convert("RGBA")
+    img.putalpha(mask.resize((w, h), Image.LANCZOS))
+    img.save(path, optimize=True)
 
-    save_supersampled(draw, (w, h), path)
+
+def logo_glow(path):
+    """Weiches Teal-Blau-Leuchten hinter dem Logo (radialer Verlauf mit Transparenz)."""
+    size = 1000
+    y, x = np.mgrid[0:size, 0:size].astype(np.float32)
+    r = np.sqrt((x - size / 2) ** 2 + (y - size / 2) ** 2) / (size / 2)
+    alpha = np.clip(1 - r, 0, 1) ** 2.2 * 0.55
+    mix = np.clip((x + y) / (2 * size), 0, 1)[..., None]
+    rgb = np.array(TEAL, np.float32) * (1 - mix) + np.array(BLUE, np.float32) * mix
+    img = np.dstack([rgb, alpha * 255]).astype(np.uint8)
+    Image.fromarray(img, "RGBA").save(path, optimize=True)
 
 
 def live_badge(path):
@@ -137,21 +154,47 @@ def accent_line(path):
 
 
 def placeholder_logo(path):
-    """Neutrales Platzhalter-Logo: Verlaufskachel mit Monogramm (wird später durch das eigene ersetzt)."""
-    size = 1000
-    mix = np.clip((np.add.outer(np.arange(size), np.arange(size)) / (2 * size - 2)), 0, 1)[..., None].astype(np.float32)
-    rgb = (np.array(TEAL, np.float32) * (1 - mix) + np.array(BLUE, np.float32) * mix).astype(np.uint8)
-    tile = Image.fromarray(rgb, "RGB").convert("RGBA")
-    mask = Image.new("L", (size * 2, size * 2), 0)
-    ImageDraw.Draw(mask).rounded_rectangle([0, 0, size * 2 - 1, size * 2 - 1], radius=440, fill=255)
-    tile.putalpha(mask.resize((size, size), Image.LANCZOS))
-    d = ImageDraw.Draw(tile)
-    text = BRAND["name"][:2].lower()
-    f = font(430)
-    box = d.textbbox((0, 0), text, font=f)
-    d.text(((size - (box[2] - box[0])) / 2 - box[0], (size - (box[3] - box[1])) / 2 - box[1] - 20), text, font=f, fill=DARK)
-    d.rounded_rectangle([size * 0.36, size * 0.76, size * 0.64, size * 0.79], radius=14, fill=DARK)
-    tile.save(path, optimize=True)
+    """Eigenes Platzhalter-Logo: Sende-Signal (Ring, Punkt, zwei Funkbögen) auf dunkler Glaskachel.
+    Wird später durch das echte Logo ersetzt; nichts hiervon ist ein fremdes Zeichen."""
+    size, k = 1000, 3  # k-fach überabgetastet
+    S = size * k
+
+    def gradient(box_w, box_h):
+        yy, xx = np.mgrid[0:box_h, 0:box_w].astype(np.float32)
+        mix = np.clip((xx + yy) / (box_w + box_h - 2), 0, 1)[..., None]
+        return Image.fromarray((np.array(TEAL, np.float32) * (1 - mix) + np.array(BLUE, np.float32) * mix).astype(np.uint8), "RGB")
+
+    def stroke_arc(draw, cx, cy, radius, a0, a1, width, fill):
+        for i in range(241):
+            a = math.radians(a0 + (a1 - a0) * i / 240)
+            x, y = cx + radius * math.cos(a), cy + radius * math.sin(a)
+            draw.ellipse([x - width / 2, y - width / 2, x + width / 2, y + width / 2], fill=fill)
+
+    # Kachel: dunkler Verlauf, Verlaufsrand
+    tile_mask = Image.new("L", (S, S), 0)
+    ImageDraw.Draw(tile_mask).rounded_rectangle([0, 0, S - 1, S - 1], radius=230 * k, fill=255)
+    inner_mask = Image.new("L", (S, S), 0)
+    ImageDraw.Draw(inner_mask).rounded_rectangle([10 * k, 10 * k, S - 1 - 10 * k, S - 1 - 10 * k], radius=220 * k, fill=255)
+    yy = np.linspace(0, 1, S, dtype=np.float32)[:, None, None]
+    fill = np.array((14, 32, 54), np.float32) * (1 - yy) + np.array(DARK, np.float32) * yy
+    body = Image.fromarray(np.repeat(fill, S, axis=1).astype(np.uint8), "RGB")
+    canvas = gradient(S, S)  # Rand = Verlauf
+    canvas.paste(body, (0, 0), inner_mask)
+
+    # Zeichen als Maske, mit Verlauf gefüllt
+    mark = Image.new("L", (S, S), 0)
+    d = ImageDraw.Draw(mark)
+    cx, cy = 415 * k, 590 * k
+    d.ellipse([cx - 235 * k, cy - 235 * k, cx + 235 * k, cy + 235 * k], fill=255)
+    d.ellipse([cx - 160 * k, cy - 160 * k, cx + 160 * k, cy + 160 * k], fill=0)
+    d.ellipse([cx - 78 * k, cy - 78 * k, cx + 78 * k, cy + 78 * k], fill=255)
+    stroke_arc(d, cx, cy, 335 * k, -78, -12, 44 * k, 255)
+    stroke_arc(d, cx, cy, 440 * k, -70, -20, 44 * k, 200)
+    canvas.paste(gradient(S, S), (0, 0), mark)
+
+    logo = canvas.convert("RGBA")
+    logo.putalpha(tile_mask)
+    logo.resize((size, size), Image.LANCZOS).save(path, optimize=True)
 
 
 def cam_offline(path, label, phase=0.1):
@@ -267,7 +310,8 @@ def main():
     shutil.copyfile(ROOT / "brand" / "logo.png", logo)
     frame_cam(OUT / "overlays" / "frame_cam.png")
     lower_third(OUT / "overlays" / "lower_third.png")
-    panel(OUT / "overlays" / "panel.png")
+    accent_bar(OUT / "overlays" / "accent_bar.png")
+    logo_glow(OUT / "overlays" / "logo_glow.png")
     live_badge(OUT / "overlays" / "live_badge.png")
     accent_line(OUT / "overlays" / "accent_line.png")
     for cam in BRAND["cameras"]:

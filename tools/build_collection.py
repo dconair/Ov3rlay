@@ -100,11 +100,12 @@ class Collection:
     def image(self, name, rel, **kw):
         return self.source("image_source", name, {"file": self.asset(rel), "unload": False}, **kw)
 
-    def text(self, name, text, size, color="light", bold=True):
-        font = {"face": "{{FONT_FACE}}", "size": size, "flags": 1 if bold else 0, "style": "Bold" if bold else "Regular"}
+    def text(self, name, text, size, color="light", bold=True, italic=False):
+        style = " ".join(x for x in ("Bold" if bold else "", "Italic" if italic else "") if x) or "Regular"
+        font = {"face": "{{FONT_FACE}}", "size": size, "flags": (1 if bold else 0) | (2 if italic else 0), "style": style}
         return self.source("text_ft2_source_v2", name, {
             "text": text, "font": font, "color1": self.colors[color], "color2": self.colors[color],
-            "drop_shadow": True, "outline": False, "word_wrap": False})
+            "drop_shadow": False, "outline": False, "word_wrap": False})
 
     def scene(self, name, hotkey_key=None, transition=None):
         scene = Scene(self, name)
@@ -165,7 +166,8 @@ class Collection:
         self.image("Logo", "branding/logo.png")
         self.image("Frame Cam", "overlays/frame_cam.png")
         self.image("Lower Third Plate", "overlays/lower_third.png")
-        self.image("Panel", "overlays/panel.png")
+        self.image("Accent Bar", "overlays/accent_bar.png")
+        self.image("Logo Glow", "overlays/logo_glow.png")
         self.image("Live Badge", "overlays/live_badge.png")
         self.image("Accent Line", "overlays/accent_line.png", filters=[
             ("scroll_filter", "Scroll", {"speed_x": 70.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
@@ -192,12 +194,14 @@ class Collection:
                         ("limiter_filter", "Limiter", {"threshold": -3.0, "release_time": 60.0})])
         # Texte
         for key, label in (("starting", "Starting"), ("brb", "BRB"), ("ending", "Ending"), ("lost", "Lost")):
-            self.text(f"Txt {label}", t[key][0], 96)
-            self.text(f"Txt {label} Sub", t[key][1], 40, bold=False)
-        self.text("Txt Handle", BRAND["handle"], 38, color="primary")
-        self.text("Txt Live", "LIVE", 30)
-        self.text("Txt LT Name", t["lower_third"][0], 64)
-        self.text("Txt LT Title", t["lower_third"][1], 34, bold=False)
+            eyebrow, headline, sub = t[key]
+            self.text(f"Txt {label} Eyebrow", eyebrow, 34, color="primary")
+            self.text(f"Txt {label}", headline, 118, italic=True)
+            self.text(f"Txt {label} Sub", sub, 40, color="muted", bold=False)
+        self.text("Txt Handle", BRAND["handle"], 34, color="primary")
+        self.text("Txt Live", "LIVE", 28)
+        self.text("Txt LT Name", t["lower_third"][0], 58, italic=True)
+        self.text("Txt LT Title", t["lower_third"][1], 28, color="primary")
 
     def define_scenes(self):
         move_or_slide = ("dc Move", 600) if self.move else ("dc Slide", 450)
@@ -207,8 +211,8 @@ class Collection:
         # Wiederverwendbare Bausteine (Unterstrich = Hilfsszene)
         lt = self.scene("_Lower Third Inhalt")
         lt.add("Lower Third Plate", (0, 0))
-        lt.add("Txt LT Name", (72, 18))
-        lt.add("Txt LT Title", (74, 98))
+        lt.add("Txt LT Name", (72, 22))
+        lt.add("Txt LT Title", (74, 108))
         bug = self.scene("_Branding Bug")
         bug.add("Logo", (1760, 40), scale=0.12)
         live = self.scene("_Live Badge")
@@ -227,11 +231,13 @@ class Collection:
         def title_card(scene, label):
             scene.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
             scene.add("Accent Line", (0, H - 8))
-            scene.add("Logo", (960, 300), scale=0.3, align=ALIGN_CENTER)
-            scene.add("Panel", (210, 500))
-            scene.add(f"Txt {label}", (960, 620), align=ALIGN_CENTER)
-            scene.add(f"Txt {label} Sub", (960, 740), align=ALIGN_CENTER)
-            scene.add("Txt Handle", (960, 930), align=ALIGN_CENTER)
+            scene.add("Logo Glow", (1450, 520), scale=1.3, align=ALIGN_CENTER)
+            scene.add("Logo", (1450, 520), scale=0.42, align=ALIGN_CENTER)
+            scene.add("Accent Bar", (110, 290))
+            scene.add(f"Txt {label} Eyebrow", (160, 285))
+            scene.add(f"Txt {label}", (160, 335))
+            scene.add(f"Txt {label} Sub", (160, 650))
+            scene.add("Txt Handle", (160, 940))
 
         title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting")
 
