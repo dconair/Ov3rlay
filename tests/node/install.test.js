@@ -97,6 +97,7 @@ test('Ohne Angabe gilt 1080p60, 1080p30 bleibt wählbar', async () => {
   const a = sandbox('fps-default');
   const r = await install({ payloadDir, platform: 'windows', paths: a.paths, exec: async () => '', move: false, env: { DC_FONT_DIR: 'x' }, cameras: {}, stamp: '20260101-000002' });
   assert.equal(r.quality, '1080p60');
+  for (const f of ['global.ini', 'user.ini']) assert.equal(iniGet(nodePath.join(a.paths.obsConfig, f), 'General', 'FirstRun'), 'true', `${f}: kein Erststart-Assistent`);
   assert.equal(iniGet(nodePath.join(r.profileDir, 'basic.ini'), 'Video', 'FPSCommon'), '60');
   const b = sandbox('fps-30');
   const r30 = await install({ payloadDir, platform: 'windows', paths: b.paths, exec: async () => '', move: false, env: { DC_FONT_DIR: 'x' }, cameras: {}, quality: '1080p30', stamp: '20260101-000003' });
