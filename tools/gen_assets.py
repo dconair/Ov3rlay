@@ -189,6 +189,31 @@ def live_tag(path):
                                   "-auto-alt-ref", "0", "-an"]}, path, size=(w, h))
 
 
+def eq_bars(path, seconds=4):
+    """Equalizer-Balken für Titelszenen: flache Limetten-Balken, die im Takt springen. Ganzzahlige Frequenzen -> nahtloser Loop."""
+    w, h, n, bw = 1920, 170, 48, 28
+    rng = np.random.default_rng(11)
+    ph = rng.random((n, 2))
+    k1 = rng.integers(2, 5, n)
+    k2 = rng.integers(5, 9, n)
+    frames = []
+    total = seconds * FPS
+    for i in range(total):
+        img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        t = i / total
+        for b in range(n):
+            v = 0.55 * math.sin(2 * math.pi * (k1[b] * t + ph[b, 0])) + 0.45 * math.sin(2 * math.pi * (k2[b] * t + ph[b, 1]))
+            hh = int(14 + (v * 0.5 + 0.5) ** 1.3 * (h - 18))
+            x = b * 40 + 6
+            color = BONE if b % 8 == 3 else LIME
+            d.rectangle([x, h - hh, x + bw - 1, h - 1], fill=color + (255,))
+        frames.append(np.asarray(img))
+    encode(iter(frames), {"in": ["-pix_fmt", "rgba"],
+                          "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "34",
+                                  "-auto-alt-ref", "0", "-an"]}, path, size=(w, h))
+
+
 # --- Stinger-Übergang (VP9 mit Alpha) ------------------------------------------
 
 STINGER_SECONDS = 1.1
@@ -246,6 +271,7 @@ def main():
         cam_offline(OUT / "overlays" / f"cam_offline_{cam['id']}.png", cam["label"])
     bg_loop(OUT / "video" / "bg_loop.mp4")
     live_tag(OUT / "video" / "live_tag.webm")
+    eq_bars(OUT / "video" / "eq_bars.webm")
     stinger(OUT / "video" / "stinger.webm", logo)
     ticker = OUT / "ticker.txt"
     if not ticker.exists():  # vorhandene (lokale) Laufband-Datei nie überschreiben

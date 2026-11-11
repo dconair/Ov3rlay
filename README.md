@@ -30,13 +30,13 @@ Das Design ist flach und bewusst zurückhaltend: Schwarz, Papierweiß, Limette a
 
 | Szene | Inhalt |
 |---|---|
-| 01 Starting Soon | Hintergrund mit wandernden Streifen, große Überschrift, Logo, Laufband |
+| 01 Starting Soon | Überschrift, Countdown mit rollenden Ziffern, springende Equalizer-Balken, Laufband |
 | 02 Kamera iPhone | iPhone vollbild, kleines Logo mit blinkendem LIVE-Zeichen, Laufband |
 | 03 Kamera Sony | Sony A7 II vollbild, dasselbe |
 | 04 Dual Cam | beide Kameras nebeneinander mit Eckmarken |
 | 05 Screen + Cam | Bildschirm mit Sony-Kamera unten rechts |
 | 06 Screen Only | nur Bildschirm |
-| 07 BRB | Pausenbild |
+| 07 BRB | Pausenbild mit Countdown "Zurück in" |
 | 08 Ending | Abspann |
 | 09 Connection Lost | Notfallbild bei Verbindungsabbruch (IRL) |
 
@@ -50,7 +50,7 @@ Hilfsszenen mit `_` am Anfang (Logo/LIVE, Lower Third, Partner, Laufband, Web) s
 | 02 bis 06 (Kamera- und Screen-Szenen) | `dc Slide` (450 ms), mit Move-Plugin `dc Move` (600 ms) |
 | 09 Connection Lost | `Fade` (300 ms, eingebaut), damit das Notfallbild sofort greift |
 
-**Bewegung:** blinkender LIVE-Punkt, laufendes Band unten, Streifen im Hintergrund, harte Wisch-Übergänge. Lower Third, Partner-Schild und Laufband fahren per Slide ein und aus. Alerts und Chat haben eigene Animationen (siehe unten).
+**Bewegung:** blinkender LIVE-Punkt, laufendes Band unten, Streifen im Hintergrund, Equalizer-Balken auf den Titelszenen, rollender Countdown, harte Wisch-Übergänge. Lower Third, Partner-Schild und Laufband fahren per Slide ein und aus. Alerts und Chat haben eigene Animationen (siehe unten).
 
 **Audio:** Desktop-Ton und Mikrofon (`Mic/Aux`) mit Rauschunterdrückung, Verstärkung, Kompressor und Limiter. Kamera-Farbkorrektur und Schärfe sind auf den Kameraquellen eingestellt.
 
@@ -58,7 +58,16 @@ Hilfsszenen mit `_` am Anfang (Logo/LIVE, Lower Third, Partner, Laufband, Web) s
 
 ### Laufband mit Tracklist, laufendem Titel und Ort
 
-Das Band unten liest den Text aus der Datei `ticker.txt` im Ordner der installierten Dateien (macOS: `~/Library/Application Support/dc_onair/assets/`, Windows: `%APPDATA%\dc_onair\assets\`). Datei öffnen, Text ändern, speichern: OBS übernimmt die Änderung selbst. Trenne Abschnitte mit `///` und halte die Zeile länger als etwa 150 Zeichen, damit das Band durchgehend gefüllt bleibt. Schreibt dein DJ-Programm oder ein Zusatztool den laufenden Titel in eine Textdatei, kannst du in OBS bei der Quelle `Txt Ticker` (Eigenschaften, "Aus Datei lesen") diese Datei auswählen. Die Datei wird bei einer Neuinstallation nicht überschrieben.
+Das Band unten liest den Text aus der Datei `ticker.txt` im Ordner der installierten Dateien (macOS: `~/Library/Application Support/dc_onair/assets/`, Windows: `%APPDATA%\dc_onair\assets\`). Datei öffnen, Text ändern, speichern: OBS übernimmt die Änderung selbst. Trenne Abschnitte mit `///` und halte die Zeile zwischen etwa 150 und 300 Zeichen lang. Die Datei wird bei einer Neuinstallation nicht überschrieben.
+
+**Automatisch aus dem DJ-Programm:** Die Kommandozeile hat dafür den Befehl `ticker`. Er schreibt `ticker.txt` bei jedem Titelwechsel neu und führt dabei eine Liste der zuletzt gespielten Titel mit ("NOW PLAYING: ..." und "ZULETZT: ..."). Den laufenden Titel bekommt er von einem kleinen Zusatzprogramm, das dein DJ-Programm ausliest:
+
+```
+node cli/dc-onair.js ticker --file "/Pfad/zu/now-playing.txt" --base "LIVE  ///  Berlin"
+node cli/dc-onair.js ticker --unbox                      # live von Unbox (ws://localhost:8080/ws)
+```
+
+Passende Zusatzprogramme, die ich aus deren Dokumentation kenne (Stand heute, nicht von mir mit echter DJ-Software getestet): [Unbox](https://github.com/erikrichardlarson/unbox) (Rekordbox, Serato, Traktor, VirtualDJ, Mixxx, Denon, djay Pro; liefert den Titel per WebSocket), [What's Now Playing](https://github.com/whatsnowplaying/whats-now-playing) (Serato, Traktor, VirtualDJ, Denon, djay Pro, DJUCED, Mixxx; Rekordbox nur über die Zusatz-App EarShot) und die Textdatei-Ausgabe der App "Now Playing" (nowplayingapp.com). Wichtig: Diese Programme liefern den **laufenden** Titel, aber keine Warteschlange und keine kommende Playlist. Die Liste der zuletzt gespielten Titel baut der Befehl selbst auf. Er braucht Node.js 22 oder neuer.
 
 ### Partner-Schild (nur auf Abruf)
 
@@ -70,12 +79,16 @@ Wenn der Partner dabei ist, blendet **Strg+Alt+P** oben rechts ein kleines Schil
 
 Beide sind Browserquellen mit eigenen Seiten unter `assets/web/` (Quellen `Web Alerts` und `Web Chat` in der Hilfsszene `_Web`), transparent und im selben Stil wie der Rest.
 
-- **Alerts:** Klebeband-Wisch quer durchs Bild, Karte schlägt ein und wackelt, der Name wird eingetippt, flache Konfetti-Quadrate fliegen, ein Zeitbalken zählt die Anzeigedauer herunter, dann fährt die Karte nach oben raus. Typen: Follower, Abo, Tip, Raid, Bits. Mehrere Alerts laufen nacheinander. Von Hand auslösen: `window.dcAlert({type: "follow", name: "mara_k"})`.
+- **Alerts im DJ-Thema:** Eine Schallplatte rollt von links ein und dreht auf, dann knallt die Karte mit einem Bass-Schlag rein (das Bild zuckt, Schallwellen-Ringe pulsieren), ein Equalizer springt über der Karte, die Platte scratcht, während der Name getippt wird. Als Zeitanzeige wandert ein Crossfader-Regler von rechts nach links. Zum Schluss rollt die Platte raus und die Karte fährt nach oben weg. Typen: Follower, Abo, Tip, Raid, Bits. Mehrere Alerts laufen nacheinander. Von Hand auslösen: `window.dcAlert({type: "follow", name: "mara_k"})`.
 - **Chat:** Nachrichten springen mit kleiner Bewegung ein und gleiten nach einer Weile wieder raus. Moderatoren, VIPs und der Kanalinhaber haben Orange, alle anderen Limette. Der **Twitch-Chat** wird anonym gelesen (nur Lesen, ohne Anmeldung und ohne Token): Kanalname in `assets/web/config.js` bei `twitchChannel` eintragen.
 - **Vorschau:** Eine der Seiten (`alerts.html`, `chat.html`) per Doppelklick im Browser öffnen, dort laufen Testdaten. In OBS laufen die Testdaten nur, wenn in `config.js` `demo: true` steht.
 - **Noch nicht angebunden:** Echte Alert-Ereignisse (Follower, Abos, Tips) kommen von einem Dienst wie Streamlabs oder StreamElements. Diese Anbindung und Chat-Plattformen außer Twitch sind noch nicht eingebaut. Die Gestaltung und die Animationen stehen, die Schnittstelle `window.dcAlert` ist dafür vorbereitet.
 
 `config.js` bleibt bei einer Neuinstallation erhalten. Trage dort keine geheimen Schlüssel ein, wenn du die Datei teilst.
+
+### Countdown auf "Starting Soon" und "BRB"
+
+Beide Szenen zeigen einen großen Countdown mit rollenden Ziffern und einem Zeitbalken. Er zählt jedes Mal neu, wenn die Szene sichtbar wird (Dauer in `assets/web/config.js`: `startMinutes` und `brbMinutes`, Standard 5 Minuten). Alternativ eine feste Uhrzeit mit `startAt: "21:30"` oder `brbAt`. Bei null erscheint "Gleich geht's los" beziehungsweise "Wir sind gleich wieder da", in den letzten zehn Sekunden pulsieren die Ziffern.
 
 ### Optional: weiche Kamerawechsel mit "Move Transition"
 
@@ -126,6 +139,7 @@ Es reicht, die Dateien unter `payload/assets/` zu ersetzen (gleicher Dateiname) 
 | `video/stinger.webm` | Übergangsvideo, VP9 mit Transparenz, Deckungspunkt bei 520 ms |
 | `video/bg_loop.mp4` | animierter Hintergrund für Starting, BRB, Ending und Dual Cam |
 | `video/live_tag.webm` | LIVE-Zeichen mit blinkendem Punkt |
+| `video/eq_bars.webm` | springende Equalizer-Balken auf den Titelszenen |
 | `overlays/frame_cam.png` | Eckmarken um Kamerabilder |
 | `overlays/lower_third.png`, `ticker.png`, `partner_plate.png` | Platten für Lower Third, Laufband und Partner-Schild |
 | `overlays/cam_offline_*.png` | Karte, wenn eine Kamera fehlt |

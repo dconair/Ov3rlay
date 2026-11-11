@@ -1,17 +1,32 @@
+/* Alerts im DJ-Thema: Schallplatte, Equalizer, Crossfader als Zeitbalken, Bass-Schlag. */
 #stage { position: absolute; left: 0; top: 0; width: 1920px; height: 700px; }
-.tape { position: absolute; left: 0; top: 150px; height: 64px; width: 1920px; background: var(--lime); transform: scaleX(0); transform-origin: left; }
-.tape::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(-60deg, rgba(14,15,15,.9) 0 18px, transparent 18px 56px); animation: slide 1.2s linear infinite; }
-@keyframes slide { to { background-position: 112px 0; } }
-.alert { position: absolute; left: 50%; top: 96px; width: 760px; margin-left: -380px; background: var(--bone); color: var(--ink);
-  padding: 22px 36px 30px; box-shadow: 12px 12px 0 var(--ink); opacity: 0; transform-origin: 50% 60%; }
+.alert { position: absolute; left: 50%; top: 110px; width: 760px; margin-left: -380px; background: var(--bone); color: var(--ink);
+  padding: 22px 36px 46px 150px; box-shadow: 12px 12px 0 var(--ink); opacity: 0; transform-origin: 50% 60%; }
 .alert .tag { display: inline-block; font: 700 18px "Space Mono"; letter-spacing: .22em; background: var(--ink); color: var(--lime); padding: 5px 12px; }
 .alert.sub .tag, .alert.raid .tag { color: var(--hot); }
-.alert .name { display: block; font: 400 104px/1.04 "Anton"; text-transform: uppercase; margin-top: 12px; white-space: nowrap; min-height: 108px; }
-.alert .name::after { content: ""; display: inline-block; width: 10px; height: 80px; margin-left: 6px; background: var(--ink); animation: caret .5s steps(2) infinite; vertical-align: -6px; }
+.alert .name { display: block; font: 400 100px/1.04 "Anton"; text-transform: uppercase; margin-top: 12px; white-space: nowrap; min-height: 104px; overflow: hidden; }
+.alert .name::after { content: ""; display: inline-block; width: 10px; height: 76px; margin-left: 6px; background: var(--ink); animation: caret .5s steps(2) infinite; vertical-align: -6px; }
 .alert .name.done::after { display: none; }
 @keyframes caret { 50% { opacity: 0; } }
 .alert .msg { font: 400 22px/1.35 "Space Mono"; margin-top: 8px; opacity: 0; transform: translateY(10px); transition: opacity .35s, transform .35s; max-height: 90px; overflow: hidden; }
 .alert .msg.on { opacity: 1; transform: none; }
-.alert .bar { position: absolute; left: 0; bottom: 0; height: 12px; width: 100%; background: var(--lime); transform-origin: left; }
-.alert.sub .bar, .alert.raid .bar { background: var(--hot); }
-.sq { position: absolute; width: 18px; height: 18px; pointer-events: none; }
+/* Crossfader: Bahn unten in der Karte, der Regler wandert von rechts nach links und zeigt die Restzeit */
+.fader { position: absolute; left: 36px; right: 36px; bottom: 16px; height: 8px; background: var(--ink); }
+.fader::before { content: ""; position: absolute; left: 0; right: 0; top: -6px; height: 3px; background: repeating-linear-gradient(90deg, var(--ink) 0 3px, transparent 3px 38px); }
+.knob { position: absolute; top: -12px; width: 44px; height: 32px; margin-left: -22px; background: var(--ink); }
+.knob::after { content: ""; position: absolute; left: 20px; top: 4px; width: 4px; height: 24px; background: var(--lime); }
+.alert.sub .knob::after, .alert.raid .knob::after { background: var(--hot); }
+/* Schallplatte links an der Karte */
+.vinyl { position: absolute; left: 50%; top: 82px; width: 250px; height: 250px; margin-left: -520px; border-radius: 50%; opacity: 0;
+  background: repeating-radial-gradient(circle at 50% 50%, #0e0f0f 0 5px, #1d1f1f 5px 7px); box-shadow: 8px 8px 0 rgba(14,15,15,.55); }
+.vinyl::before { content: ""; position: absolute; left: 50%; top: 50%; width: 92px; height: 92px; margin: -46px 0 0 -46px; border-radius: 50%; background: var(--lime); }
+.vinyl.hot::before { background: var(--hot); }
+.vinyl::after { content: "D"; position: absolute; left: 50%; top: 50%; width: 92px; height: 92px; margin: -46px 0 0 -46px; text-align: center; font: 400 70px/100px "Anton"; color: var(--ink); }
+.vinyl i { position: absolute; left: 50%; top: 4px; width: 6px; height: 28px; margin-left: -3px; background: var(--bone); opacity: .6; }
+.ring { position: absolute; left: 50%; top: 82px; width: 250px; height: 250px; margin-left: -520px; border-radius: 50%; border: 6px solid var(--lime); opacity: 0; pointer-events: none; }
+.ring.hot { border-color: var(--hot); }
+/* Equalizer über der Karte */
+.eq { position: absolute; left: 50%; top: 20px; width: 760px; margin-left: -380px; height: 90px; display: flex; align-items: flex-end; gap: 8px; opacity: 0; padding-left: 150px; }
+.eq b { flex: 1; background: var(--lime); height: 8px; }
+.eq.hot b { background: var(--hot); }
+.eq b:nth-child(4n) { background: var(--bone); }

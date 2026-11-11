@@ -89,6 +89,37 @@
   },
   {
    "prev_ver": 503316482,
+   "name": "EQ Bars",
+   "uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
+   "id": "ffmpeg_source",
+   "versioned_id": "ffmpeg_source",
+   "settings": {
+    "local_file": "{{ASSETS}}/video/eq_bars.webm",
+    "is_local_file": true,
+    "looping": true,
+    "close_when_inactive": false,
+    "restart_on_activate": false,
+    "hw_decode": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
    "name": "Live Tag",
    "uuid": "37c8c06b-792e-5ba1-a967-082a65e52fce",
    "id": "ffmpeg_source",
@@ -1229,6 +1260,78 @@
   },
   {
    "prev_ver": 503316482,
+   "name": "Web Countdown Start",
+   "uuid": "b2f423c3-854c-5c96-b187-3db149892055",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/countdown_start.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Web Countdown BRB",
+   "uuid": "8aa95971-4a1a-56b7-954b-71ae5334da96",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/countdown_brb.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
    "name": "_Lower Third Inhalt",
    "uuid": "90001707-3706-5bd2-acc5-9b9325a61144",
    "id": "scene",
@@ -2052,7 +2155,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 11,
     "custom_size": false,
     "items": [
      {
@@ -2088,18 +2191,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "EQ Bars",
+      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1440.0,
-       "y": 300.0
+       "x": 0.0,
+       "y": 864.0
       },
       "scale": {
-       "x": 0.75,
-       "y": 0.75
+       "x": 1.0,
+       "y": 1.0
       },
       "align": 5,
       "bounds_type": 0,
@@ -2191,7 +2294,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 790.0
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
@@ -2223,7 +2326,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 940.0
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
@@ -2241,6 +2344,70 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Web Countdown Start",
+      "source_uuid": "b2f423c3-854c-5c96-b187-3db149892055",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Bug",
+      "source_uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2272,7 +2439,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 7,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2304,7 +2471,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 8,
+      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2336,7 +2503,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 9,
+      "id": 11,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -3793,7 +3960,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 11,
     "custom_size": false,
     "items": [
      {
@@ -3829,18 +3996,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "EQ Bars",
+      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1440.0,
-       "y": 300.0
+       "x": 0.0,
+       "y": 864.0
       },
       "scale": {
-       "x": 0.75,
-       "y": 0.75
+       "x": 1.0,
+       "y": 1.0
       },
       "align": 5,
       "bounds_type": 0,
@@ -3932,7 +4099,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 790.0
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
@@ -3964,7 +4131,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 940.0
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
@@ -3982,6 +4149,70 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Web Countdown BRB",
+      "source_uuid": "8aa95971-4a1a-56b7-954b-71ae5334da96",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Bug",
+      "source_uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4013,7 +4244,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 7,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4045,7 +4276,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 8,
+      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4077,7 +4308,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 9,
+      "id": 11,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4118,7 +4349,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -4154,18 +4385,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "EQ Bars",
+      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1440.0,
-       "y": 300.0
+       "x": 0.0,
+       "y": 864.0
       },
       "scale": {
-       "x": 0.75,
-       "y": 0.75
+       "x": 1.0,
+       "y": 1.0
       },
       "align": 5,
       "bounds_type": 0,
@@ -4257,7 +4488,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 790.0
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
@@ -4289,7 +4520,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 940.0
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
@@ -4307,6 +4538,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1440.0,
+       "y": 300.0
+      },
+      "scale": {
+       "x": 0.75,
+       "y": 0.75
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4338,7 +4601,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 7,
+      "id": 8,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4370,7 +4633,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 8,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4402,7 +4665,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 9,
+      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4443,7 +4706,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 9,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -4479,18 +4742,18 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "EQ Bars",
+      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1440.0,
-       "y": 300.0
+       "x": 0.0,
+       "y": 864.0
       },
       "scale": {
-       "x": 0.75,
-       "y": 0.75
+       "x": 1.0,
+       "y": 1.0
       },
       "align": 5,
       "bounds_type": 0,
@@ -4582,7 +4845,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 790.0
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
@@ -4614,7 +4877,7 @@
       "rot": 0.0,
       "pos": {
        "x": 120.0,
-       "y": 940.0
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
@@ -4632,6 +4895,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1440.0,
+       "y": 300.0
+      },
+      "scale": {
+       "x": 0.75,
+       "y": 0.75
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4663,7 +4958,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 7,
+      "id": 8,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4695,7 +4990,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 8,
+      "id": 9,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -4727,7 +5022,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 9,
+      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",

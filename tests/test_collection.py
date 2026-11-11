@@ -91,7 +91,7 @@ class CollectionTests(unittest.TestCase):
         for platform in ("macos", "windows"):
             doc = bc.build(platform, False)
             web = {s["name"]: s for s in doc["sources"] if s["id"] == "browser_source"}
-            self.assertEqual(set(web), {"Web Alerts", "Web Chat"})
+            self.assertEqual(set(web), {"Web Alerts", "Web Chat", "Web Countdown Start", "Web Countdown BRB"})
             for src in web.values():
                 self.assertTrue(src["settings"]["is_local_file"])
                 self.assertTrue(src["settings"]["local_file"].endswith(".html"))

@@ -175,6 +175,9 @@ class Collection:
         self.source("ffmpeg_source", "BG Loop", {
             "local_file": self.asset("video/bg_loop.mp4"), "is_local_file": True, "looping": True,
             "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
+        self.source("ffmpeg_source", "EQ Bars", {
+            "local_file": self.asset("video/eq_bars.webm"), "is_local_file": True, "looping": True,
+            "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
         self.source("ffmpeg_source", "Live Tag", {
             "local_file": self.asset("video/live_tag.webm"), "is_local_file": True, "looping": True,
             "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
@@ -221,6 +224,8 @@ class Collection:
         # Browserquellen für Alerts und Chat (transparente Seiten, selbst gestaltet)
         self.web("Web Alerts", "web/alerts.html")
         self.web("Web Chat", "web/chat.html")
+        self.web("Web Countdown Start", "web/countdown_start.html")
+        self.web("Web Countdown BRB", "web/countdown_brb.html")
 
     def define_scenes(self):
         move_or_slide = ("dc Move", 600) if self.move else ("dc Slide", 450)
@@ -275,16 +280,23 @@ class Collection:
             if frame:
                 scene.add("Frame Cam", pos, bounds=size, bounds_type=BOUNDS_INNER)
 
-        def title_card(scene, label):
+        def title_card(scene, label, countdown=None):
+            """Titelszene: Hintergrund, Equalizer, Text links, rechts Countdown (Starting, BRB) oder großes Logo."""
             scene.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
-            scene.add("Logo", (1440, 300), scale=0.75)
+            scene.add("EQ Bars", (0, H - 46 - 170))
             scene.add(f"Txt {label} Eyebrow", (120, 290))
             scene.add(f"Txt {label}", (120, 340))
-            scene.add(f"Txt {label} Sub", (120, 790))
-            scene.add("Txt Handle", (120, 940))
-            overlay(scene, bug=False, lower=False)
+            scene.add(f"Txt {label} Sub", (120, 700))
+            scene.add("Txt Handle", (120, 770))
+            if countdown:
+                if countdown in self.sources:  # im Linux-Testsystem gibt es keine Browserquellen
+                    scene.add(countdown, (0, 0))
+                overlay(scene, bug=True, lower=False)
+            else:
+                scene.add("Logo", (1440, 300), scale=0.75)
+                overlay(scene, bug=False, lower=False)
 
-        title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting")
+        title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting", "Web Countdown Start")
 
         s = self.scene("02 Kamera iPhone", "OBS_KEY_2", move_or_slide)
         cam(s, off_iphone, cam_iphone, (0, 0), (W, H)); overlay(s)
@@ -307,7 +319,7 @@ class Collection:
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)
         overlay(s, bug=False, lower=False)
 
-        title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB")
+        title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB", "Web Countdown BRB")
         title_card(self.scene("08 Ending", "OBS_KEY_8"), "Ending")
         # Notfall-Szene für IRL/Verbindungsabbruch: eingebauter Fade (OBS speichert nur konfigurierbare Übergänge, daher kein eigener) statt Stinger, damit sie sofort greift
         title_card(self.scene("09 Connection Lost", "OBS_KEY_9", ("Fade", 300)), "Lost")
