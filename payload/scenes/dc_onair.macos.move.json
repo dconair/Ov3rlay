@@ -36,6 +36,9 @@
    "name": "_Branding Bug"
   },
   {
+   "name": "_Live Badge"
+  },
+  {
    "name": "_Lower Third"
   }
  ],
@@ -155,12 +158,66 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "Band Stripes",
-   "uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+   "name": "Panel",
+   "uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
    "id": "image_source",
    "versioned_id": "image_source",
    "settings": {
-    "file": "{{ASSETS}}/overlays/band_stripes.png",
+    "file": "{{ASSETS}}/overlays/panel.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Live Badge",
+   "uuid": "751cbbed-ef48-5ec8-807c-75f486067937",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/overlays/live_badge.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Accent Line",
+   "uuid": "078ff541-e474-50b4-a568-87056896e6f3",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/overlays/accent_line.png",
     "unload": false
    },
    "mixers": 0,
@@ -183,11 +240,11 @@
     {
      "prev_ver": 503316482,
      "name": "Scroll",
-     "uuid": "7e30f57a-f5e6-5e2c-9eaf-568008d15bf0",
+     "uuid": "9e65e6c7-a8f2-5460-8abe-f32a25fc6b1e",
      "id": "scroll_filter",
      "versioned_id": "scroll_filter",
      "settings": {
-      "speed_x": 90.0,
+      "speed_x": 70.0,
       "speed_y": 0.0,
       "loop": true,
       "limit_cx": false,
@@ -438,8 +495,8 @@
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -475,8 +532,8 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -512,8 +569,8 @@
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -549,8 +606,8 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -586,8 +643,8 @@
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -623,8 +680,8 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -660,8 +717,8 @@
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -697,8 +754,8 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -734,8 +791,45 @@
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4278215423,
-    "color2": 4278215423,
+    "color1": 4290892032,
+    "color2": 4290892032,
+    "drop_shadow": true,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Live",
+   "uuid": "28428a45-5296-5abc-a699-0c39785250a9",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "LIVE",
+    "font": {
+     "face": "{{FONT_FACE}}",
+     "size": 30,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -771,8 +865,8 @@
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -808,8 +902,8 @@
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
+    "color1": 4294966258,
+    "color2": 4294966258,
     "drop_shadow": true,
     "outline": false,
     "word_wrap": false
@@ -880,7 +974,7 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 110.0,
+       "x": 72.0,
        "y": 18.0
       },
       "scale": {
@@ -912,7 +1006,7 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 112.0,
+       "x": 74.0,
        "y": 98.0
       },
       "scale": {
@@ -994,6 +1088,101 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Live Badge",
+   "uuid": "3a06c017-d4b0-5fa3-9a61-7c1cc9b012e6",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 2,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Live Badge",
+      "source_uuid": "751cbbed-ef48-5ec8-807c-75f486067937",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 48.0,
+       "y": 40.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Live",
+      "source_uuid": "28428a45-5296-5abc-a699-0c39785250a9",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 100.0,
+       "y": 48.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1121,7 +1310,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -1157,14 +1346,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "Accent Line",
+      "source_uuid": "078ff541-e474-50b4-a568-87056896e6f3",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 1072.0
       },
       "scale": {
        "x": 1.0,
@@ -1196,11 +1385,11 @@
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 360.0
+       "y": 300.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 0.3,
+       "y": 0.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -1221,20 +1410,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Starting",
-      "source_uuid": "6ce1fbfe-da6a-5a62-b1f7-b40421bb9ee6",
+      "name": "Panel",
+      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 210.0,
+       "y": 500.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1253,14 +1442,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Starting Sub",
-      "source_uuid": "d7ea9779-6d72-5d77-9c71-73fbc2b0750c",
+      "name": "Txt Starting",
+      "source_uuid": "6ce1fbfe-da6a-5a62-b1f7-b40421bb9ee6",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 800.0
+       "y": 620.0
       },
       "scale": {
        "x": 1.0,
@@ -1285,14 +1474,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt Starting Sub",
+      "source_uuid": "d7ea9779-6d72-5d77-9c71-73fbc2b0750c",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 960.0
+       "y": 740.0
       },
       "scale": {
        "x": 1.0,
@@ -1310,6 +1499,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 930.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1350,7 +1571,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 4,
+    "id_counter": 5,
     "custom_size": false,
     "items": [
      {
@@ -1450,6 +1671,38 @@
       "private_settings": {}
      },
      {
+      "name": "_Live Badge",
+      "source_uuid": "3a06c017-d4b0-5fa3-9a61-7c1cc9b012e6",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
       "name": "_Lower Third",
       "source_uuid": "65ff0b27-815e-5f83-9cb9-d86430b8d8d6",
       "visible": true,
@@ -1474,7 +1727,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 4,
+      "id": 5,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1518,7 +1771,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 4,
+    "id_counter": 5,
     "custom_size": false,
     "items": [
      {
@@ -1618,6 +1871,38 @@
       "private_settings": {}
      },
      {
+      "name": "_Live Badge",
+      "source_uuid": "3a06c017-d4b0-5fa3-9a61-7c1cc9b012e6",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
       "name": "_Lower Third",
       "source_uuid": "65ff0b27-815e-5f83-9cb9-d86430b8d8d6",
       "visible": true,
@@ -1642,7 +1927,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 4,
+      "id": 5,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1686,7 +1971,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 10,
+    "id_counter": 11,
     "custom_size": false,
     "items": [
      {
@@ -1946,14 +2231,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "Accent Line",
+      "source_uuid": "078ff541-e474-50b4-a568-87056896e6f3",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 1072.0
       },
       "scale": {
        "x": 1.0,
@@ -1971,6 +2256,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 9,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Live Badge",
+      "source_uuid": "3a06c017-d4b0-5fa3-9a61-7c1cc9b012e6",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2002,7 +2319,7 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 10,
+      "id": 11,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2382,7 +2699,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -2418,14 +2735,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "Accent Line",
+      "source_uuid": "078ff541-e474-50b4-a568-87056896e6f3",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 1072.0
       },
       "scale": {
        "x": 1.0,
@@ -2457,11 +2774,11 @@
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 360.0
+       "y": 300.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 0.3,
+       "y": 0.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -2482,20 +2799,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt BRB",
-      "source_uuid": "068d3109-9cc6-58b9-a145-7bd2bd0106eb",
+      "name": "Panel",
+      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 210.0,
+       "y": 500.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2514,14 +2831,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt BRB Sub",
-      "source_uuid": "42c40b89-d5e9-5faf-9e09-877446355be9",
+      "name": "Txt BRB",
+      "source_uuid": "068d3109-9cc6-58b9-a145-7bd2bd0106eb",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 800.0
+       "y": 620.0
       },
       "scale": {
        "x": 1.0,
@@ -2546,14 +2863,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt BRB Sub",
+      "source_uuid": "42c40b89-d5e9-5faf-9e09-877446355be9",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 960.0
+       "y": 740.0
       },
       "scale": {
        "x": 1.0,
@@ -2571,6 +2888,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 930.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2611,7 +2960,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -2647,14 +2996,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "Accent Line",
+      "source_uuid": "078ff541-e474-50b4-a568-87056896e6f3",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 1072.0
       },
       "scale": {
        "x": 1.0,
@@ -2686,11 +3035,11 @@
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 360.0
+       "y": 300.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 0.3,
+       "y": 0.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -2711,20 +3060,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Ending",
-      "source_uuid": "24bbc2aa-fba4-5042-bca8-e060d0dbbf1a",
+      "name": "Panel",
+      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 210.0,
+       "y": 500.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2743,14 +3092,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Ending Sub",
-      "source_uuid": "9cf03bcd-7fbe-55b6-a528-e54cd349b059",
+      "name": "Txt Ending",
+      "source_uuid": "24bbc2aa-fba4-5042-bca8-e060d0dbbf1a",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 800.0
+       "y": 620.0
       },
       "scale": {
        "x": 1.0,
@@ -2775,14 +3124,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt Ending Sub",
+      "source_uuid": "9cf03bcd-7fbe-55b6-a528-e54cd349b059",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 960.0
+       "y": 740.0
       },
       "scale": {
        "x": 1.0,
@@ -2800,6 +3149,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 930.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2840,7 +3221,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -2876,14 +3257,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "Accent Line",
+      "source_uuid": "078ff541-e474-50b4-a568-87056896e6f3",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 1072.0
       },
       "scale": {
        "x": 1.0,
@@ -2915,11 +3296,11 @@
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 360.0
+       "y": 300.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 0.3,
+       "y": 0.3
       },
       "align": 0,
       "bounds_type": 0,
@@ -2940,20 +3321,20 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Lost",
-      "source_uuid": "0b4c0824-d067-5c94-9fa5-90426f91763b",
+      "name": "Panel",
+      "source_uuid": "aa3995c6-c447-510c-abb8-bbfa13ddf5bc",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 210.0,
+       "y": 500.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2972,14 +3353,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Lost Sub",
-      "source_uuid": "5de6dbf2-7be6-50ac-9c53-bd3ebc310902",
+      "name": "Txt Lost",
+      "source_uuid": "0b4c0824-d067-5c94-9fa5-90426f91763b",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 800.0
+       "y": 620.0
       },
       "scale": {
        "x": 1.0,
@@ -3004,14 +3385,14 @@
       "private_settings": {}
      },
      {
-      "name": "Txt Handle",
-      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "name": "Txt Lost Sub",
+      "source_uuid": "5de6dbf2-7be6-50ac-9c53-bd3ebc310902",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 960.0,
-       "y": 960.0
+       "y": 740.0
       },
       "scale": {
        "x": 1.0,
@@ -3029,6 +3410,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Handle",
+      "source_uuid": "6cac776b-d68f-50d9-8a54-1f30f1ffbebe",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 960.0,
+       "y": 930.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 0,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",

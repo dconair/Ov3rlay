@@ -165,8 +165,10 @@ class Collection:
         self.image("Logo", "branding/logo.png")
         self.image("Frame Cam", "overlays/frame_cam.png")
         self.image("Lower Third Plate", "overlays/lower_third.png")
-        self.image("Band Stripes", "overlays/band_stripes.png", filters=[
-            ("scroll_filter", "Scroll", {"speed_x": 90.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
+        self.image("Panel", "overlays/panel.png")
+        self.image("Live Badge", "overlays/live_badge.png")
+        self.image("Accent Line", "overlays/accent_line.png", filters=[
+            ("scroll_filter", "Scroll", {"speed_x": 70.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
                                          "limit_cy": False})])
         # Kameras: je Quelle eine Platzhalterkarte darunter, falls das Gerät fehlt
         vid_id, vid_cfg = self.p["video"]
@@ -193,6 +195,7 @@ class Collection:
             self.text(f"Txt {label}", t[key][0], 96)
             self.text(f"Txt {label} Sub", t[key][1], 40, bold=False)
         self.text("Txt Handle", BRAND["handle"], 38, color="primary")
+        self.text("Txt Live", "LIVE", 30)
         self.text("Txt LT Name", t["lower_third"][0], 64)
         self.text("Txt LT Title", t["lower_third"][1], 34, bold=False)
 
@@ -204,10 +207,13 @@ class Collection:
         # Wiederverwendbare Bausteine (Unterstrich = Hilfsszene)
         lt = self.scene("_Lower Third Inhalt")
         lt.add("Lower Third Plate", (0, 0))
-        lt.add("Txt LT Name", (110, 18))
-        lt.add("Txt LT Title", (112, 98))
+        lt.add("Txt LT Name", (72, 18))
+        lt.add("Txt LT Title", (74, 98))
         bug = self.scene("_Branding Bug")
         bug.add("Logo", (1760, 40), scale=0.12)
+        live = self.scene("_Live Badge")
+        live.add("Live Badge", (48, 40))
+        live.add("Txt Live", (100, 48))
         lower = self.scene("_Lower Third")
         lower.add("_Lower Third Inhalt", (80, 800), visible=False, show=("slide_transition", {"direction": "left"}),
                   hide=("slide_transition", {"direction": "right"}), hotkeys=("OBS_KEY_L", "OBS_KEY_H"))
@@ -220,29 +226,30 @@ class Collection:
 
         def title_card(scene, label):
             scene.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
-            scene.add("Band Stripes", (0, H - 40))
-            scene.add("Logo", (960, 360), scale=0.42, align=ALIGN_CENTER)
-            scene.add(f"Txt {label}", (960, 700), align=ALIGN_CENTER)
-            scene.add(f"Txt {label} Sub", (960, 800), align=ALIGN_CENTER)
-            scene.add("Txt Handle", (960, 960), align=ALIGN_CENTER)
+            scene.add("Accent Line", (0, H - 8))
+            scene.add("Logo", (960, 300), scale=0.3, align=ALIGN_CENTER)
+            scene.add("Panel", (210, 500))
+            scene.add(f"Txt {label}", (960, 620), align=ALIGN_CENTER)
+            scene.add(f"Txt {label} Sub", (960, 740), align=ALIGN_CENTER)
+            scene.add("Txt Handle", (960, 930), align=ALIGN_CENTER)
 
         title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting")
 
         s = self.scene("02 Kamera iPhone", "OBS_KEY_2", move_or_slide)
         cam(s, off_iphone, cam_iphone, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_Lower Third", (0, 0))
+        s.add("_Branding Bug", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
 
         s = self.scene("03 Kamera Sony", "OBS_KEY_3", move_or_slide)
         cam(s, off_sony, cam_sony, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_Lower Third", (0, 0))
+        s.add("_Branding Bug", (0, 0)); s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
 
         s = self.scene("04 Dual Cam", "OBS_KEY_4", move_or_slide)
         s.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
         cam(s, off_iphone, cam_iphone, (50, 290), (880, 495), frame=True)
         cam(s, off_sony, cam_sony, (990, 290), (880, 495), frame=True)
         s.add("Logo", (960, 120), scale=0.16, align=ALIGN_CENTER)
-        s.add("Band Stripes", (0, H - 40))
-        s.add("_Lower Third", (0, 0))
+        s.add("Accent Line", (0, H - 8))
+        s.add("_Live Badge", (0, 0)); s.add("_Lower Third", (0, 0))
 
         s = self.scene("05 Screen + Cam", "OBS_KEY_5", move_or_slide)
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)

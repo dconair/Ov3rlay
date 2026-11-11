@@ -3,10 +3,10 @@
   "handle": "@dc_onair",
   "collection": "dc_onair",
   "colors": {
-    "primary": "#FF6200",
-    "secondary": "#0062FF",
-    "dark": "#0A0A10",
-    "light": "#FFFFFF"
+    "primary": "#00D1C1",
+    "secondary": "#2D6BFF",
+    "dark": "#050B16",
+    "light": "#F2FBFF"
   },
   "font": {
     "family": "",

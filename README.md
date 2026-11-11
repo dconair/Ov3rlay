@@ -28,10 +28,10 @@ Der Stream-Schlüssel wird nicht abgefragt und nicht gespeichert. Konto verbinde
 
 | Szene | Inhalt |
 |---|---|
-| 01 Starting Soon | animierter Hintergrund, Logo, Text, scrollendes Streifenband |
-| 02 Kamera iPhone | iPhone vollbild, Logo-Bug, Lower Third |
-| 03 Kamera Sony | Sony A7 II vollbild, Logo-Bug, Lower Third |
-| 04 Dual Cam | beide Kameras nebeneinander mit Eckrahmen |
+| 01 Starting Soon | animierter Hintergrund, Logo, Textkarte, fließende Akzentlinie |
+| 02 Kamera iPhone | iPhone vollbild, LIVE-Zeichen, Logo-Bug, Lower Third |
+| 03 Kamera Sony | Sony A7 II vollbild, LIVE-Zeichen, Logo-Bug, Lower Third |
+| 04 Dual Cam | beide Kameras nebeneinander mit Verlaufsrahmen, LIVE-Zeichen |
 | 05 Screen + Cam | Bildschirm mit Sony-Kamera unten rechts |
 | 06 Screen Only | nur Bildschirm |
 | 07 BRB | Pausenbild |
@@ -40,7 +40,7 @@ Der Stream-Schlüssel wird nicht abgefragt und nicht gespeichert. Konto verbinde
 
 Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen eingebunden und werden einmal zentral gepflegt.
 
-**Übergänge:** `dc Stinger` (Standard, animierter Farbwisch mit Logo, 60 fps), `dc Slide`, `dc Swipe`, `dc Fade Black` und der eingebaute `Fade`. Pro Szene:
+**Übergänge:** `dc Stinger` (Standard, Farbwisch in Teal und Blau mit Logo, 60 fps), `dc Slide`, `dc Swipe`, `dc Fade Black` und der eingebaute `Fade`. Pro Szene:
 
 | Wechsel nach | Übergang |
 |---|---|
@@ -50,7 +50,7 @@ Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen einge
 
  Der Lower Third fährt beim Einblenden und Ausblenden mit Slide-Animation ein und aus.
 
-**Effekte:** Kamera-Farbkorrektur und Schärfe, scrollendes Warnband, animierter Hintergrund-Loop, Rahmen mit Eckklammern.
+**Effekte:** Kamera-Farbkorrektur und Schärfe, animierter Blau/Teal-Hintergrund (weiche, kreisende Lichter), fließende Akzentlinie, Verlaufsrahmen mit Eckmarken, abgerundeter Lower Third. Das Design ist dunkel und ruhig gehalten, damit bei IRL-Streams das Kamerabild im Vordergrund bleibt.
 
 **Audio:** Desktop-Ton und Mikrofon (`Mic/Aux`) mit Rauschunterdrückung, Verstärkung, Kompressor und Limiter.
 
@@ -96,10 +96,13 @@ Es reicht, die Dateien unter `payload/assets/` zu ersetzen (gleicher Dateiname) 
 
 | Datei | Zweck |
 |---|---|
-| `branding/logo.png` | Logo (Platzhalter, einfach durch das eigene Logo ersetzen) |
+| `branding/logo.png` | Logo (Platzhalter "dc"-Kachel, einfach durch das eigene ersetzen) |
 | `video/stinger.webm` | Übergangsvideo, VP9 mit Transparenz, Deckungspunkt bei 520 ms |
 | `video/bg_loop.mp4` | animierter Hintergrund für Starting, BRB, Ending und Dual Cam |
 | `overlays/frame_cam.png` | Rahmen um Kamerabilder |
+| `overlays/live_badge.png` | Kapsel für das LIVE-Zeichen (Text `Txt Live` liegt darüber) |
+| `overlays/panel.png` | Textkarte der Titelszenen |
+| `overlays/accent_line.png` | Akzentlinie am unteren Rand |
 | `overlays/lower_third.png` | Platte hinter Name und Titel |
 | `overlays/cam_offline_*.png` | Karte, wenn eine Kamera fehlt |
 
