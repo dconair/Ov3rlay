@@ -135,6 +135,15 @@ jobs:
           node cli/dc-onair.js status
           node cli/dc-onair.js install --service twitch --quality 1080p60
           node cli/dc-onair.js selftest --shots shots-mac
+      - name: Diagnose (OBS-Log, Bildschirm)
+        if: failure()
+        run: |
+          mkdir -p shots-mac
+          ps aux | grep -i "[O]BS" | head -5 || true
+          screencapture -x shots-mac/bildschirm.png || true
+          for f in "$HOME/Library/Application Support/obs-studio/logs/"*.txt; do echo "== $f"; tail -n 60 "$f"; cp "$f" shots-mac/ || true; done
+          ls -la "$HOME/Library/Application Support/obs-studio" || true
+          cat "$HOME/Library/Application Support/obs-studio/user.ini" 2>/dev/null | head -30 || true
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: obs-real-macos, path: shots-mac, if-no-files-found: ignore }
