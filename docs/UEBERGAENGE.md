@@ -34,6 +34,8 @@ Neu erzeugen: `node cli/dc-onair.js matrix` (liest die Collection aus `payload/s
 
 ## Wie geprüft wird
 
+Bildrate: Standard ist 1080p60. Alle Übergangszeiten liegen in Millisekunden vor und sind unabhängig von der Bildrate; der Stinger (60 fps) wird bei 60 fps ohne Umrechnung abgespielt, bei 1080p30 zeigt OBS jedes zweite Bild.
+
 1. **Statisch** (`npm test`, `core/matrix.js`): Jeder Übergang ist definiert, Dauer liegt zwischen 150 und 1500 ms, Stinger hat Videopfad und Schnittpunkt, es gibt zu jeder Zielszene genau einen Übergang.
 2. **Stinger-Alpha** (`tests/node/stinger.test.js`, braucht ffmpeg): Der Schnittpunkt liegt in der Phase voller Deckung des Videos. Gemessen am aktuellen `stinger.webm` (60 fps, 66 Bilder = 1,1 s): volle Deckung von 283 bis 767 ms, Schnittpunkt 520 ms liegt fast genau in der Mitte. Das Video beginnt und endet vollständig transparent.
 3. **Im echten OBS** (`tests/e2e_obs.js`, in der CI; in der App der Selbsttest): Ein Euler-Kreis schaltet alle 72 Szenenpaare nacheinander durch. Pro Wechsel wird geprüft, dass die Zielszene erreicht wird, der Übergang endet und der Name dem erwarteten Übergang entspricht, außerdem die Dauer.

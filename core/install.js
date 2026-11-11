@@ -12,12 +12,12 @@ const { ROLES } = require('./cameras');
 
 /** Auflösung, Bildrate und Bitrate (kbit/s) nach den Empfehlungen von Twitch bzw. YouTube. */
 const QUALITIES = {
-  '1080p30': { label: '1080p30', w: 1920, h: 1080, fps: 30, bitrate: { twitch: 6000, other: 6000 } },
   '1080p60': { label: '1080p60', w: 1920, h: 1080, fps: 60, bitrate: { twitch: 6000, other: 9000 } },
+  '1080p30': { label: '1080p30', w: 1920, h: 1080, fps: 30, bitrate: { twitch: 6000, other: 6000 } },
   '720p60': { label: '720p60', w: 1280, h: 720, fps: 60, bitrate: { twitch: 4500, other: 6000 } },
 };
 const SERVICES = { twitch: 'Twitch', youtube: 'YouTube', custom: 'Anderer Dienst (Server und Schlüssel später in OBS)' };
-const DEFAULTS = { service: 'twitch', quality: '1080p30' };
+const DEFAULTS = { service: 'twitch', quality: '1080p60' };
 
 function brandEnv(payloadDir) {
   const out = {};

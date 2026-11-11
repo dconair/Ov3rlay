@@ -19,7 +19,7 @@ T="$(mktemp -d)"
 export DC_OBS_CONFIG="$T/OBS Studio" DC_APP_DIR="$T/dc onair" DC_FONT_DIR="$T/Fonts" DC_REC_DIR="$T/Movies" ELECTRON_RUN_AS_NODE=1
 cli() { "$BIN" "$RES/app.asar/cli/dc-onair.js" "$@" --payload "$RES/payload"; }
 cli status; cli encoder; cli cameras; cli matrix >/dev/null
-cli install --service twitch --quality 1080p30
+cli install --service twitch --quality 1080p60
 SC="$DC_OBS_CONFIG/basic/scenes/dc_onair.json"
 ! grep -q '{{' "$SC"
 python3 - "$SC" <<'PY'

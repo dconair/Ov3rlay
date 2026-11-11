@@ -19,7 +19,7 @@ const { values: v, positionals } = parseArgs({
 const HELP = `dc_onair Setup (Kommandozeile)
 
   status                    Zustand der Installation
-  install                   OBS einrichten  [--service twitch|youtube|custom] [--quality 1080p30|1080p60|720p60]
+  install                   OBS einrichten  [--service twitch|youtube|custom] [--quality 1080p60|1080p30|720p60]
                             [--encoder auto|nvenc|amd|qsv|apple|x264] [--camera iphone="Name" --camera sony="Name"]
   uninstall                 Szenen, Profil, Assets entfernen
   backups | restore <ID>    Sicherungen anzeigen / wiederherstellen

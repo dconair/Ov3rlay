@@ -16,7 +16,7 @@ Voraussetzung: OBS Studio 30 oder neuer (<https://obsproject.com>).
 ## Ablauf
 
 1. **Prüfen:** OBS suchen (Windows: Registry und Programme, macOS: `/Applications/OBS.app`), Version prüfen, läuft OBS noch? Grafikkarte erkennen.
-2. **Einstellungen:** Plattform (Twitch, YouTube, anderer Dienst), Qualität (1080p30 ist vorausgewählt, 1080p60, 720p60) und Encoder.
+2. **Einstellungen:** Plattform (Twitch, YouTube, anderer Dienst), Qualität (1080p60 ist vorausgewählt, dazu 1080p30 und 720p60) und Encoder.
 3. **Installieren:** Vorher werden alle betroffenen Dateien gesichert (`…/dc_onair/backups/<Zeitstempel>/`). Dann Szenen-Collection, Profil, Assets und Schrift. Die Pfade der Collection zeigen auf den Ordner `…/dc_onair/assets`; die Platzhalter der Vorlagen werden dabei ersetzt.
 4. **Kameras:** Die App startet OBS mit der neuen Collection und fragt OBS selbst nach den Geräten (exakte Geräte-IDs, bei Windows inklusive DirectShow-Pfad). Die Zuweisung wird gespeichert.
 5. **Selbsttest:** OBS erreichbar, alle Szenen, Quellen und Dateien vorhanden, Kameras zugewiesen, Browserquellen antworten mit HTTP 200 (falls es welche gibt), danach werden **alle Szenen und alle Übergänge einmal durchgeschaltet** (siehe [UEBERGAENGE.md](UEBERGAENGE.md)). Screenshots jeder Szene und ein JSON-Bericht landen in `…/dc_onair/selftest/<Zeitstempel>/`. Der Test startet nicht, wenn OBS gerade streamt oder aufnimmt.
@@ -34,13 +34,13 @@ Wartung (auf der ersten Seite, wenn schon eingerichtet): *Entfernen* setzt OBS a
 | macOS | VideoToolbox (`apple_h264`) |
 | sonst | x264 |
 
-Die Bitrate bleibt bei 6 Mbit/s (Twitch 1080p30). Die Auswahl lässt sich im Assistenten ändern.
+Standard ist 1080p60 mit 6 Mbit/s CBR bei Twitch (9 Mbit/s bei YouTube und anderen Diensten); 1080p30 und 720p60 sind im Assistenten wählbar. 60 fps passt zum Stinger (`stinger.webm`, 60 fps), dessen Bildraster so ohne Umrechnung abgespielt wird.
 
 ## Kommandozeile
 
 ```
 node cli/dc-onair.js status | encoder | cameras | matrix
-node cli/dc-onair.js install --service twitch --quality 1080p30 --encoder auto
+node cli/dc-onair.js install --service twitch --quality 1080p60 --encoder auto
 node cli/dc-onair.js selftest --shots ordner     # startet OBS bei Bedarf
 node cli/dc-onair.js backups | restore <ID> | uninstall
 ```

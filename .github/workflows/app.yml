@@ -114,7 +114,7 @@ jobs:
         shell: pwsh
         run: |
           node cli/dc-onair.js status
-          node cli/dc-onair.js install --service twitch --quality 1080p30
+          node cli/dc-onair.js install --service twitch --quality 1080p60
           node cli/dc-onair.js selftest --shots shots-win
       - uses: actions/upload-artifact@v4
         if: always()
@@ -133,7 +133,7 @@ jobs:
       - name: Installieren und Selbsttest
         run: |
           node cli/dc-onair.js status
-          node cli/dc-onair.js install --service twitch --quality 1080p30
+          node cli/dc-onair.js install --service twitch --quality 1080p60
           node cli/dc-onair.js selftest --shots shots-mac
       - uses: actions/upload-artifact@v4
         if: always()
