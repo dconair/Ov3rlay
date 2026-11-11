@@ -4,6 +4,12 @@ Ein-Klick-Installer, der auf einer frischen OBS-Installation (macOS oder Windows
 
 Alles, was noch fehlt (Logo, Schrift, Hintergründe), steckt als Platzhalter drin und lässt sich später einfach austauschen.
 
+## Installer-App (empfohlen)
+
+`dc_onair Setup` ist eine App für Windows und macOS, die diese Einrichtung als Assistent erledigt: OBS finden, sichern, Szenen und Profil installieren, Encoder erkennen, Kameras zuweisen und mit einem Selbsttest jede Szene und jeden Übergang einmal durchschalten. Download, Ablauf und Entwicklung: [docs/APP.md](docs/APP.md). Welcher Übergang zwischen welchen Szenen läuft: [docs/UEBERGAENGE.md](docs/UEBERGAENGE.md).
+
+Die folgende Installation per Skript funktioniert weiterhin als Notlösung ohne App.
+
 ## Installation
 
 1. OBS Studio ab Version 30 installieren (<https://obsproject.com>) und einmal starten und wieder schließen.

@@ -1,0 +1,164 @@
+name: App (Installer für Windows und macOS)
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']          # Version-Tags (v1.0.0 usw.) erzeugen zusätzlich ein GitHub-Release mit den Installern
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  FORCE_COLOR: "0"
+
+jobs:
+  node-tests:
+    name: Node-Tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest, macos-latest]
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - name: ffmpeg für den Stinger-Test (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - run: npm ci
+      - run: npm test
+
+  e2e-obs:
+    name: Echtes OBS (Linux, Xvfb) - Selbsttest mit allen Übergängen und App-Oberfläche
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - name: OBS und Hilfsprogramme installieren
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends obs-studio xvfb libgl1-mesa-dri fonts-dejavu-core \
+            libgtk-3-0t64 libnss3 libasound2t64 libgbm1 libxss1
+      - run: npm ci
+      - name: Installer-Logik + Selbsttest (72 Szenenwechsel)
+        run: node tests/e2e_obs.js --shots shots-obs
+      - name: App-Oberfläche durchklicken (Electron unter Xvfb)
+        run: node tests/electron_flow.js shots-app
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: selbsttest-screenshots
+          path: |
+            shots-obs
+            shots-app
+
+  build-windows:
+    name: Windows-Installer (NSIS)
+    runs-on: windows-latest
+    needs: [node-tests]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run dist:win
+      - name: Installer-Smoke-Test (stille Installation, gepackte CLI)
+        shell: pwsh
+        run: ./tests/smoke-packaged.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dc_onair-Setup-windows
+          path: dist/dc_onair-Setup-*-windows.exe
+          if-no-files-found: error
+
+  build-macos:
+    name: macOS-Installer (dmg, universal)
+    runs-on: macos-latest
+    needs: [node-tests]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - name: dmg bauen (ad-hoc-Signatur; ohne Zertifikate, daher auch in Pull Requests)
+        run: npm run dist:mac
+        env:
+          CSC_FOR_PULL_REQUEST: "true"
+      - name: dmg-Smoke-Test (Signatur, Architekturen, gepackte CLI)
+        run: bash tests/smoke-packaged.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dc_onair-Setup-macos
+          path: dist/dc_onair-Setup-*-macos.dmg
+          if-no-files-found: error
+
+  # Optional und nicht blockierend: echtes OBS auf den Runnern. Windows- und macOS-Runner haben keine echte Grafikkarte,
+  # deshalb kann OBS dort scheitern. Das Ergebnis zeigt trotzdem, wie weit Quellentypen und Pfade tragen.
+  obs-real-windows:
+    name: Echtes OBS (Windows, optional)
+    runs-on: windows-latest
+    needs: [build-windows]
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: choco install obs-studio -y --no-progress
+      - name: Installieren und Selbsttest
+        shell: pwsh
+        run: |
+          node cli/dc-onair.js status
+          node cli/dc-onair.js install --service twitch --quality 1080p60
+          node cli/dc-onair.js selftest --shots shots-win
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: obs-real-windows, path: shots-win, if-no-files-found: ignore }
+
+  obs-real-macos:
+    name: Echtes OBS (macOS, optional)
+    runs-on: macos-latest
+    needs: [build-macos]
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: brew install --cask obs
+      - name: Installieren und Selbsttest
+        run: |
+          node cli/dc-onair.js status
+          node cli/dc-onair.js install --service twitch --quality 1080p60
+          node cli/dc-onair.js selftest --shots shots-mac
+      - name: Diagnose (OBS-Log, Bildschirm)
+        if: failure()
+        run: |
+          mkdir -p shots-mac
+          ps aux | grep -i "[O]BS" | head -5 || true
+          screencapture -x shots-mac/bildschirm.png || true
+          for f in "$HOME/Library/Application Support/obs-studio/logs/"*.txt; do echo "== $f"; tail -n 60 "$f"; cp "$f" shots-mac/ || true; done
+          ls -la "$HOME/Library/Application Support/obs-studio" || true
+          cat "$HOME/Library/Application Support/obs-studio/user.ini" 2>/dev/null | head -30 || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: obs-real-macos, path: shots-mac, if-no-files-found: ignore }
+
+  release:
+    name: Release (nur bei Tags)
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    needs: [build-windows, build-macos, e2e-obs]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: release, merge-multiple: true, pattern: dc_onair-Setup-* }
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
+          generate_release_notes: true
