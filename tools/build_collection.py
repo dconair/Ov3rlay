@@ -217,7 +217,7 @@ class Collection:
         # Laufband: liest ticker.txt (Tracklist, laufender Titel, Ort), läuft endlos von rechts nach links
         self.text("Txt Ticker", "", 22, mono=True, bold=True, from_file=True, text_file=self.asset("ticker.txt"),
                   filters=[("scroll_filter", "Lauftext", {"speed_x": 90.0, "speed_y": 0.0, "loop": True,
-                                                          "limit_cx": True, "cx": W, "limit_cy": False})])
+                                                          "limit_cx": False, "limit_cy": False})])
         # Browserquellen für Alerts und Chat (transparente Seiten, selbst gestaltet)
         self.web("Web Alerts", "web/alerts.html")
         self.web("Web Chat", "web/chat.html")

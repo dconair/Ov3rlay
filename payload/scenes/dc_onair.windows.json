@@ -1142,8 +1142,7 @@
       "speed_x": 90.0,
       "speed_y": 0.0,
       "loop": true,
-      "limit_cx": true,
-      "cx": 1920,
+      "limit_cx": false,
       "limit_cy": false
      },
      "mixers": 0,
