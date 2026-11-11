@@ -25,7 +25,7 @@ Dc status
 Dc encoder
 Dc cameras
 Dc matrix
-Dc install --service twitch --quality 1080p30
+Dc install --service twitch --quality 1080p60
 $scene = Join-Path $env:DC_OBS_CONFIG 'basic\scenes\dc_onair.json'
 $text = Get-Content $scene -Raw
 if ($text.Contains('{{')) { throw 'offene Platzhalter in der Szenen-Datei' }

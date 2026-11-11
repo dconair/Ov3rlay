@@ -66,7 +66,7 @@ function stepSettings() {
     h('h2', {}, 'Streaming-Einstellungen'),
     h('p', { class: 'lead' }, 'Der Stream-Schlüssel wird nicht abgefragt und nicht gespeichert. Den trägst du später in OBS ein.'),
     h('div', { class: 'card' }, h('strong', {}, 'Plattform'), ...Object.entries(i.services).map(([k, v]) => radio('service', k, v))),
-    h('div', { class: 'card' }, h('strong', {}, 'Qualität'), ...i.qualities.map((q) => radio('quality', q, q, q === '1080p30' ? 'empfohlen für unterwegs (IRL)' : ''))),
+    h('div', { class: 'card' }, h('strong', {}, 'Qualität'), ...i.qualities.map((q) => radio('quality', q, q, q === '1080p60' ? 'empfohlen (flüssig, passt zum Stinger mit 60 fps)' : q === '1080p30' ? 'spart Bitrate bei schwachem Netz' : ''))),
     h('div', { class: 'card' }, h('strong', {}, 'Encoder'), h('div', { class: 'row' },
       h('select', { 'aria-label': 'Encoder', onchange: (e) => { c.encoder = e.target.value; } },
         ...i.encoder.options.map((e) => h('option', { value: e.id, selected: c.encoder === e.id }, e.label + (e.id === i.encoder.suggested ? ' (erkannt)' : '')))))),
