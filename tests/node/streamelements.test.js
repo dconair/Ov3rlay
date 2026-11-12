@@ -40,3 +40,26 @@ test('connect: ohne Token keine Verbindung; mit Token Abo auf beide Themen und W
   assert.deepStrictEqual(got.map((a) => a.type), ['follow']);
   c.stop();
 });
+
+test('Chat: Nachrichten, Rollen und Löschungen', () => {
+  const chat = (data) => ({ type: 'message', topic: 'channel.chat', data: { v: 1, provider: 'youtube', ...data } });
+  const m = se.fromChat(chat({ event: 'message', id: 'm1', text: 'Hallo', author: { id: 'u1', name: 'Mara', roles: ['moderator'] } }));
+  assert.deepStrictEqual(m, { event: 'message', id: 'm1', uid: 'u1', user: 'Mara', text: 'Hallo', provider: 'youtube', mod: true });
+  assert.strictEqual(se.fromChat(chat({ event: 'message', id: 'm2', text: 'x', author: { login: 'kai', roles: ['subscriber'] } })).mod, false);
+  assert.deepStrictEqual(se.fromChat(chat({ event: 'message_deleted', message_id: 'm1' })), { event: 'message_deleted', id: 'm1' });
+  assert.strictEqual(se.fromChat(chat({ event: 'user_cleared', user: { id: 'u1' } })).uid, 'u1');
+  assert.strictEqual(se.fromChat(chat({ event: 'chat_cleared' })).event, 'chat_cleared');
+  assert.strictEqual(se.fromChat(chat({ event: 'unbekannt' })), null);
+});
+
+test('connectChat abonniert nur channel.chat', async () => {
+  const sockets = [];
+  class FakeWS { constructor() { this.sent = []; sockets.push(this); setTimeout(() => this.onopen && this.onopen(), 0); } send(s) { this.sent.push(JSON.parse(s)); } close() {} }
+  const got = [];
+  const c = se.connectChat({ seToken: 'T' }, (e) => got.push(e), FakeWS);
+  await new Promise((r) => setTimeout(r, 100));
+  assert.deepStrictEqual(sockets[0].sent.map((m) => m.data.topic), ['channel.chat']);
+  sockets[0].onmessage({ data: JSON.stringify({ type: 'message', topic: 'channel.chat', data: { event: 'chat_cleared' } }) });
+  assert.strictEqual(got.length, 1);
+  c.stop();
+});

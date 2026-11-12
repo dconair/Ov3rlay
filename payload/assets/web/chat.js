@@ -1,11 +1,13 @@
-// Chat: liest den Twitch-Chat anonym (nur Lesen, keine Anmeldung, kein Token) und zeigt ihn mit kleiner Animation.
+// Chat mit kleiner Animation. Quellen: StreamElements (Twitch + YouTube zusammen, wenn seToken gesetzt ist)
+// oder der Twitch-Chat anonym (nur Lesen, keine Anmeldung, kein Token).
 (function () {
   var cfg = window.DC_CONFIG || {};
   var box = document.getElementById("chat");
   var max = cfg.chatMax || 6, life = (cfg.chatSeconds || 25) * 1000;
 
-  function add(user, text, mod) {
+  function add(user, text, mod, id, uid, provider) {
     var m = document.createElement("div"); m.className = "msg" + (mod ? " mod" : "");
+    if (id) m.dataset.id = id; if (uid) m.dataset.uid = uid; if (provider) m.dataset.provider = provider;
     var b = document.createElement("b"); b.textContent = user;
     m.append(b, document.createTextNode(text)); box.append(m);
     while (box.children.length > max) drop(box.firstElementChild);
@@ -16,6 +18,15 @@
     m.classList.add("out"); setTimeout(function () { m.remove(); }, 360);
   }
   window.dcChat = add; // dcChat("name", "text", istMod)
+  function removeWhere(attr, value) {
+    Array.prototype.slice.call(box.children).forEach(function (m) { if (m.dataset[attr] === String(value)) drop(m); });
+  }
+  function fromStreamElements(e) {
+    if (e.event === "message") add(e.user, e.text, e.mod, e.id, e.uid, e.provider);
+    else if (e.event === "message_deleted") removeWhere("id", e.id);
+    else if (e.event === "user_cleared") removeWhere("uid", e.uid);
+    else if (e.event === "chat_cleared") Array.prototype.slice.call(box.children).forEach(drop);
+  }
 
   function parse(line) {
     var tags = {}, rest = line;
@@ -42,8 +53,10 @@
   }
 
   var inObs = typeof window.obsstudio !== "undefined";
-  if (cfg.twitchChannel) connect(cfg.twitchChannel);
-  if (!cfg.twitchChannel && (!inObs || cfg.demo)) {
+  var viaSE = !!(cfg.seToken && window.dcStreamElements);
+  if (viaSE) window.dcStreamElements.connectChat(cfg, fromStreamElements); // Twitch und YouTube; der anonyme Twitch-Chat bleibt dann aus (sonst doppelt)
+  else if (cfg.twitchChannel) connect(cfg.twitchChannel);
+  if (!viaSE && !cfg.twitchChannel && (!inObs || cfg.demo)) {
     var demo = [["mara_k", "Wo seid ihr gerade??", 0], ["nico", "das Set ist 🔥", 0], ["ModLea", "Gleich Drop, bleibt dran!", 1],
       ["tom_93", "Ton ist mega", 0], ["jule", "Track-ID bitte!", 0], ["kai_", "Gruß aus Köln", 0]];
     var k = 0; setInterval(function () { var d = demo[k++ % demo.length]; add(d[0], d[1], d[2]); }, 1800);
