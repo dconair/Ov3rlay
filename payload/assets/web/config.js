@@ -8,6 +8,8 @@ window.DC_CONFIG = {
   startAt: "",            // oder feste Uhrzeit, zum Beispiel "21:30" (hat Vorrang)
   brbMinutes: 5,          // Countdown auf "BRB"
   brbAt: "",
+  seToken: "",            // StreamElements "Overlay Token" (nicht das JWT) für echte Alerts, siehe README. Leer = keine Anbindung
+  seChannelId: "",        // optional: StreamElements-Kanal-ID, falls die Anmeldung ohne sie nicht klappt
   alertSeconds: 6,        // Anzeigedauer eines Alerts
   demo: false             // true = Testnachrichten und Test-Alerts auch in OBS (zum Ausprobieren)
 };

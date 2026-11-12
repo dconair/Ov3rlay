@@ -96,7 +96,7 @@ test('Eigene lokale Dateien (Partner-Logo, Laufband, Web-Einstellungen) überste
 
 test('Alerts- und Chat-Skripte sind gültiges JavaScript', () => {
   const { execFileSync } = require('node:child_process');
-  for (const f of ['alerts.js', 'chat.js', 'countdown.js', 'config.js']) {
+  for (const f of ['alerts.js', 'chat.js', 'countdown.js', 'config.js', 'streamelements.js']) {
     execFileSync(process.execPath, ['--check', nodePath.join(payloadDir, 'assets', 'web', f)]);
   }
 });
