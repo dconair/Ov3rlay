@@ -1,0 +1,7 @@
+/* Gemeinsame Gestaltung für Alerts und Chat: flach, hart, ohne Verläufe. */
+@font-face { font-family: "Anton"; src: local("Anton"), local("Anton Regular"), url("../fonts/Anton-Regular.ttf"); }
+@font-face { font-family: "Space Mono"; font-weight: 400; src: local("Space Mono"), url("../fonts/SpaceMono-Regular.ttf"); }
+@font-face { font-family: "Space Mono"; font-weight: 700; src: local("Space Mono Bold"), url("../fonts/SpaceMono-Bold.ttf"); }
+:root { --ink: #0e0f0f; --bone: #ece6d6; --lime: #c8f31d; --hot: #ff6200; --muted: #8c8778; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: transparent; font-family: "Space Mono", monospace; color: var(--bone); }

@@ -16,7 +16,7 @@ OUT = ROOT / "payload" / "scenes"
 PREV_VER = 503316482  # OBS 30.0.2
 W, H = 1920, 1080
 
-TOKENS = ["ASSETS", "FONT_FACE", "CAM_IPHONE_ID", "CAM_IPHONE_NAME", "CAM_SONY_ID", "CAM_SONY_NAME"]
+TOKENS = ["ASSETS", "FONT_FACE", "FONT_MONO", "CAM_IPHONE_ID", "CAM_IPHONE_NAME", "CAM_SONY_ID", "CAM_SONY_NAME"]
 
 # Quellen-IDs und Einstellungen, die sich je Betriebssystem unterscheiden.
 # "linux" dient nur den automatischen Tests mit einem echten OBS.
@@ -100,11 +100,24 @@ class Collection:
     def image(self, name, rel, **kw):
         return self.source("image_source", name, {"file": self.asset(rel), "unload": False}, **kw)
 
-    def text(self, name, text, size, color="light", bold=True):
-        font = {"face": "{{FONT_FACE}}", "size": size, "flags": 1 if bold else 0, "style": "Bold" if bold else "Regular"}
+    def text(self, name, text, size, color="light", mono=False, bold=False, filters=None, **extra):
+        """Anton (Überschrift) oder Space Mono (mono=True); Anton gibt es nur in einem Schnitt."""
+        bold = bold and mono
+        face = "{{FONT_MONO}}" if mono else "{{FONT_FACE}}"
+        style = "Bold" if bold else "Regular"
+        font = {"face": face, "size": size, "flags": 1 if bold else 0, "style": style}
         return self.source("text_ft2_source_v2", name, {
             "text": text, "font": font, "color1": self.colors[color], "color2": self.colors[color],
-            "drop_shadow": True, "outline": False, "word_wrap": False})
+            "drop_shadow": False, "outline": False, "word_wrap": False, **extra}, filters=filters)
+
+    def web(self, name, rel):
+        """Browserquelle mit lokaler Seite (Alerts, Chat). Das Linux-Testsystem hat keinen Browser, dort entfällt sie."""
+        if self.platform == "linux":
+            return None
+        return self.source("browser_source", name, {
+            "is_local_file": True, "local_file": self.asset(rel), "url": "", "width": W, "height": H,
+            "fps_custom": True, "fps": 60, "css": "", "shutdown": False, "restart_when_active": False,
+            "reroute_audio": False})
 
     def scene(self, name, hotkey_key=None, transition=None):
         scene = Scene(self, name)
@@ -157,17 +170,26 @@ class Collection:
 
     # -- Inhalt --
     def define_sources(self):
-        c, t = self.colors, BRAND["texts"]
+        t = BRAND["texts"]
         # Medien und Grafiken
         self.source("ffmpeg_source", "BG Loop", {
             "local_file": self.asset("video/bg_loop.mp4"), "is_local_file": True, "looping": True,
             "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
+        self.source("ffmpeg_source", "EQ Bars", {
+            "local_file": self.asset("video/eq_bars.webm"), "is_local_file": True, "looping": True,
+            "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
+        self.source("ffmpeg_source", "EQ Bars Gradient", {
+            "local_file": self.asset("video/eq_bars_gradient.webm"), "is_local_file": True, "looping": True,
+            "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
+        self.source("ffmpeg_source", "Live Tag", {
+            "local_file": self.asset("video/live_tag.webm"), "is_local_file": True, "looping": True,
+            "close_when_inactive": False, "restart_on_activate": False, "hw_decode": False})
         self.image("Logo", "branding/logo.png")
         self.image("Frame Cam", "overlays/frame_cam.png")
         self.image("Lower Third Plate", "overlays/lower_third.png")
-        self.image("Band Stripes", "overlays/band_stripes.png", filters=[
-            ("scroll_filter", "Scroll", {"speed_x": 90.0, "speed_y": 0.0, "loop": True, "limit_cx": False,
-                                         "limit_cy": False})])
+        self.image("Ticker Plate", "overlays/ticker.png")
+        self.image("Partner Plate", "overlays/partner_plate.png")
+        self.image("Partner Logo", "branding/partner_logo.png")
         # Kameras: je Quelle eine Platzhalterkarte darunter, falls das Gerät fehlt
         vid_id, vid_cfg = self.p["video"]
         for cam in BRAND["cameras"]:
@@ -190,11 +212,23 @@ class Collection:
                         ("limiter_filter", "Limiter", {"threshold": -3.0, "release_time": 60.0})])
         # Texte
         for key, label in (("starting", "Starting"), ("brb", "BRB"), ("ending", "Ending"), ("lost", "Lost")):
-            self.text(f"Txt {label}", t[key][0], 96)
-            self.text(f"Txt {label} Sub", t[key][1], 40, bold=False)
-        self.text("Txt Handle", BRAND["handle"], 38, color="primary")
-        self.text("Txt LT Name", t["lower_third"][0], 64)
-        self.text("Txt LT Title", t["lower_third"][1], 34, bold=False)
+            eyebrow, headline, sub = t[key]
+            self.text(f"Txt {label} Eyebrow", eyebrow, 30, color="primary", mono=True, bold=True)
+            self.text(f"Txt {label}", headline, 150)
+            self.text(f"Txt {label} Sub", sub, 30, color="muted", mono=True)
+        self.text("Txt Handle", BRAND["handle"], 26, color="primary", mono=True, bold=True)
+        self.text("Txt Partner Name", BRAND["coop"]["name"].upper(), 18, mono=True, bold=True)
+        self.text("Txt LT Name", t["lower_third"][0].upper(), 26, mono=True, bold=True)
+        self.text("Txt LT Title", t["lower_third"][1], 15, color="primary", mono=True, bold=True)
+        # Laufband: liest ticker.txt (Tracklist, laufender Titel, Ort), läuft endlos von rechts nach links
+        self.text("Txt Ticker", "", 22, mono=True, bold=True, from_file=True, text_file=self.asset("ticker.txt"),
+                  filters=[("scroll_filter", "Lauftext", {"speed_x": 90.0, "speed_y": 0.0, "loop": True,
+                                                          "limit_cx": False, "limit_cy": False})])
+        # Browserquellen für Alerts und Chat (transparente Seiten, selbst gestaltet)
+        self.web("Web Alerts", "web/alerts.html")
+        self.web("Web Chat", "web/chat.html")
+        self.web("Web Countdown Start", "web/countdown_start.html")
+        self.web("Web Countdown BRB", "web/countdown_brb.html")
 
     def define_scenes(self):
         move_or_slide = ("dc Move", 600) if self.move else ("dc Slide", 450)
@@ -204,13 +238,44 @@ class Collection:
         # Wiederverwendbare Bausteine (Unterstrich = Hilfsszene)
         lt = self.scene("_Lower Third Inhalt")
         lt.add("Lower Third Plate", (0, 0))
-        lt.add("Txt LT Name", (110, 18))
-        lt.add("Txt LT Title", (112, 98))
-        bug = self.scene("_Branding Bug")
-        bug.add("Logo", (1760, 40), scale=0.12)
+        lt.add("Txt LT Name", (32, 20))
+        lt.add("Txt LT Title", (34, 62))
         lower = self.scene("_Lower Third")
-        lower.add("_Lower Third Inhalt", (80, 800), visible=False, show=("slide_transition", {"direction": "left"}),
-                  hide=("slide_transition", {"direction": "right"}), hotkeys=("OBS_KEY_L", "OBS_KEY_H"))
+        lower.add("_Lower Third Inhalt", (40, 890), visible=False, show=("slide_transition", {"direction": "right"}),
+                  hide=("slide_transition", {"direction": "left"}), hotkeys=("OBS_KEY_L", "OBS_KEY_H"))
+        bug = self.scene("_Bug")
+        bug.add("Logo", (40, 36), scale=0.09)
+        bug.add("Live Tag", (96, 39))
+        # Partner-Schild (nur auf Abruf, standardmäßig aus): Strg+Alt+P ein, Strg+Alt+O aus
+        pin = self.scene("_Partner Inhalt")
+        pin.add("Partner Plate", (0, 0))
+        pin.add("Partner Logo", (10, 5), bounds=(40, 40), bounds_type=BOUNDS_INNER)
+        pin.add("Txt Partner Name", (62, 14))
+        partner = self.scene("_Partner")
+        partner.add("_Partner Inhalt", (1590, 36), visible=False, show=("slide_transition", {"direction": "left"}),
+                    hide=("slide_transition", {"direction": "right"}), hotkeys=("OBS_KEY_P", "OBS_KEY_O"))
+        # Laufband unten: Tracklist, laufender Titel, Ort. Standardmäßig an, Strg+Alt+Z aus, Strg+Alt+T an.
+        tin = self.scene("_Ticker Inhalt")
+        tin.add("Ticker Plate", (0, 0))
+        tin.add("Txt Ticker", (0, 11))
+        ticker = self.scene("_Ticker")
+        ticker.add("_Ticker Inhalt", (0, H - 46), show=("slide_transition", {"direction": "up"}),
+                   hide=("slide_transition", {"direction": "down"}), hotkeys=("OBS_KEY_T", "OBS_KEY_Z"))
+        web = None
+        if "Web Alerts" in self.sources:
+            web = self.scene("_Web")
+            web.add("Web Chat", (0, 0))
+            web.add("Web Alerts", (0, 0))
+
+        def overlay(scene, bug=True, lower=True):
+            if bug:
+                scene.add("_Bug", (0, 0))
+            scene.add("_Partner", (0, 0))
+            if lower:
+                scene.add("_Lower Third", (0, 0))
+            scene.add("_Ticker", (0, 0))
+            if web:
+                scene.add("_Web", (0, 0))
 
         def cam(scene, label_off, label_cam, pos, size, frame=False, bounds=BOUNDS_INNER):
             scene.add(label_off, pos, bounds=size, bounds_type=bounds)
@@ -218,42 +283,46 @@ class Collection:
             if frame:
                 scene.add("Frame Cam", pos, bounds=size, bounds_type=BOUNDS_INNER)
 
-        def title_card(scene, label):
+        def title_card(scene, label, countdown=None, eq="EQ Bars"):
+            """Titelszene: Hintergrund, Equalizer, Text links, rechts Countdown (Starting, BRB) oder großes Logo."""
             scene.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
-            scene.add("Band Stripes", (0, H - 40))
-            scene.add("Logo", (960, 360), scale=0.42, align=ALIGN_CENTER)
-            scene.add(f"Txt {label}", (960, 700), align=ALIGN_CENTER)
-            scene.add(f"Txt {label} Sub", (960, 800), align=ALIGN_CENTER)
-            scene.add("Txt Handle", (960, 960), align=ALIGN_CENTER)
+            scene.add(eq, (0, H - 46 - 170))
+            scene.add(f"Txt {label} Eyebrow", (120, 290))
+            scene.add(f"Txt {label}", (120, 340))
+            scene.add(f"Txt {label} Sub", (120, 700))
+            scene.add("Txt Handle", (120, 770))
+            if countdown:
+                if countdown in self.sources:  # im Linux-Testsystem gibt es keine Browserquellen
+                    scene.add(countdown, (0, 0))
+                overlay(scene, bug=True, lower=False)
+            else:
+                scene.add("Logo", (1440, 300), scale=0.75)
+                overlay(scene, bug=False, lower=False)
 
-        title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting")
+        title_card(self.scene("01 Starting Soon", "OBS_KEY_1"), "Starting", "Web Countdown Start", eq="EQ Bars Gradient")
 
         s = self.scene("02 Kamera iPhone", "OBS_KEY_2", move_or_slide)
-        cam(s, off_iphone, cam_iphone, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_Lower Third", (0, 0))
+        cam(s, off_iphone, cam_iphone, (0, 0), (W, H)); overlay(s)
 
         s = self.scene("03 Kamera Sony", "OBS_KEY_3", move_or_slide)
-        cam(s, off_sony, cam_sony, (0, 0), (W, H))
-        s.add("_Branding Bug", (0, 0)); s.add("_Lower Third", (0, 0))
+        cam(s, off_sony, cam_sony, (0, 0), (W, H)); overlay(s)
 
         s = self.scene("04 Dual Cam", "OBS_KEY_4", move_or_slide)
         s.add("BG Loop", (0, 0), bounds=(W, H), bounds_type=BOUNDS_OUTER)
-        cam(s, off_iphone, cam_iphone, (50, 290), (880, 495), frame=True)
-        cam(s, off_sony, cam_sony, (990, 290), (880, 495), frame=True)
-        s.add("Logo", (960, 120), scale=0.16, align=ALIGN_CENTER)
-        s.add("Band Stripes", (0, H - 40))
-        s.add("_Lower Third", (0, 0))
+        cam(s, off_iphone, cam_iphone, (50, 190), (880, 495), frame=True)
+        cam(s, off_sony, cam_sony, (990, 190), (880, 495), frame=True)
+        overlay(s)
 
         s = self.scene("05 Screen + Cam", "OBS_KEY_5", move_or_slide)
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)
-        cam(s, off_sony, cam_sony, (1330, 745), (540, 304), frame=True)
-        s.add("_Branding Bug", (0, 0)); s.add("_Lower Third", (0, 0))
+        cam(s, off_sony, cam_sony, (1330, 690), (540, 304), frame=True)
+        overlay(s, bug=False)
 
         s = self.scene("06 Screen Only", "OBS_KEY_6", move_or_slide)
         s.add("Screen", (0, 0), bounds=(W, H), bounds_type=BOUNDS_INNER)
-        s.add("_Branding Bug", (0, 0))
+        overlay(s, bug=False, lower=False)
 
-        title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB")
+        title_card(self.scene("07 BRB", "OBS_KEY_7"), "BRB", "Web Countdown BRB")
         title_card(self.scene("08 Ending", "OBS_KEY_8"), "Ending")
         # Notfall-Szene für IRL/Verbindungsabbruch: eingebauter Fade (OBS speichert nur konfigurierbare Übergänge, daher kein eigener) statt Stinger, damit sie sofort greift
         title_card(self.scene("09 Connection Lost", "OBS_KEY_9", ("Fade", 300)), "Lost")
@@ -307,7 +376,7 @@ def build(platform, move):
 def write_all():
     OUT.mkdir(parents=True, exist_ok=True)
     (ROOT / "payload" / "brand.env").write_text(
-        f"COLLECTION={BRAND['collection']}\nNAME={BRAND['name']}\nFONT_FAMILY={BRAND['font']['family']}\n",
+        f"COLLECTION={BRAND['collection']}\nNAME={BRAND['name']}\nFONT_FAMILY={BRAND['font']['family']}\nFONT_MONO={BRAND['font']['mono']}\n",
         encoding="utf-8")
     for platform in ("macos", "windows"):
         for move in (False, True):

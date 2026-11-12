@@ -26,21 +26,23 @@ Der Stream-Schlüssel wird nicht abgefragt und nicht gespeichert. Konto verbinde
 
 ## Was eingerichtet wird
 
+Das Design ist flach und bewusst zurückhaltend: Schwarz, Papierweiß, Limette als Akzentfarbe und Orange nur für den Partner und den LIVE-Punkt. Schriften sind Anton (Überschriften) und Space Mono (alles andere). Es gibt keine Verläufe und kein Leuchten, damit bei IRL- und DJ-Streams das Bild im Vordergrund bleibt.
+
 | Szene | Inhalt |
 |---|---|
-| 01 Starting Soon | animierter Hintergrund, Logo, Text, scrollendes Streifenband |
-| 02 Kamera iPhone | iPhone vollbild, Logo-Bug, Lower Third |
-| 03 Kamera Sony | Sony A7 II vollbild, Logo-Bug, Lower Third |
-| 04 Dual Cam | beide Kameras nebeneinander mit Eckrahmen |
+| 01 Starting Soon | Überschrift, Countdown mit rollenden Ziffern, springende Equalizer-Balken, Laufband |
+| 02 Kamera iPhone | iPhone vollbild, kleines Logo mit blinkendem LIVE-Zeichen, Laufband |
+| 03 Kamera Sony | Sony A7 II vollbild, dasselbe |
+| 04 Dual Cam | beide Kameras nebeneinander mit Eckmarken |
 | 05 Screen + Cam | Bildschirm mit Sony-Kamera unten rechts |
 | 06 Screen Only | nur Bildschirm |
-| 07 BRB | Pausenbild |
+| 07 BRB | Pausenbild mit Countdown "Zurück in" |
 | 08 Ending | Abspann |
 | 09 Connection Lost | Notfallbild bei Verbindungsabbruch (IRL) |
 
-Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen eingebunden und werden einmal zentral gepflegt.
+Hilfsszenen mit `_` am Anfang (Logo/LIVE, Lower Third, Partner, Laufband, Web) sind in allen Szenen eingebunden und werden einmal zentral gepflegt.
 
-**Übergänge:** `dc Stinger` (Standard, animierter Farbwisch mit Logo, 60 fps), `dc Slide`, `dc Swipe`, `dc Fade Black` und der eingebaute `Fade`. Pro Szene:
+**Übergänge:** `dc Stinger` (Standard, harte Farbwische in Limette, Papierweiß und Schwarz mit Logo, 60 fps), `dc Slide`, `dc Swipe`, `dc Fade Black` und der eingebaute `Fade`. Pro Szene:
 
 | Wechsel nach | Übergang |
 |---|---|
@@ -48,13 +50,48 @@ Hilfsszenen mit `_` am Anfang (Lower Third, Logo-Bug) sind in allen Szenen einge
 | 02 bis 06 (Kamera- und Screen-Szenen) | `dc Slide` (450 ms), mit Move-Plugin `dc Move` (600 ms) |
 | 09 Connection Lost | `Fade` (300 ms, eingebaut), damit das Notfallbild sofort greift |
 
- Der Lower Third fährt beim Einblenden und Ausblenden mit Slide-Animation ein und aus.
+**Bewegung:** blinkender LIVE-Punkt, laufendes Band unten, Streifen im Hintergrund, Equalizer-Balken auf den Titelszenen, rollender Countdown, harte Wisch-Übergänge. Lower Third, Partner-Schild und Laufband fahren per Slide ein und aus. Alerts und Chat haben eigene Animationen (siehe unten).
 
-**Effekte:** Kamera-Farbkorrektur und Schärfe, scrollendes Warnband, animierter Hintergrund-Loop, Rahmen mit Eckklammern.
-
-**Audio:** Desktop-Ton und Mikrofon (`Mic/Aux`) mit Rauschunterdrückung, Verstärkung, Kompressor und Limiter.
+**Audio:** Desktop-Ton und Mikrofon (`Mic/Aux`) mit Rauschunterdrückung, Verstärkung, Kompressor und Limiter. Kamera-Farbkorrektur und Schärfe sind auf den Kameraquellen eingestellt.
 
 **Fehlt eine Kamera**, zeigt die Szene eine Karte "Kamera nicht verbunden" statt eines schwarzen Bildes.
+
+### Laufband mit Tracklist, laufendem Titel und Ort
+
+Das Band unten liest den Text aus der Datei `ticker.txt` im Ordner der installierten Dateien (macOS: `~/Library/Application Support/dc_onair/assets/`, Windows: `%APPDATA%\dc_onair\assets\`). Datei öffnen, Text ändern, speichern: OBS übernimmt die Änderung selbst. Trenne Abschnitte mit `///` und halte die Zeile zwischen etwa 150 und 300 Zeichen lang. Die Datei wird bei einer Neuinstallation nicht überschrieben.
+
+**Automatisch aus dem DJ-Programm:** Die Kommandozeile hat dafür den Befehl `ticker`. Er schreibt `ticker.txt` bei jedem Titelwechsel neu und führt dabei eine Liste der zuletzt gespielten Titel mit ("NOW PLAYING: ..." und "ZULETZT: ..."). Den laufenden Titel bekommt er von einem kleinen Zusatzprogramm, das dein DJ-Programm ausliest:
+
+```
+node cli/dc-onair.js ticker --file "/Pfad/zu/now-playing.txt" --base "LIVE  ///  Berlin"
+node cli/dc-onair.js ticker --unbox                      # live von Unbox (ws://localhost:8080/ws)
+```
+
+Passende Zusatzprogramme, die ich aus deren Dokumentation kenne (Stand heute, nicht von mir mit echter DJ-Software getestet): [Unbox](https://github.com/erikrichardlarson/unbox) (Rekordbox, Serato, Traktor, VirtualDJ, Mixxx, Denon, djay Pro; liefert den Titel per WebSocket), [What's Now Playing](https://github.com/whatsnowplaying/whats-now-playing) (Serato, Traktor, VirtualDJ, Denon, djay Pro, DJUCED, Mixxx; Rekordbox nur über die Zusatz-App EarShot) und die Textdatei-Ausgabe der App "Now Playing" (nowplayingapp.com). Wichtig: Diese Programme liefern den **laufenden** Titel, aber keine Warteschlange und keine kommende Playlist. Die Liste der zuletzt gespielten Titel baut der Befehl selbst auf. Er braucht Node.js 22 oder neuer.
+
+**Für Rekordbox und djay:** [Unbox](https://github.com/erikrichardlarson/unbox) unterstützt beide (laut Projektseite für macOS und Windows). Unbox starten, im Menü "Rekordbox" oder "djay Pro" wählen, dann in einem zweiten Fenster `node cli/dc-onair.js ticker --unbox` laufen lassen. Bei Rekordbox kann der Titel je nach Version erst nach einiger Zeit Spielzeit erscheinen, weil er aus dem Verlauf gelesen wird. Das habe ich nicht mit deiner Software geprüft.
+
+### Partner-Schild (nur auf Abruf)
+
+Wenn der Partner dabei ist, blendet **Strg+Alt+P** oben rechts ein kleines Schild mit Logo und Name ein, **Strg+Alt+O** blendet es wieder aus. Nach der Installation ist es aus. Es ist bewusst klein gehalten und kein zweiter Stream.
+
+**Partner-Logo:** Mitgeliefert ist nur ein neutraler Platzhalter. Das echte Logo gehört dem Partner und liegt deshalb nicht im Repository. Lege es lokal als `assets/branding/partner_logo.png` in den Ordner der installierten Dateien (siehe oben, Unterordner `branding`). Eine Neuinstallation überschreibt diese Datei nicht. Den Namen änderst du in OBS bei der Textquelle `Txt Partner Name` oder dauerhaft in `brand/brand.json` unter `coop.name` (danach `python3 tools/build.py`).
+
+### Alerts und Chat
+
+Beide sind Browserquellen mit eigenen Seiten unter `assets/web/` (Quellen `Web Alerts` und `Web Chat` in der Hilfsszene `_Web`), transparent und im selben Stil wie der Rest.
+
+- **Alerts im DJ-Thema:** Eine Schallplatte rollt von links ein und dreht auf, dann knallt die Karte mit einem Bass-Schlag rein (das Bild zuckt, Schallwellen-Ringe pulsieren), ein Equalizer springt über der Karte, die Platte scratcht, während der Name getippt wird. Als Zeitanzeige wandert ein Crossfader-Regler von rechts nach links. Zum Schluss rollt die Platte raus und die Karte fährt nach oben weg. Typen: Follower, Abo, Tip, Raid, Bits. Mehrere Alerts laufen nacheinander. Von Hand auslösen: `window.dcAlert({type: "follow", name: "mara_k"})`.
+- **Chat:** Nachrichten springen mit kleiner Bewegung ein und gleiten nach einer Weile wieder raus. Moderatoren, VIPs und der Kanalinhaber haben Orange, alle anderen Limette. **Twitch und YouTube zusammen:** Ist bei `seToken` (siehe StreamElements unten) ein Token eingetragen, zeigt der Chat die Nachrichten von Twitch und YouTube in einem Fluss. Gelöschte Nachrichten, Timeouts und Bans werden mitgenommen (YouTube meldet gelöschte Einzelnachrichten nicht). Emotes erscheinen vorerst als Text. **Nur Twitch ohne Token:** Der Twitch-Chat wird anonym gelesen (ohne Anmeldung): Kanalname in `assets/web/config.js` bei `twitchChannel` eintragen. Mit Token ist `twitchChannel` nicht nötig und der anonyme Weg bleibt aus, damit nichts doppelt erscheint.
+- **Vorschau:** Eine der Seiten (`alerts.html`, `chat.html`) per Doppelklick im Browser öffnen, dort laufen Testdaten. In OBS laufen die Testdaten nur, wenn in `config.js` `demo: true` steht.
+- **StreamElements (echte Alerts):** `web/streamelements.js` verbindet sich mit dem Echtzeit-Dienst von StreamElements und löst bei Follower, Abo (auch verschenkte), Bits, Raid und Tip die Alerts aus. Einrichten: Im StreamElements-Dashboard oben rechts auf dein Profilbild, Kanalname wählen, den **Overlay Token** kopieren und in `assets/web/config.js` bei `seToken` eintragen (OBS-Quelle `Web Alerts` danach einmal aktualisieren). Nimm den Overlay Token, nicht das JWT: Das JWT erlaubt viel mehr. Wenn du Twitch und weitere Konten verknüpft hast, kopiere den Token, während das gewünschte Konto gewählt ist. Falls nichts ankommt, trage zusätzlich die Kanal-ID bei `seChannelId` ein. Schaltest du bei StreamElements Alerts zusätzlich als eigene Browserquelle ein, kommen sie doppelt. Stand: gegen einen nachgebauten Server getestet, nicht gegen ein echtes StreamElements-Konto. Die genauen Felder für Abo, Bits und Raid sind in deren Dokumentation nur teilweise beschrieben. Nutze im StreamElements-Dashboard die Test-Alerts, um das einmal zu prüfen.
+- **Noch nicht angebunden:** Streamlabs sowie Kick und X im Chat (StreamElements kann sie liefern, ich habe sie nicht eingebaut oder geprüft). Der Chat-Teil wurde wie die Alerts nur gegen einen nachgebauten Server getestet.
+
+`config.js` bleibt bei einer Neuinstallation erhalten. Trage dort keine geheimen Schlüssel ein, wenn du die Datei teilst.
+
+### Countdown auf "Starting Soon" und "BRB"
+
+Beide Szenen zeigen einen großen Countdown mit rollenden Ziffern und einem Zeitbalken. Er zählt jedes Mal neu, wenn die Szene sichtbar wird (Dauer in `assets/web/config.js`: `startMinutes` und `brbMinutes`, Standard 5 Minuten). Alternativ eine feste Uhrzeit mit `startAt: "21:30"` oder `brbAt`. Bei null erscheint "Gleich geht's los" beziehungsweise "Wir sind gleich wieder da", in den letzten zehn Sekunden pulsieren die Ziffern.
 
 ### Optional: weiche Kamerawechsel mit "Move Transition"
 
@@ -66,6 +103,8 @@ Mit dem kostenlosen Plugin [Move Transition](https://obsproject.com/forum/resour
 |---|---|
 | Szene 1 bis 9 | Strg+Alt+1 bis 9 (macOS: Control+Option) |
 | Lower Third ein / aus | Strg+Alt+L / H |
+| Partner-Schild ein / aus | Strg+Alt+P / O |
+| Laufband ein / aus | Strg+Alt+T / Z |
 | Mikrofon stumm | Strg+Alt+M |
 | Desktop-Ton stumm | Strg+Alt+D |
 
@@ -96,14 +135,20 @@ Es reicht, die Dateien unter `payload/assets/` zu ersetzen (gleicher Dateiname) 
 
 | Datei | Zweck |
 |---|---|
-| `branding/logo.png` | Logo (Platzhalter, einfach durch das eigene Logo ersetzen) |
+| `branding/logo.png` | Logo (Platzhalter: Limetten-Quadrat mit "D", einfach durch das eigene Logo ersetzen) |
+| `branding/partner_logo.png` | Logo des Partners für das Partner-Schild (Platzhalter, echtes Logo lokal einsetzen, nicht committen) |
+| `ticker.txt` | Text des Laufbands (bleibt bei Neuinstallation erhalten) |
+| `web/config.js` | Einstellungen für Alerts und Chat (bleibt bei Neuinstallation erhalten) |
 | `video/stinger.webm` | Übergangsvideo, VP9 mit Transparenz, Deckungspunkt bei 520 ms |
 | `video/bg_loop.mp4` | animierter Hintergrund für Starting, BRB, Ending und Dual Cam |
-| `overlays/frame_cam.png` | Rahmen um Kamerabilder |
-| `overlays/lower_third.png` | Platte hinter Name und Titel |
+| `video/live_tag.webm` | LIVE-Zeichen mit blinkendem Punkt |
+| `video/eq_bars.webm` | springende Equalizer-Balken auf den Titelszenen |
+| `video/eq_bars_gradient.webm` | dieselben Balken mit wanderndem Limette-Orange-Verlauf, nur auf „Gleich geht’s los“ |
+| `overlays/frame_cam.png` | Eckmarken um Kamerabilder |
+| `overlays/lower_third.png`, `ticker.png`, `partner_plate.png` | Platten für Lower Third, Laufband und Partner-Schild |
 | `overlays/cam_offline_*.png` | Karte, wenn eine Kamera fehlt |
 
-**Schrift:** `.ttf` oder `.otf` in `payload/assets/fonts/` legen und in `payload/brand.env` bei `FONT_FAMILY=` den Familiennamen eintragen. Der Installer richtet die Schrift ein und trägt sie in alle Textquellen ein. Ohne Eintrag wird die Systemschrift genutzt (macOS: Helvetica Neue, Windows: Segoe UI).
+**Schrift:** Mitgeliefert sind Anton und Space Mono (SIL Open Font License; Lizenztexte liegen in `payload/assets/fonts/`). Der Installer richtet sie ein und trägt sie in alle Textquellen ein. Eigene Schriften: `.ttf` oder `.otf` in `payload/assets/fonts/` legen, in `brand/brand.json` bei `font.family` (Überschriften) und `font.mono` (Text, Laufband) die Familiennamen eintragen und `python3 tools/build.py` ausführen. Bei leerem Eintrag wird die Systemschrift genutzt (macOS: Helvetica Neue und Menlo, Windows: Segoe UI und Consolas).
 
 **Texte:** in OBS die Textquellen `Txt …` bearbeiten, oder dauerhaft in `brand/brand.json` ändern und neu bauen.
 

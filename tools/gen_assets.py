@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Erzeugt die Platzhalter-Grafiken und -Videos im Branding von brand/brand.json.
+"""Erzeugt die Grafiken und Videos im Branding von brand/brand.json (flaches Line-up-Design für IRL- und DJ-Streams).
 
 Benötigt: Python 3, Pillow, numpy und ffmpeg. Ergebnis: payload/assets/
+Mit --placeholder-logo entsteht zusätzlich brand/logo.png (nur einmal nötig, danach liegt dort das eigene Logo).
 Eigene Dateien (Logo, Hintergründe, Stinger) können später einfach unter
 demselben Namen in payload/assets/ ersetzt werden, die Szenen bleiben gleich.
+Bewusst flach: harte Kanten, Vollflächen, keine Verläufe und kein Leuchten.
 """
 import json
+import colorsys
 import math
 import shutil
 import subprocess
@@ -17,13 +20,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "payload" / "assets"
+FONTS = OUT / "fonts"
 W, H = 1920, 1080
-TAN = math.tan(math.radians(12))  # Neigung wie im Logo
-FONT_CANDIDATES = [
-    "/System/Library/Fonts/Helvetica.ttc",
-    "C:/Windows/Fonts/segoeuib.ttf",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-]
+TAN = math.tan(math.radians(12))  # Neigung der Wisch-Kanten im Stinger
 
 
 def hex_rgb(value):
@@ -32,17 +31,20 @@ def hex_rgb(value):
 
 
 BRAND = json.loads((ROOT / "brand" / "brand.json").read_text(encoding="utf-8"))
-ORANGE = hex_rgb(BRAND["colors"]["primary"])
-BLUE = hex_rgb(BRAND["colors"]["secondary"])
-DARK = hex_rgb(BRAND["colors"]["dark"])
-WHITE = hex_rgb(BRAND["colors"]["light"])
+LIME = hex_rgb(BRAND["colors"]["primary"])
+ORANGE = hex_rgb(BRAND["colors"]["secondary"])
+INK = hex_rgb(BRAND["colors"]["dark"])
+BONE = hex_rgb(BRAND["colors"]["light"])
+MUTED = hex_rgb(BRAND["colors"]["muted"])
+STRIPE = tuple(int(c + (255 - c) * 0.045) for c in INK)  # kaum sichtbare Streifen im Hintergrund
 
 
-def font(size):
-    for candidate in FONT_CANDIDATES:
-        if Path(candidate).exists():
-            return ImageFont.truetype(candidate, size)
-    return ImageFont.load_default(size)
+def anton(size):
+    return ImageFont.truetype(str(FONTS / "Anton-Regular.ttf"), size)
+
+
+def mono(size, bold=True):
+    return ImageFont.truetype(str(FONTS / ("SpaceMono-Bold.ttf" if bold else "SpaceMono-Regular.ttf")), size)
 
 
 def smoothstep(lo, hi, x):
@@ -55,88 +57,91 @@ def ease(t):
     return np.where(t < 0.5, 4 * t ** 3, 1 - (-2 * t + 2) ** 3 / 2)
 
 
-def save_supersampled(draw_fn, size, path, scale=2):
-    """Zeichnet in doppelter Auflösung und verkleinert für saubere Kanten."""
-    img = Image.new("RGBA", (size[0] * scale, size[1] * scale), (0, 0, 0, 0))
-    draw_fn(ImageDraw.Draw(img), scale)
-    img.resize(size, Image.LANCZOS).save(path, optimize=True)
+def center_text(d, box, text, fnt, fill):
+    l, t, r, b = d.textbbox((0, 0), text, font=fnt)
+    d.text((box[0] + (box[2] - box[0] - (r - l)) / 2 - l, box[1] + (box[3] - box[1] - (b - t)) / 2 - t), text, font=fnt, fill=fill)
 
 
 # --- Bilder -----------------------------------------------------------------
 
 def frame_cam(path):
-    """Eckklammern um ein Kamerabild (Innenfläche transparent)."""
-    arm, thick = 150, 10
-
-    def draw(d, s):
-        d.rectangle([0, 0, W * s - 1, H * s - 1], outline=WHITE + (70,), width=3 * s)
-        corners = [
-            ((0, 0), (1, 1), ORANGE), ((W, H), (-1, -1), ORANGE),
-            ((W, 0), (-1, 1), BLUE), ((0, H), (1, -1), BLUE),
-        ]
-        for (cx, cy), (dx, dy), color in corners:
-            x, y = cx * s, cy * s
-            d.rectangle(sorted_box(x, y, x + dx * arm * s, y + dy * thick * s), fill=color + (255,))
-            d.rectangle(sorted_box(x, y, x + dx * thick * s, y + dy * arm * s), fill=color + (255,))
-
-    save_supersampled(draw, (W, H), path)
-
-
-def sorted_box(x0, y0, x1, y1):
-    return [min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1)]
-
-
-def lower_third(path):
-    w, h, skew = 1100, 180, 40
-
-    def draw(d, s):
-        d.polygon([(skew * s, 0), (w * s, 0), ((w - skew) * s, h * s), (0, h * s)], fill=DARK + (235,))
-        d.polygon([(skew * s, 0), ((skew + 28) * s, 0), (28 * s, h * s), (0, h * s)], fill=ORANGE + (255,))
-        d.polygon([(28 * s, (h - 6) * s), ((w - skew) * s, (h - 6) * s), ((w - skew) * s, h * s), (28 * s, h * s)],
-                  fill=BLUE + (255,))
-
-    save_supersampled(draw, (w, h), path)
-
-
-def band_stripes(path):
-    """Schräge Warnband-Streifen; Periode 80 teilt 1920 -> nahtlos scrollbar."""
-    h, period = 40, 80
-    y, x = np.mgrid[0:h, 0:W]
-    stripe = ((x + y) % period) < period // 2
-    rgb = np.where(stripe[..., None], np.array(ORANGE), np.array(DARK)).astype(np.uint8)
-    Image.fromarray(rgb, "RGB").save(path, optimize=True)
-
-
-def cam_offline(path, label, phase=0.1):
-    img = Image.fromarray(bg_frame(W, H, phase))
+    """Eckmarken in Limette um ein Kamerabild (Innenfläche transparent)."""
+    arm, thick = 90, 10
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
-    for text, size, y, color in (("KAMERA NICHT VERBUNDEN", 72, 470, WHITE), (label, 44, 570, ORANGE)):
-        box = d.textbbox((0, 0), text, font=font(size))
-        d.text(((W - (box[2] - box[0])) / 2, y), text, font=font(size), fill=color)
+    for x, y, dx, dy in ((0, 0, 1, 1), (W, 0, -1, 1), (0, H, 1, -1), (W, H, -1, -1)):
+        d.rectangle(sorted_box(x, y, x + dx * arm, y + dy * thick), fill=LIME + (255,))
+        d.rectangle(sorted_box(x, y, x + dx * thick, y + dy * arm), fill=LIME + (255,))
     img.save(path, optimize=True)
 
 
-# --- Hintergrund-Loop ---------------------------------------------------------
-
-def bg_frame(w, h, phase):
-    """Dunkler Hintergrund mit langsam wandernden, schrägen Farbbändern.
-    phase in [0,1): periodisch, damit der Loop nahtlos ist."""
-    y, x = np.mgrid[0:h, 0:w].astype(np.float32)
-    u = x + y * TAN
-    base = np.array(DARK, dtype=np.float32)
-    mix = np.clip(u / (w + h * TAN), 0, 1)[..., None]
-    color = np.array(ORANGE, np.float32) * (1 - mix) + np.array(BLUE, np.float32) * mix
-    wave1 = 0.5 + 0.5 * np.sin(2 * np.pi * (u / 640.0 - phase))
-    wave2 = 0.5 + 0.5 * np.sin(2 * np.pi * (u / 1500.0 + phase))
-    strength = (0.22 * smoothstep(0.80, 0.97, wave1) + 0.07 * wave2 ** 2)[..., None]
-    img = base + (color - base) * strength
-    r2 = ((x / w - 0.5) ** 2 + (y / h - 0.5) ** 2)[..., None]
-    img *= 1 - 0.9 * r2
-    return np.clip(img, 0, 255).astype(np.uint8)
+def sorted_box(x0, y0, x1, y1):
+    return [min(x0, x1), min(y0, y1), max(x0, x1) - 1, max(y0, y1) - 1]
 
 
-def encode(frames, args, out, fps=30):
-    cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-s", f"{W}x{H}", "-r", str(fps), *args["in"],
+def lower_third(path):
+    """Schlanke Tinten-Platte mit Limetten-Streifen links; Name und Zeile liegen als Textquellen darüber."""
+    w, h = 640, 96
+    img = Image.new("RGBA", (w, h), INK + (255,))
+    ImageDraw.Draw(img).rectangle([0, 0, 9, h], fill=LIME + (255,))
+    img.save(path, optimize=True)
+
+
+def ticker_bar(path):
+    """Laufband-Hintergrund: Tinte, oben 3 Pixel Limette."""
+    img = Image.new("RGBA", (W, 46), INK + (255,))
+    ImageDraw.Draw(img).rectangle([0, 0, W, 2], fill=LIME + (255,))
+    img.save(path, optimize=True)
+
+
+def partner_plate(path):
+    """Namensschild des Partners: Tinte mit orangem Balken links; Logo-Feld links, Name als Textquelle."""
+    w, h = 300, 50
+    img = Image.new("RGBA", (w, h), INK + (255,))
+    ImageDraw.Draw(img).rectangle([0, 0, 4, h], fill=ORANGE + (255,))
+    img.save(path, optimize=True)
+
+
+def partner_logo_placeholder(path):
+    """Neutraler Platzhalter (gestrichelter orange Rahmen, Plus). Die echte Datei bleibt lokal beim Nutzer."""
+    size = 128
+    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    for i in range(6, size - 6, 16):
+        for (x, y) in ((i, 6), (i, size - 8), (6, i), (size - 8, i)):
+            d.rectangle([x, y, x + 8, y + 1] if y in (6, size - 8) else [x, y, x + 1, y + 8], fill=ORANGE + (255,))
+    d.rectangle([size // 2 - 20, size // 2 - 3, size // 2 + 19, size // 2 + 2], fill=ORANGE + (255,))
+    d.rectangle([size // 2 - 3, size // 2 - 20, size // 2 + 2, size // 2 + 19], fill=ORANGE + (255,))
+    img.save(path, optimize=True)
+
+
+def placeholder_logo(path, s=512):
+    """Eigenes Platzhalter-Logo: Limetten-Quadrat mit tintenfarbigem 'D' und orangem Punkt. Wird später ersetzt."""
+    k = s / 512
+    img = Image.new("RGBA", (s, s), LIME + (255,))
+    d = ImageDraw.Draw(img)
+    center_text(d, (0, 20 * k, s, s), "D", anton(int(430 * k)), INK)
+    d.rectangle([s - 112 * k, s - 112 * k, s - 52 * k, s - 52 * k], fill=ORANGE + (255,))
+    img.save(path, optimize=True)
+
+
+def cam_offline(path, label):
+    img = Image.new("RGB", (W, H), INK)
+    d = ImageDraw.Draw(img)
+    for x in range(-H, W, 120):  # feine Schrägstreifen
+        d.polygon([(x, H), (x + 40, H), (x + 40 + H * TAN * 4, 0), (x + H * TAN * 4, 0)], fill=STRIPE)
+    center_text(d, (0, 440, W, 560), "KAMERA NICHT VERBUNDEN", anton(96), BONE)
+    center_text(d, (0, 560, W, 620), label.upper(), mono(34), LIME)
+    img.save(path, optimize=True)
+
+
+# --- Videos -------------------------------------------------------------------
+
+FPS = 60
+
+
+def encode(frames, args, out, size=(W, H), fps=FPS):
+    cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-s", f"{size[0]}x{size[1]}", "-r", str(fps), *args["in"],
            "-i", "-", *args["out"], str(out)]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for frame in frames:
@@ -146,41 +151,106 @@ def encode(frames, args, out, fps=30):
         sys.exit("ffmpeg fehlgeschlagen: " + " ".join(cmd))
 
 
-def bg_loop(path, seconds=8):
-    n = seconds * 30
-    encode((bg_frame(W, H, i / n) for i in range(n)),
-           {"in": ["-pix_fmt", "rgb24"],
-            "out": ["-c:v", "libx264", "-preset", "slow", "-crf", "24", "-pix_fmt", "yuv420p",
-                    "-movflags", "+faststart", "-an"]},
-           path)
+def bg_frames(seconds=6):
+    """Tintenfarbener Grund, breite Schrägstreifen wandern ruhig durchs Bild, eine Limetten-Linie wischt langsam hoch.
+    Perioden teilen die Loop-Länge, daher nahtlos."""
+    n = seconds * FPS
+    y, x = np.mgrid[0:H, 0:W].astype(np.float32)
+    period = 240.0
+    base = np.array(INK, np.float32)
+    for i in range(n):
+        phase = i / n
+        u = (x + y * TAN * 3 - phase * period * 4) % period
+        stripe = (u < period * 0.28)[..., None]
+        frame = np.where(stripe, np.array(STRIPE, np.float32), base)
+        line_y = int(H - (H + 40) * phase) if phase else H
+        frame[max(line_y, 0):max(line_y, 0) + 3, :, :] = np.array(LIME, np.float32) * 0.35 + base * 0.65
+        yield frame.astype(np.uint8)
+
+
+def bg_loop(path):
+    encode(bg_frames(), {"in": ["-pix_fmt", "rgb24"],
+                         "out": ["-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p",
+                                 "-movflags", "+faststart", "-an"]}, path)
+
+
+def live_tag(path):
+    """LIVE-Zeichen mit blinkendem Punkt, 1 Sekunde Loop, VP9 mit Alpha."""
+    w, h = 150, 40
+    frames = []
+    for i in range(FPS):
+        img = Image.new("RGBA", (w, h), INK + (255,))
+        d = ImageDraw.Draw(img)
+        on = i < FPS // 2
+        d.rectangle([12, 14, 23, 25], fill=(ORANGE if on else MUTED) + (255,))
+        d.text((38, 7), "LIVE", font=mono(20), fill=BONE + (255,))
+        frames.append(np.asarray(img))
+    encode(iter(frames), {"in": ["-pix_fmt", "rgba"],
+                          "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "30",
+                                  "-auto-alt-ref", "0", "-an"]}, path, size=(w, h))
+
+
+def eq_bars(path, seconds=4, gradient=False):
+    """Equalizer-Balken für Titelszenen: flache Limetten-Balken, die im Takt springen. Ganzzahlige Frequenzen -> nahtloser Loop.
+    gradient=True: Farbverlauf Limette -> Orange -> Limette, der einmal pro Loop durch die Balken wandert (nur "Gleich geht's los")."""
+    w, h, n, bw = 1920, 170, 48, 28
+    rng = np.random.default_rng(11)
+    ph = rng.random((n, 2))
+    k1 = rng.integers(2, 5, n)
+    k2 = rng.integers(5, 9, n)
+    frames = []
+    total = seconds * FPS
+    for i in range(total):
+        img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        t = i / total
+        for b in range(n):
+            v = 0.55 * math.sin(2 * math.pi * (k1[b] * t + ph[b, 0])) + 0.45 * math.sin(2 * math.pi * (k2[b] * t + ph[b, 1]))
+            hh = int(14 + (v * 0.5 + 0.5) ** 1.3 * (h - 18))
+            x = b * 40 + 6
+            color = (255, 255, 255) if gradient else (BONE if b % 8 == 3 else LIME)
+            d.rectangle([x, h - hh, x + bw - 1, h - 1], fill=color + (255,))
+        frame = np.asarray(img)
+        if gradient:
+            frame = frame.copy()
+            phase = np.arange(w, dtype=np.float32) / w * 1.5 - t  # Verlauf wandert nach rechts, ganzzahlig pro Loop
+            tri = 1 - np.abs(2 * (phase % 1.0) - 1)                 # 0 = Limette, 1 = Orange
+            hl, sl, vl = colorsys.rgb_to_hsv(*[c / 255 for c in LIME])
+            ho, so, vo = colorsys.rgb_to_hsv(*[c / 255 for c in ORANGE])
+            col = np.array([[v * 255 for v in colorsys.hsv_to_rgb(hl + (ho - hl) * a, sl + (so - sl) * a, vl + (vo - vl) * a)]
+                            for a in tri], np.float32)               # Verlauf im Farbton: Limette -> Gelb -> Orange, nicht matschig
+            rows = np.linspace(1.0, 0.86, h, dtype=np.float32)[:, None, None]  # oben hell, unten leicht dunkler
+            frame[..., :3] = np.clip(col[None, :, :] * rows, 0, 255).astype(np.uint8)
+        frames.append(frame)
+    encode(iter(frames), {"in": ["-pix_fmt", "rgba"],
+                          "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "34",
+                                  "-auto-alt-ref", "0", "-an"]}, path, size=(w, h))
 
 
 # --- Stinger-Übergang (VP9 mit Alpha) ------------------------------------------
 
 STINGER_SECONDS = 1.1
-STINGER_FPS = 60  # entspricht dem Standard-Profil (1080p60); Stinger-Guides empfehlen die Ausgabe-FPS
-STINGER_COVER_MS = 520  # Mitte der Phase 0,44 bis 0,60 s, in der der Bildschirm vollständig verdeckt ist (ca. 10 Bilder)
+STINGER_LAYERS = [(LIME, 0.00, 0.68), (BONE, 0.04, 0.64), (INK, 0.08, 0.60)]  # (Farbe, Start vorn, Start hinten)
 
 
 def stinger_frames(logo):
     y, x = np.mgrid[0:H, 0:W].astype(np.float32)
     u = x + y * TAN
     umax = W + H * TAN + 4
-    layers = [(ORANGE, 0.00, 0.68), (BLUE, 0.04, 0.64), (DARK, 0.08, 0.60)]  # (Farbe, Start vorn, Start hinten)
-    logo_img = Image.open(logo).convert("RGBA").resize((420, 420), Image.LANCZOS)
-    for i in range(round(STINGER_SECONDS * STINGER_FPS)):
-        t = i / STINGER_FPS
+    logo_img = Image.open(logo).convert("RGBA").resize((360, 360), Image.NEAREST if False else Image.LANCZOS)
+    for i in range(round(STINGER_SECONDS * FPS)):
+        t = i / FPS
         rgba = np.zeros((H, W, 4), np.float32)
-        for color, front_start, back_start in layers:
+        for color, front_start, back_start in STINGER_LAYERS:
             front = ease((t - front_start) / 0.36) * umax
             back = ease((t - back_start) / 0.36) * umax
-            cover = np.clip(front - u + 0.5, 0, 1) * np.clip(u - back + 0.5, 0, 1)
+            cover = ((u < front) & (u >= back)).astype(np.float32)  # harte Kanten
             rgba[..., :3] = rgba[..., :3] * (1 - cover[..., None]) + np.array(color, np.float32) * cover[..., None]
             rgba[..., 3] = rgba[..., 3] * (1 - cover) + 255 * cover
         frame = Image.fromarray(np.clip(rgba, 0, 255).astype(np.uint8), "RGBA")
         pop = float(smoothstep(0.28, 0.46, t) * (1 - smoothstep(0.60, 0.78, t)))
         if pop > 0:
-            size = int(420 * (0.85 + 0.15 * pop))
+            size = int(360 * (0.8 + 0.2 * pop))
             scaled = logo_img.resize((size, size), Image.LANCZOS)
             scaled.putalpha(scaled.getchannel("A").point(lambda a: int(a * pop)))
             frame.alpha_composite(scaled, ((W - size) // 2, (H - size) // 2))
@@ -188,11 +258,9 @@ def stinger_frames(logo):
 
 
 def stinger(path, logo):
-    encode(stinger_frames(logo),
-           {"in": ["-pix_fmt", "rgba"],
-            "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "30",
-                    "-auto-alt-ref", "0", "-an"]},
-           path, fps=STINGER_FPS)
+    encode(stinger_frames(logo), {"in": ["-pix_fmt", "rgba"],
+                                  "out": ["-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "30",
+                                          "-auto-alt-ref", "0", "-an"]}, path)
 
 
 def main():
@@ -200,15 +268,28 @@ def main():
         sys.exit("ffmpeg wird benötigt (macOS: brew install ffmpeg, Linux: apt install ffmpeg).")
     for sub in ("branding", "overlays", "video", "fonts"):
         (OUT / sub).mkdir(parents=True, exist_ok=True)
+    if "--placeholder-logo" in sys.argv:
+        placeholder_logo(ROOT / "brand" / "logo.png")
+        placeholder_logo(ROOT / "build" / "icon.png", 1024)  # Installer-App-Symbol
+        placeholder_logo(ROOT / "electron" / "renderer" / "logo.png", 1024)
     logo = OUT / "branding" / "logo.png"
     shutil.copyfile(ROOT / "brand" / "logo.png", logo)
     frame_cam(OUT / "overlays" / "frame_cam.png")
     lower_third(OUT / "overlays" / "lower_third.png")
-    band_stripes(OUT / "overlays" / "band_stripes.png")
+    ticker_bar(OUT / "overlays" / "ticker.png")
+    partner_plate(OUT / "overlays" / "partner_plate.png")
+    if not (OUT / "branding" / "partner_logo.png").exists():  # eine vorhandene (lokale) Datei nie überschreiben
+        partner_logo_placeholder(OUT / "branding" / "partner_logo.png")
     for cam in BRAND["cameras"]:
         cam_offline(OUT / "overlays" / f"cam_offline_{cam['id']}.png", cam["label"])
     bg_loop(OUT / "video" / "bg_loop.mp4")
+    live_tag(OUT / "video" / "live_tag.webm")
+    eq_bars(OUT / "video" / "eq_bars.webm")
+    eq_bars(OUT / "video" / "eq_bars_gradient.webm", gradient=True)
     stinger(OUT / "video" / "stinger.webm", logo)
+    ticker = OUT / "ticker.txt"
+    if not ticker.exists():  # vorhandene (lokale) Laufband-Datei nie überschreiben
+        ticker.write_text(BRAND["ticker"] * 2 + "\n", encoding="utf-8")
     print("Assets erzeugt in", OUT)
 
 

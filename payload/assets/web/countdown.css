@@ -1,0 +1,16 @@
+#box { position: absolute; left: 1060px; top: 290px; width: 760px; }
+#label { font: 700 30px "Space Mono"; letter-spacing: .22em; color: var(--lime); }
+#digits { display: flex; align-items: flex-start; height: 330px; margin: 6px 0 14px -6px; overflow: hidden; font: 400 330px/330px "Anton"; color: var(--bone); }
+.d { position: relative; width: 190px; height: 330px; overflow: hidden; }
+.d span { position: absolute; left: 0; top: 0; width: 100%; text-align: center; }
+.colon { width: 110px; text-align: center; color: var(--lime); animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+#digits.hot { color: var(--lime); animation: pulse 1s ease-in-out infinite; transform-origin: 0 50%; }
+@keyframes pulse { 50% { transform: scale(1.03); } }
+#track { position: relative; height: 12px; background: rgba(236,230,214,.2); }
+#track::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 71px, var(--ink) 71px 76px); }
+#fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--lime); transform-origin: left; }
+#done { display: none; font: 400 96px/1 "Anton"; color: var(--lime); text-transform: uppercase; animation: flash .8s steps(2) infinite; }
+@keyframes flash { 50% { opacity: .2; } }
+body.finished #digits, body.finished #track, body.finished #label { display: none; }
+body.finished #done { display: block; }

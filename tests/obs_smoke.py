@@ -60,10 +60,16 @@ class Ws:
 def prepare_home(home, config):
     assets = home / "dc_onair" / "assets"
     shutil.copytree(ROOT / "payload" / "assets", assets)
+    fonts = home / ".local" / "share" / "fonts"  # wie der Installer: mitgelieferte Markenschrift einrichten
+    fonts.mkdir(parents=True)
+    for f in (ROOT / "payload" / "assets" / "fonts").glob("*.[to]tf"):
+        shutil.copy(f, fonts)
+    face = bc.BRAND["font"]["family"] or "DejaVu Sans"
+    mono_face = bc.BRAND["font"]["mono"] or "DejaVu Sans Mono"
     doc = json.dumps(bc.build("linux", move=False), ensure_ascii=False)
     for token in bc.TOKENS:
         doc = doc.replace("{{%s}}" % token, str(assets) if token == "ASSETS" else
-                          "DejaVu Sans" if token == "FONT_FACE" else "")
+                          face if token == "FONT_FACE" else mono_face if token == "FONT_MONO" else "")
     (config / "basic" / "scenes").mkdir(parents=True)
     (config / "basic" / "profiles" / "dc_onair").mkdir(parents=True)
     scene_file = config / "basic" / "scenes" / "dc_onair.json"
@@ -120,7 +126,7 @@ def main():
         check(all(n in names for n in EXPECTED_TRANSITIONS), f"Übergänge vorhanden: {EXPECTED_TRANSITIONS}")
         check(trans["currentSceneTransitionName"] == "dc Stinger", "Standard-Übergang ist dc Stinger")
         inputs = {i["inputName"]: i["inputKind"] for i in ws.call("GetInputList")["inputs"]}
-        for name in ("BG Loop", "Logo", "CAM iPhone", "CAM Sony A7 II", "Screen", "Txt LT Name", "Desktop Audio", "Mic/Aux"):
+        for name in ("BG Loop", "Logo", "CAM iPhone", "CAM Sony A7 II", "Screen", "Txt LT Name", "Txt Ticker", "Live Tag", "Desktop Audio", "Mic/Aux"):
             check(name in inputs, f"Quelle vorhanden: {name}")
         filters = [f["filterName"] for f in ws.call("GetSourceFilterList", {"sourceName": "Mic/Aux"})["filters"]]
         check(filters == ["Rauschunterdrückung", "Verstärkung", "Kompressor", "Limiter"], f"Mic-Filterkette {filters}")
@@ -133,6 +139,12 @@ def main():
         check(override["transitionName"] == "dc Slide", f"Szenen-Override 02: {override}")
         lost = ws.call("GetSceneSceneTransitionOverride", {"sceneName": "09 Connection Lost"})
         check(lost["transitionName"] == "Fade", f"Szenen-Override 09: {lost}")
+        partner = ws.call("GetSceneItemList", {"sceneName": "_Partner"})["sceneItems"]
+        check(len(partner) == 1 and partner[0]["sceneItemEnabled"] is False, "Partner-Schild ist standardmäßig aus (nur auf Abruf)")
+        ticker = ws.call("GetSceneItemList", {"sceneName": "_Ticker"})["sceneItems"]
+        check(len(ticker) == 1 and ticker[0]["sceneItemEnabled"] is True, "Laufband ist standardmäßig an")
+        tfilters = [f["filterName"] for f in ws.call("GetSourceFilterList", {"sourceName": "Txt Ticker"})["filters"]]
+        check(tfilters == ["Lauftext"], f"Laufband-Filter {tfilters}")
         stinger = ws.call("GetCurrentSceneTransition")
         check(stinger["transitionKind"] == "obs_stinger_transition", "Stinger ist vom Typ obs_stinger_transition")
 
@@ -165,6 +177,14 @@ def main():
                                                        "imageWidth": 960, "imageHeight": 540})
                 data = shot["imageData"].split(",", 1)[1]
                 (args.shots / f"{scene.replace(' ', '_').replace('+', 'plus')}.png").write_bytes(base64.b64decode(data))
+            ws.call("SetSceneItemEnabled", {"sceneName": "_Partner", "sceneItemId": partner[0]["sceneItemId"], "sceneItemEnabled": True})
+            time.sleep(2.5)  # Einblendung abwarten
+            for scene in ("02 Kamera iPhone", "04 Dual Cam"):
+                if scene in scenes:
+                    shot = ws.call("GetSourceScreenshot", {"sourceName": scene, "imageFormat": "png",
+                                                           "imageWidth": 960, "imageHeight": 540})
+                    (args.shots / f"Partner_an_{scene.replace(' ', '_').replace('+', 'plus')}.png").write_bytes(
+                        base64.b64decode(shot["imageData"].split(",", 1)[1]))
             print("Screenshots in", args.shots)
         completed = True
     finally:

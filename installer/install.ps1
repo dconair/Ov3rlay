@@ -199,12 +199,21 @@ if (Move-Plugin-Installed) { $variant = 'windows.move'; Ok "Plugin 'Move Transit
 New-Item -ItemType Directory -Force $AppDir | Out-Null
 $assets = Join-Path $AppDir 'assets'
 Backup $assets
+# Eigene (lokale) Dateien bleiben bei einer Neuinstallation erhalten: Partner-Logo, Laufband-Text, Chat-/Alert-Einstellungen
+$keepRel = @('branding\partner_logo.png', 'ticker.txt', 'web\config.js')
+$keep = @{}
+foreach ($rel in $keepRel) {
+    $f = Join-Path $assets $rel
+    if (Test-Path $f) { $tmp = [System.IO.Path]::GetTempFileName(); Copy-Item $f $tmp -Force; $keep[$rel] = $tmp }
+}
 if (Test-Path $assets) { Remove-Item $assets -Recurse -Force }
 Copy-Item (Join-Path $Payload 'assets') $assets -Recurse
+foreach ($rel in $keep.Keys) { Copy-Item $keep[$rel] (Join-Path $assets $rel) -Force; Remove-Item $keep[$rel] -Force; Ok "Eigene Datei beibehalten: $rel" }
 Remove-Item (Join-Path $assets 'fonts\HIER_SCHRIFTEN_ABLEGEN.txt') -Force -ErrorAction SilentlyContinue
 Ok "Grafiken und Videos nach $assets kopiert"
 
 $fontFace = 'Segoe UI'
+$fontMono = 'Consolas'
 $fonts = @(Get-ChildItem (Join-Path $assets 'fonts') -Include *.ttf, *.otf -Recurse -ErrorAction SilentlyContinue)
 if ($fonts.Count -gt 0) {
     New-Item -ItemType Directory -Force $FontDir | Out-Null
@@ -217,7 +226,8 @@ if ($fonts.Count -gt 0) {
         }
     }
     if (Brand-Value 'FONT_FAMILY') { $fontFace = Brand-Value 'FONT_FAMILY' }
-    Ok "Markenschrift installiert: $fontFace"
+    if (Brand-Value 'FONT_MONO') { $fontMono = Brand-Value 'FONT_MONO' }
+    Ok "Markenschriften installiert: $fontFace, $fontMono"
 }
 
 # Gerätename ohne Pfad; OBS ordnet die Kamera darüber zu. Falls nicht, in OBS einmal Gerät wählen.
@@ -225,6 +235,7 @@ function Dshow-Id($name) { if ($name) { "${name}:" } else { '' } }
 $tokens = [ordered]@{
     ASSETS          = Json-Escape ($assets.Replace('\', '/'))
     FONT_FACE       = Json-Escape $fontFace
+    FONT_MONO       = Json-Escape $fontMono
     CAM_IPHONE_ID   = Json-Escape (Dshow-Id $iphoneName)
     CAM_IPHONE_NAME = Json-Escape $iphoneName
     CAM_SONY_ID     = Json-Escape (Dshow-Id $sonyName)

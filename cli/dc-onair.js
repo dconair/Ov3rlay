@@ -12,7 +12,7 @@ const { values: v, positionals } = parseArgs({
     service: { type: 'string' }, quality: { type: 'string' }, encoder: { type: 'string', default: 'auto' },
     payload: { type: 'string', default: core.resolvePayloadDir() },
     platform: { type: 'string' }, shots: { type: 'string' }, 'no-launch': { type: 'boolean' }, 'skip-tour': { type: 'boolean' },
-    json: { type: 'boolean' }, camera: { type: 'string', multiple: true }, help: { type: 'boolean', short: 'h' },
+    json: { type: 'boolean' }, file: { type: 'string' }, unbox: { type: 'string' }, base: { type: 'string' }, out: { type: 'string' }, camera: { type: 'string', multiple: true }, help: { type: 'boolean', short: 'h' },
   },
 });
 
@@ -26,6 +26,8 @@ const HELP = `dc_onair Setup (Kommandozeile)
   cameras                   Kameras des Betriebssystems anzeigen
   encoder                   Grafikkarte erkennen und Encoder vorschlagen
   matrix [--json]           Übergangsmatrix aller Szenenpaare
+  ticker --file DATEI       Laufband aus laufendem Titel füllen: Datei, die ein Zusatztool schreibt
+  ticker --unbox [URL]      oder live von Unbox (Standard ws://localhost:8080/ws)  [--base "LIVE  ///  Ort"] [--out ticker.txt]
   selftest [--shots DIR]    Selbsttest in laufendem OBS (startet OBS, außer mit --no-launch) [--skip-tour]
 `;
 
@@ -66,6 +68,15 @@ async function main() {
     for (const b of core.backupLib.listBackups(paths.appDir)) say(`${b.stamp}\t${b.entries.length} gesichert, ${b.created.length} neu`);
   } else if (cmd === 'restore') {
     say(JSON.stringify(core.backupLib.restoreBackup(paths.appDir, positionals[1])));
+  } else if (cmd === 'ticker') {
+    const t = require('../core/ticker');
+    const out = v.out || nodePath.join(paths.appDir, 'assets', 'ticker.txt');
+    const bridge = new t.TickerBridge({ file: out, base: v.base || undefined, log: (m) => say(`  ${m}`) });
+    if (v.file) t.watchFile(bridge, v.file);
+    else if (v.unbox !== undefined) t.watchWebSocket(bridge, v.unbox || undefined);
+    else return say('Gib eine Quelle an: --file DATEI oder --unbox [URL]');
+    say(`Laufband wird live nach ${out} geschrieben. Beenden mit Strg+C.`);
+    await new Promise(() => {});
   } else if (cmd === 'selftest') {
     const obsInfo = await core.obs.findObs(platform);
     const ws = await core.connectObs({ platform, paths, collection: brand.COLLECTION, obsInfo, launch: !v['no-launch'], onWait: () => process.stderr.write('.') });

@@ -36,6 +36,7 @@ function moveInstalled(platform, { obsConfig, env = process.env }) {
   return dirs.some((d) => exists(d) && fs.readdirSync(d).some((f) => /move.*transition|move_transition|move-transition/i.test(f)));
 }
 
+const KEEP_FILES = ['branding/partner_logo.png', 'ticker.txt', 'web/config.js'];
 const FONT_REG_KEY = 'HKCU\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts';
 
 function listFonts(dir) {
@@ -79,14 +80,19 @@ async function install(opts) {
     ['Profile', 'ProfileDir', 'SceneCollection', 'SceneCollectionFile'].map((k) => [k, iniGet(f, 'Basic', k)]))]));
 
   // 2. Assets
+  // Eigene (lokale) Dateien bleiben bei einer Neuinstallation erhalten: Partner-Logo, Laufband-Text, Chat-/Alert-Einstellungen
+  const kept = KEEP_FILES.map((rel) => nodePath.join(assetsDir, ...rel.split('/')))
+    .filter((f) => exists(f)).map((f) => [f, fs.readFileSync(f)]);
   fs.rmSync(assetsDir, { recursive: true, force: true });
   fs.mkdirSync(paths.appDir, { recursive: true });
   fs.cpSync(nodePath.join(payloadDir, 'assets'), assetsDir, { recursive: true });
+  for (const [f, data] of kept) { fs.writeFileSync(f, data); log(`Eigene Datei beibehalten: ${nodePath.relative(assetsDir, f)}`); }
   fs.rmSync(nodePath.join(assetsDir, 'fonts', 'HIER_SCHRIFTEN_ABLEGEN.txt'), { force: true });
   log(`Grafiken und Videos nach ${assetsDir} kopiert`);
 
   // 3. Schriften
   let fontFace = systemFont(platform);
+  let fontMono = platform === 'windows' ? 'Consolas' : 'Menlo';
   const fonts = listFonts(nodePath.join(assetsDir, 'fonts'));
   const installedFonts = [];
   if (fonts.length) {
@@ -102,12 +108,13 @@ async function install(opts) {
       }
     }
     if (brand.FONT_FAMILY) fontFace = brand.FONT_FAMILY;
-    log(`Markenschrift installiert: ${fontFace}`);
+    if (brand.FONT_MONO) fontMono = brand.FONT_MONO;
+    log(`Markenschriften installiert: ${fontFace}, ${fontMono}`);
   }
 
   // 4. Szenen-Collection mit ausgefüllten Platzhaltern
   const template = readText(sceneTemplate);
-  const values = { ASSETS: assetsDir.replace(/\\/g, '/'), FONT_FACE: fontFace };
+  const values = { ASSETS: assetsDir.replace(/\\/g, '/'), FONT_FACE: fontFace, FONT_MONO: fontMono };
   for (const role of ROLES) {
     const cam = cameras[role.key] || {};
     values[`CAM_${role.key.toUpperCase()}_ID`] = cam.id || '';

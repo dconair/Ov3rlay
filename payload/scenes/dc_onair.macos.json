@@ -33,10 +33,25 @@
    "name": "_Lower Third Inhalt"
   },
   {
-   "name": "_Branding Bug"
+   "name": "_Lower Third"
   },
   {
-   "name": "_Lower Third"
+   "name": "_Bug"
+  },
+  {
+   "name": "_Partner Inhalt"
+  },
+  {
+   "name": "_Partner"
+  },
+  {
+   "name": "_Ticker Inhalt"
+  },
+  {
+   "name": "_Ticker"
+  },
+  {
+   "name": "_Web"
   }
  ],
  "name": "dc_onair",
@@ -49,6 +64,99 @@
    "versioned_id": "ffmpeg_source",
    "settings": {
     "local_file": "{{ASSETS}}/video/bg_loop.mp4",
+    "is_local_file": true,
+    "looping": true,
+    "close_when_inactive": false,
+    "restart_on_activate": false,
+    "hw_decode": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "EQ Bars",
+   "uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
+   "id": "ffmpeg_source",
+   "versioned_id": "ffmpeg_source",
+   "settings": {
+    "local_file": "{{ASSETS}}/video/eq_bars.webm",
+    "is_local_file": true,
+    "looping": true,
+    "close_when_inactive": false,
+    "restart_on_activate": false,
+    "hw_decode": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "EQ Bars Gradient",
+   "uuid": "e28d73c9-cce2-5bac-9538-ea1c0d672778",
+   "id": "ffmpeg_source",
+   "versioned_id": "ffmpeg_source",
+   "settings": {
+    "local_file": "{{ASSETS}}/video/eq_bars_gradient.webm",
+    "is_local_file": true,
+    "looping": true,
+    "close_when_inactive": false,
+    "restart_on_activate": false,
+    "hw_decode": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Live Tag",
+   "uuid": "37c8c06b-792e-5ba1-a967-082a65e52fce",
+   "id": "ffmpeg_source",
+   "versioned_id": "ffmpeg_source",
+   "settings": {
+    "local_file": "{{ASSETS}}/video/live_tag.webm",
     "is_local_file": true,
     "looping": true,
     "close_when_inactive": false,
@@ -155,12 +263,12 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "Band Stripes",
-   "uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+   "name": "Ticker Plate",
+   "uuid": "3aa87c57-45c4-56ee-8ea5-a84c9b0670ae",
    "id": "image_source",
    "versioned_id": "image_source",
    "settings": {
-    "file": "{{ASSETS}}/overlays/band_stripes.png",
+    "file": "{{ASSETS}}/overlays/ticker.png",
     "unload": false
    },
    "mixers": 0,
@@ -178,32 +286,61 @@
    "deinterlace_mode": 0,
    "deinterlace_field_order": 0,
    "monitoring_type": 0,
-   "private_settings": {},
-   "filters": [
-    {
-     "prev_ver": 503316482,
-     "name": "Scroll",
-     "uuid": "7e30f57a-f5e6-5e2c-9eaf-568008d15bf0",
-     "id": "scroll_filter",
-     "versioned_id": "scroll_filter",
-     "settings": {
-      "speed_x": 90.0,
-      "speed_y": 0.0,
-      "loop": true,
-      "limit_cx": false,
-      "limit_cy": false
-     },
-     "mixers": 0,
-     "sync": 0,
-     "flags": 0,
-     "volume": 1.0,
-     "balance": 0.5,
-     "enabled": true,
-     "muted": false,
-     "hotkeys": {},
-     "private_settings": {}
-    }
-   ]
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Partner Plate",
+   "uuid": "2ca893c3-1779-5a0b-a3f8-bad3b9ba6777",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/overlays/partner_plate.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Partner Logo",
+   "uuid": "05fdcf96-b4a1-5121-a37b-0849cb4f9180",
+   "id": "image_source",
+   "versioned_id": "image_source",
+   "settings": {
+    "file": "{{ASSETS}}/branding/partner_logo.png",
+    "unload": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
   },
   {
    "prev_ver": 503316482,
@@ -426,21 +563,58 @@
   },
   {
    "prev_ver": 503316482,
+   "name": "Txt Starting Eyebrow",
+   "uuid": "4c864481-f506-5bc3-bd4f-225b4d8ea885",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "STARTING SOON",
+    "font": {
+     "face": "{{FONT_MONO}}",
+     "size": 30,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4280153032,
+    "color2": 4280153032,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
    "name": "Txt Starting",
    "uuid": "6ce1fbfe-da6a-5a62-b1f7-b40421bb9ee6",
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "GLEICH GEHT'S LOS",
+    "text": "GLEICH\nGEHT'S LOS",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -470,14 +644,51 @@
    "settings": {
     "text": "Mach es dir bequem, wir starten in Kürze",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4286089100,
+    "color2": 4286089100,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt BRB Eyebrow",
+   "uuid": "342b3e50-5195-562c-ab54-6eea33a7ae3d",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "PAUSE",
+    "font": {
+     "face": "{{FONT_MONO}}",
+     "size": 30,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4280153032,
+    "color2": 4280153032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -505,16 +716,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "BIN GLEICH ZURÜCK",
+    "text": "BIN GLEICH\nZURÜCK",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -544,14 +755,51 @@
    "settings": {
     "text": "Kurze Pause, bleib dran",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4286089100,
+    "color2": 4286089100,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Ending Eyebrow",
+   "uuid": "d95376f4-cedc-5894-8ec4-a4f9c5a75b3b",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "STREAM BEENDET",
+    "font": {
+     "face": "{{FONT_MONO}}",
+     "size": 30,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4280153032,
+    "color2": 4280153032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -579,16 +827,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "DANKE FÜRS ZUSCHAUEN",
+    "text": "DANKE FÜRS\nZUSCHAUEN",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -616,16 +864,53 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "Bis zum nächsten Stream",
+    "text": "Bis zum nächsten Mal",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4286089100,
+    "color2": 4286089100,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Lost Eyebrow",
+   "uuid": "a06b1349-0a42-5615-9b5e-5b1754d4f376",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "SIGNAL VERLOREN",
+    "font": {
+     "face": "{{FONT_MONO}}",
+     "size": 30,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4280153032,
+    "color2": 4280153032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -653,16 +938,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "VERBINDUNG UNTERBROCHEN",
+    "text": "VERBINDUNG\nUNTERBROCHEN",
     "font": {
      "face": "{{FONT_FACE}}",
-     "size": 96,
-     "flags": 1,
-     "style": "Bold"
+     "size": 150,
+     "flags": 0,
+     "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -692,14 +977,14 @@
    "settings": {
     "text": "Gleich geht's weiter, bitte kurz warten",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 40,
+     "face": "{{FONT_MONO}}",
+     "size": 30,
      "flags": 0,
      "style": "Regular"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4286089100,
+    "color2": 4286089100,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -729,14 +1014,51 @@
    "settings": {
     "text": "@dc_onair",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 38,
+     "face": "{{FONT_MONO}}",
+     "size": 26,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4278215423,
-    "color2": 4278215423,
-    "drop_shadow": true,
+    "color1": 4280153032,
+    "color2": 4280153032,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Partner Name",
+   "uuid": "f258b7bf-86bc-5b40-aed5-38194788c677",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "PARTNER",
+    "font": {
+     "face": "{{FONT_MONO}}",
+     "size": 18,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -764,16 +1086,16 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "dc_onair",
+    "text": "DC_ONAIR",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 64,
+     "face": "{{FONT_MONO}}",
+     "size": 26,
      "flags": 1,
      "style": "Bold"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
    },
@@ -801,18 +1123,226 @@
    "id": "text_ft2_source_v2",
    "versioned_id": "text_ft2_source_v2",
    "settings": {
-    "text": "Live-Stream",
+    "text": "IRL · OUTDOOR",
     "font": {
-     "face": "{{FONT_FACE}}",
-     "size": 34,
-     "flags": 0,
-     "style": "Regular"
+     "face": "{{FONT_MONO}}",
+     "size": 15,
+     "flags": 1,
+     "style": "Bold"
     },
-    "color1": 4294967295,
-    "color2": 4294967295,
-    "drop_shadow": true,
+    "color1": 4280153032,
+    "color2": 4280153032,
+    "drop_shadow": false,
     "outline": false,
     "word_wrap": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Txt Ticker",
+   "uuid": "45e808e1-5914-5364-9546-00fe81fa11a2",
+   "id": "text_ft2_source_v2",
+   "versioned_id": "text_ft2_source_v2",
+   "settings": {
+    "text": "",
+    "font": {
+     "face": "{{FONT_MONO}}",
+     "size": 22,
+     "flags": 1,
+     "style": "Bold"
+    },
+    "color1": 4292273900,
+    "color2": 4292273900,
+    "drop_shadow": false,
+    "outline": false,
+    "word_wrap": false,
+    "from_file": true,
+    "text_file": "{{ASSETS}}/ticker.txt"
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {},
+   "filters": [
+    {
+     "prev_ver": 503316482,
+     "name": "Lauftext",
+     "uuid": "27c683b9-1427-5e3f-83b1-5e70980af372",
+     "id": "scroll_filter",
+     "versioned_id": "scroll_filter",
+     "settings": {
+      "speed_x": 90.0,
+      "speed_y": 0.0,
+      "loop": true,
+      "limit_cx": false,
+      "limit_cy": false
+     },
+     "mixers": 0,
+     "sync": 0,
+     "flags": 0,
+     "volume": 1.0,
+     "balance": 0.5,
+     "enabled": true,
+     "muted": false,
+     "hotkeys": {},
+     "private_settings": {}
+    }
+   ]
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Web Alerts",
+   "uuid": "eecc0bce-5ecb-5386-acbc-24619f2c3515",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/alerts.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Web Chat",
+   "uuid": "28de8922-6313-576d-8f00-32955b7d961c",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/chat.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Web Countdown Start",
+   "uuid": "b2f423c3-854c-5c96-b187-3db149892055",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/countdown_start.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "Web Countdown BRB",
+   "uuid": "8aa95971-4a1a-56b7-954b-71ae5334da96",
+   "id": "browser_source",
+   "versioned_id": "browser_source",
+   "settings": {
+    "is_local_file": true,
+    "local_file": "{{ASSETS}}/web/countdown_brb.html",
+    "url": "",
+    "width": 1920,
+    "height": 1080,
+    "fps_custom": true,
+    "fps": 60,
+    "css": "",
+    "shutdown": false,
+    "restart_when_active": false,
+    "reroute_audio": false
    },
    "mixers": 0,
    "sync": 0,
@@ -880,8 +1410,8 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 110.0,
-       "y": 18.0
+       "x": 32.0,
+       "y": 20.0
       },
       "scale": {
        "x": 1.0,
@@ -912,8 +1442,8 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 112.0,
-       "y": 98.0
+       "x": 34.0,
+       "y": 62.0
       },
       "scale": {
        "x": 1.0,
@@ -960,8 +1490,8 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "_Branding Bug",
-   "uuid": "e0c4f5cc-e240-5a26-a2c5-f96abbbd1431",
+   "name": "_Lower Third",
+   "uuid": "65ff0b27-815e-5f83-9cb9-d86430b8d8d6",
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
@@ -969,18 +1499,18 @@
     "custom_size": false,
     "items": [
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
-      "visible": true,
+      "name": "_Lower Third Inhalt",
+      "source_uuid": "90001707-3706-5bd2-acc5-9b9325a61144",
+      "visible": false,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 1760.0,
-       "y": 40.0
+       "x": 40.0,
+       "y": 890.0
       },
       "scale": {
-       "x": 0.12,
-       "y": 0.12
+       "x": 1.0,
+       "y": 1.0
       },
       "align": 5,
       "bounds_type": 0,
@@ -994,6 +1524,131 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {},
+      "show_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "right"
+       }
+      },
+      "show_transition_duration": 400,
+      "hide_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "left"
+       }
+      },
+      "hide_transition_duration": 400
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": [],
+    "libobs.show_scene_item.1": [
+     {
+      "key": "OBS_KEY_L",
+      "control": true,
+      "alt": true
+     }
+    ],
+    "libobs.hide_scene_item.1": [
+     {
+      "key": "OBS_KEY_H",
+      "control": true,
+      "alt": true
+     }
+    ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Bug",
+   "uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 2,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 40.0,
+       "y": 36.0
+      },
+      "scale": {
+       "x": 0.09,
+       "y": 0.09
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Live Tag",
+      "source_uuid": "37c8c06b-792e-5ba1-a967-082a65e52fce",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 96.0,
+       "y": 39.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1023,8 +1678,135 @@
   },
   {
    "prev_ver": 503316482,
-   "name": "_Lower Third",
-   "uuid": "65ff0b27-815e-5f83-9cb9-d86430b8d8d6",
+   "name": "_Partner Inhalt",
+   "uuid": "c965079b-28f0-534c-a4d7-e769c5f15340",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 3,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Partner Plate",
+      "source_uuid": "2ca893c3-1779-5a0b-a3f8-bad3b9ba6777",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Partner Logo",
+      "source_uuid": "05fdcf96-b4a1-5121-a37b-0849cb4f9180",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 10.0,
+       "y": 5.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 2,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 40.0,
+       "y": 40.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Partner Name",
+      "source_uuid": "f258b7bf-86bc-5b40-aed5-38194788c677",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 62.0,
+       "y": 14.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Partner",
+   "uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
@@ -1032,14 +1814,14 @@
     "custom_size": false,
     "items": [
      {
-      "name": "_Lower Third Inhalt",
-      "source_uuid": "90001707-3706-5bd2-acc5-9b9325a61144",
+      "name": "_Partner Inhalt",
+      "source_uuid": "c965079b-28f0-534c-a4d7-e769c5f15340",
       "visible": false,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 80.0,
-       "y": 800.0
+       "x": 1590.0,
+       "y": 36.0
       },
       "scale": {
        "x": 1.0,
@@ -1096,18 +1878,301 @@
     "OBSBasic.SelectScene": [],
     "libobs.show_scene_item.1": [
      {
-      "key": "OBS_KEY_L",
+      "key": "OBS_KEY_P",
       "control": true,
       "alt": true
      }
     ],
     "libobs.hide_scene_item.1": [
      {
-      "key": "OBS_KEY_H",
+      "key": "OBS_KEY_O",
       "control": true,
       "alt": true
      }
     ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Ticker Inhalt",
+   "uuid": "2d718d9c-d134-5594-acb1-c27390ef44f7",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 2,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Ticker Plate",
+      "source_uuid": "3aa87c57-45c4-56ee-8ea5-a84c9b0670ae",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Txt Ticker",
+      "source_uuid": "45e808e1-5914-5364-9546-00fe81fa11a2",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 11.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Ticker",
+   "uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 1,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "_Ticker Inhalt",
+      "source_uuid": "2d718d9c-d134-5594-acb1-c27390ef44f7",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 1034.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {},
+      "show_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "up"
+       }
+      },
+      "show_transition_duration": 400,
+      "hide_transition": {
+       "name": "slide_transition",
+       "id": "slide_transition",
+       "settings": {
+        "direction": "down"
+       }
+      },
+      "hide_transition_duration": 400
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": [],
+    "libobs.show_scene_item.1": [
+     {
+      "key": "OBS_KEY_T",
+      "control": true,
+      "alt": true
+     }
+    ],
+    "libobs.hide_scene_item.1": [
+     {
+      "key": "OBS_KEY_Z",
+      "control": true,
+      "alt": true
+     }
+    ]
+   },
+   "deinterlace_mode": 0,
+   "deinterlace_field_order": 0,
+   "monitoring_type": 0,
+   "private_settings": {}
+  },
+  {
+   "prev_ver": 503316482,
+   "name": "_Web",
+   "uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+   "id": "scene",
+   "versioned_id": "scene",
+   "settings": {
+    "id_counter": 2,
+    "custom_size": false,
+    "items": [
+     {
+      "name": "Web Chat",
+      "source_uuid": "28de8922-6313-576d-8f00-32955b7d961c",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 1,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Web Alerts",
+      "source_uuid": "eecc0bce-5ecb-5386-acbc-24619f2c3515",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     }
+    ]
+   },
+   "mixers": 0,
+   "sync": 0,
+   "flags": 0,
+   "volume": 1.0,
+   "balance": 0.5,
+   "enabled": true,
+   "muted": false,
+   "push-to-mute": false,
+   "push-to-mute-delay": 0,
+   "push-to-talk": false,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "OBSBasic.SelectScene": []
    },
    "deinterlace_mode": 0,
    "deinterlace_field_order": 0,
@@ -1121,7 +2186,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 11,
     "custom_size": false,
     "items": [
      {
@@ -1157,14 +2222,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "EQ Bars Gradient",
+      "source_uuid": "e28d73c9-cce2-5bac-9538-ea1c0d672778",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 864.0
       },
       "scale": {
        "x": 1.0,
@@ -1189,20 +2254,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Txt Starting Eyebrow",
+      "source_uuid": "4c864481-f506-5bc3-bd4f-225b4d8ea885",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 360.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1227,14 +2292,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1259,14 +2324,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 800.0
+       "x": 120.0,
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1291,14 +2356,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 960.0
+       "x": 120.0,
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1310,6 +2375,166 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Web Countdown Start",
+      "source_uuid": "b2f423c3-854c-5c96-b187-3db149892055",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Bug",
+      "source_uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 11,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1350,7 +2575,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 4,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -1418,8 +2643,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "e0c4f5cc-e240-5a26-a2c5-f96abbbd1431",
+      "name": "_Bug",
+      "source_uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -1443,6 +2668,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1474,7 +2731,71 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 4,
+      "id": 5,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1518,7 +2839,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 4,
+    "id_counter": 7,
     "custom_size": false,
     "items": [
      {
@@ -1586,8 +2907,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "e0c4f5cc-e240-5a26-a2c5-f96abbbd1431",
+      "name": "_Bug",
+      "source_uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -1611,6 +2932,38 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1642,7 +2995,71 @@
       "crop_top": 0,
       "crop_right": 0,
       "crop_bottom": 0,
-      "id": 4,
+      "id": 5,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -1686,7 +3103,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 10,
+    "id_counter": 12,
     "custom_size": false,
     "items": [
      {
@@ -1729,7 +3146,7 @@
       "rot": 0.0,
       "pos": {
        "x": 50.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -1761,7 +3178,7 @@
       "rot": 0.0,
       "pos": {
        "x": 50.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -1793,7 +3210,7 @@
       "rot": 0.0,
       "pos": {
        "x": 50.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -1825,7 +3242,7 @@
       "rot": 0.0,
       "pos": {
        "x": 990.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -1857,7 +3274,7 @@
       "rot": 0.0,
       "pos": {
        "x": 990.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -1889,7 +3306,7 @@
       "rot": 0.0,
       "pos": {
        "x": 990.0,
-       "y": 290.0
+       "y": 190.0
       },
       "scale": {
        "x": 1.0,
@@ -1914,20 +3331,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "_Bug",
+      "source_uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 120.0
+       "x": 0.0,
+       "y": 0.0
       },
       "scale": {
-       "x": 0.16,
-       "y": 0.16
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -1946,14 +3363,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 0.0
       },
       "scale": {
        "x": 1.0,
@@ -2008,6 +3425,70 @@
       "blend_method": "default",
       "blend_type": "normal",
       "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 11,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 12,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
      }
     ]
    },
@@ -2046,7 +3527,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 8,
     "custom_size": false,
     "items": [
      {
@@ -2089,7 +3570,7 @@
       "rot": 0.0,
       "pos": {
        "x": 1330.0,
-       "y": 745.0
+       "y": 690.0
       },
       "scale": {
        "x": 1.0,
@@ -2121,7 +3602,7 @@
       "rot": 0.0,
       "pos": {
        "x": 1330.0,
-       "y": 745.0
+       "y": 690.0
       },
       "scale": {
        "x": 1.0,
@@ -2153,7 +3634,7 @@
       "rot": 0.0,
       "pos": {
        "x": 1330.0,
-       "y": 745.0
+       "y": 690.0
       },
       "scale": {
        "x": 1.0,
@@ -2178,8 +3659,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "e0c4f5cc-e240-5a26-a2c5-f96abbbd1431",
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -2240,6 +3721,70 @@
       "blend_method": "default",
       "blend_type": "normal",
       "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
      }
     ]
    },
@@ -2278,7 +3823,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 2,
+    "id_counter": 4,
     "custom_size": false,
     "items": [
      {
@@ -2314,8 +3859,8 @@
       "private_settings": {}
      },
      {
-      "name": "_Branding Bug",
-      "source_uuid": "e0c4f5cc-e240-5a26-a2c5-f96abbbd1431",
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
       "visible": true,
       "locked": false,
       "rot": 0.0,
@@ -2339,6 +3884,70 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 2,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 3,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 4,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2382,7 +3991,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 11,
     "custom_size": false,
     "items": [
      {
@@ -2418,14 +4027,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "EQ Bars",
+      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 864.0
       },
       "scale": {
        "x": 1.0,
@@ -2450,20 +4059,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Txt BRB Eyebrow",
+      "source_uuid": "342b3e50-5195-562c-ab54-6eea33a7ae3d",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 360.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2488,14 +4097,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2520,14 +4129,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 800.0
+       "x": 120.0,
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2552,14 +4161,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 960.0
+       "x": 120.0,
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2571,6 +4180,166 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Web Countdown BRB",
+      "source_uuid": "8aa95971-4a1a-56b7-954b-71ae5334da96",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Bug",
+      "source_uuid": "aa23e764-f943-521d-80c2-1644b549eccd",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 11,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2611,7 +4380,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -2647,14 +4416,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "EQ Bars",
+      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 864.0
       },
       "scale": {
        "x": 1.0,
@@ -2679,20 +4448,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Txt Ending Eyebrow",
+      "source_uuid": "d95376f4-cedc-5894-8ec4-a4f9c5a75b3b",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 360.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2717,14 +4486,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2749,14 +4518,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 800.0
+       "x": 120.0,
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2781,14 +4550,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 960.0
+       "x": 120.0,
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2800,6 +4569,134 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1440.0,
+       "y": 300.0
+      },
+      "scale": {
+       "x": 0.75,
+       "y": 0.75
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
@@ -2840,7 +4737,7 @@
    "id": "scene",
    "versioned_id": "scene",
    "settings": {
-    "id_counter": 6,
+    "id_counter": 10,
     "custom_size": false,
     "items": [
      {
@@ -2876,14 +4773,14 @@
       "private_settings": {}
      },
      {
-      "name": "Band Stripes",
-      "source_uuid": "1d2b3696-a23e-556f-8b30-63b3c0ab03af",
+      "name": "EQ Bars",
+      "source_uuid": "4c1f6207-3018-5458-9d6c-a4bf25a5c480",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
        "x": 0.0,
-       "y": 1040.0
+       "y": 864.0
       },
       "scale": {
        "x": 1.0,
@@ -2908,20 +4805,20 @@
       "private_settings": {}
      },
      {
-      "name": "Logo",
-      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "name": "Txt Lost Eyebrow",
+      "source_uuid": "a06b1349-0a42-5615-9b5e-5b1754d4f376",
       "visible": true,
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 360.0
+       "x": 120.0,
+       "y": 290.0
       },
       "scale": {
-       "x": 0.42,
-       "y": 0.42
+       "x": 1.0,
+       "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2946,14 +4843,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 700.0
+       "x": 120.0,
+       "y": 340.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -2978,14 +4875,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 800.0
+       "x": 120.0,
+       "y": 700.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3010,14 +4907,14 @@
       "locked": false,
       "rot": 0.0,
       "pos": {
-       "x": 960.0,
-       "y": 960.0
+       "x": 120.0,
+       "y": 770.0
       },
       "scale": {
        "x": 1.0,
        "y": 1.0
       },
-      "align": 0,
+      "align": 5,
       "bounds_type": 0,
       "bounds_align": 0,
       "bounds": {
@@ -3029,6 +4926,134 @@
       "crop_right": 0,
       "crop_bottom": 0,
       "id": 6,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "Logo",
+      "source_uuid": "c6a0d9c8-49d1-53a8-ad21-bd712a271ea8",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 1440.0,
+       "y": 300.0
+      },
+      "scale": {
+       "x": 0.75,
+       "y": 0.75
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 7,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Partner",
+      "source_uuid": "9142bb6d-9d0a-5a63-b47c-c0479ac5ff87",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 8,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Ticker",
+      "source_uuid": "09b9fca6-0774-5a84-af42-6961ae3165be",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 9,
+      "group_item_backup": false,
+      "scale_filter": "disable",
+      "blend_method": "default",
+      "blend_type": "normal",
+      "private_settings": {}
+     },
+     {
+      "name": "_Web",
+      "source_uuid": "9090467b-7245-5225-a21b-de1e03069eda",
+      "visible": true,
+      "locked": false,
+      "rot": 0.0,
+      "pos": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "scale": {
+       "x": 1.0,
+       "y": 1.0
+      },
+      "align": 5,
+      "bounds_type": 0,
+      "bounds_align": 0,
+      "bounds": {
+       "x": 0.0,
+       "y": 0.0
+      },
+      "crop_left": 0,
+      "crop_top": 0,
+      "crop_right": 0,
+      "crop_bottom": 0,
+      "id": 10,
       "group_item_backup": false,
       "scale_filter": "disable",
       "blend_method": "default",
